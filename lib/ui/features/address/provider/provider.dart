@@ -40,21 +40,29 @@ class AddressList extends _$AddressList {
   }
 
   Future<void> addAddress() async {
-    final address1 = ref.read(address1TextFieldProvider).value;
-    final address2 = ref.read(address2TextFieldProvider).value;
-    final city = ref.read(cityTextFieldProvider).value;
-    final postcode = ref.read(postcodeTextFieldProvider).value;
-    final stateText = ref.read(stateTextFieldProvider).value;
+    try {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
 
-    await ref.read(addressRepoProvider).addAddress(Address(
-          address1: address1,
-          address2: address2,
-          city: city,
-          postcode: postcode.isNullOrEmpty ? null : int.tryParse(postcode!),
-          state: stateText,
-        ));
+      final address1 = ref.read(address1TextFieldProvider).value;
+      final address2 = ref.read(address2TextFieldProvider).value;
+      final city = ref.read(cityTextFieldProvider).value;
+      final postcode = ref.read(postcodeTextFieldProvider).value;
+      final stateText = ref.read(stateTextFieldProvider).value;
 
-    state = ref.read(addressRepoProvider).getListOfAddresses;
+      await ref.read(addressRepoProvider).addAddress(Address(
+            address1: address1,
+            address2: address2,
+            city: city,
+            postcode: postcode.isNullOrEmpty ? null : int.tryParse(postcode!),
+            state: stateText,
+          ));
+
+      state = ref.read(addressRepoProvider).getListOfAddresses;
+
+      await Future.delayed(const Duration(seconds: 1));
+    } finally {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+    }
   }
 }
 

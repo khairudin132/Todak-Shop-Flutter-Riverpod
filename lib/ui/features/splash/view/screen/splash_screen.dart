@@ -19,7 +19,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _checkCurrentUser();
+
+    // schedular binding
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkCurrentUser();
+    });
+
+    // _checkCurrentUser();
   }
 
   Future<void> _checkCurrentUser() async {

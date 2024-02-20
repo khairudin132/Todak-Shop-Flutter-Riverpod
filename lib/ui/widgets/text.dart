@@ -96,7 +96,9 @@ class _ExpandableTextState extends State<ExpandableText> {
       text: TextSpan(
         children: <TextSpan>[
           TextSpan(
-            text: expanded ? (firstHalf + secondHalf) : firstHalf,
+            text: expanded
+                ? (firstHalf + secondHalf)
+                : (secondHalf.isEmpty ? firstHalf : '$firstHalf...'),
             style: context.textTheme.bodyMedium,
           ),
           if (secondHalf.isNotEmpty)

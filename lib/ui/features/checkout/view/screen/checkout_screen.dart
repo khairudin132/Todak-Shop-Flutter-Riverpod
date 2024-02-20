@@ -3,9 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todak_shop/core/core.dart';
 import 'package:todak_shop/ui/features/address/provider/provider.dart';
 import 'package:todak_shop/ui/features/address/view/widget/widget.dart';
-import 'package:todak_shop/ui/features/cart/provider/provider.dart';
 import 'package:todak_shop/ui/features/main_bottom_nav/controller/controller.dart';
-import 'package:todak_shop/ui/features/order/provider/provider.dart';
 import 'package:todak_shop/ui/ui.dart';
 
 import '../../provider/provider.dart';
@@ -85,7 +83,13 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                       ref.read(bottomTabIndexProvider.notifier).state = 1;
                     }
                   },
-                  error: (error) {},
+                  error: (error) async {
+                    await showAppAlertDialog(
+                      context,
+                      title: 'Order Failed',
+                      message: error.codeMessage,
+                    );
+                  },
                 );
               },
             ),

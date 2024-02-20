@@ -36,6 +36,10 @@ class CheckoutToOrder extends _$CheckoutToOrder {
 
       final currentSaveAddress = ref.read(saveAddressProvider);
 
+      if (currentSaveAddress == null) {
+        return ApiError(message: 'Please save your address first');
+      }
+
       final order = Order(
         item: OrderItem(
           carts: listOfCarts,

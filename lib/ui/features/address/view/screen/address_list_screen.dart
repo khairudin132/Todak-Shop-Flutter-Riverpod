@@ -12,12 +12,11 @@ class AddressListScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final selectedAddress = ref.watch(currentSelectAddressProvider);
+
     return PageBase(
       appBar: AppBar(
         title: const Text('Address'),
-        actions: const [
-          CartBadge(),
-        ],
       ),
       floatingActionButton: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,13 +29,15 @@ class AddressListScreen extends ConsumerWidget {
           const SizedBox(height: 20),
           ConfirmButton(
             label: 'Save Address',
-            onPressed: () async {
-              await ref.read(saveAddressProvider.notifier).saveAddress();
+            onPressed: selectedAddress == null
+                ? null
+                : () async {
+                    await ref.read(saveAddressProvider.notifier).saveAddress();
 
-              if (context.mounted) {
-                context.navigator.pop();
-              }
-            },
+                    if (context.mounted) {
+                      context.navigator.pop();
+                    }
+                  },
           ),
         ],
       ),

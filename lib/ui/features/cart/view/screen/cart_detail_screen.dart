@@ -45,16 +45,21 @@ class CartDetailScreen extends ConsumerWidget {
             const SizedBox(height: 20),
             ConfirmButton(
               label: 'Checkout',
-              onPressed: () async {
-                if (context.mounted) {
-                  context.navigator.pushNamed(
-                    CheckoutScreen.path,
-                    arguments: {
-                      'carts': ref.read(addProductToCartProvider),
+              onPressed: ref
+                      .watch(collectCartItemForCheckoutProvider)
+                      .isNullOrEmpty
+                  ? null
+                  : () async {
+                      if (context.mounted) {
+                        context.navigator.pushNamed(
+                          CheckoutScreen.path,
+                          arguments: {
+                            'carts':
+                                ref.read(collectCartItemForCheckoutProvider),
+                          },
+                        );
+                      }
                     },
-                  );
-                }
-              },
             ),
           ],
         ),

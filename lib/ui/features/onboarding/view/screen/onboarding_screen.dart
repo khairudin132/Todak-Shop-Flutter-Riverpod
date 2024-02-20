@@ -6,7 +6,7 @@ import 'package:todak_shop/core/gen/assets.gen.dart';
 import 'package:todak_shop/ui/features/onboarding/view/widgets/onboarding_base.dart';
 import 'package:todak_shop/ui/ui.dart';
 
-import '../controller/controller.dart';
+import '../../controller/controller.dart';
 
 class OnBoardingScreen extends ConsumerWidget {
   const OnBoardingScreen({super.key});
@@ -15,19 +15,26 @@ class OnBoardingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final index = ref.watch(onBoardingIndexProvider);
+
     return PageBase(
-      floatingActionButton: ref.watch(onBoardingIndexProvider) == 2
+      floatingActionButton: index == 2
           ? ConfirmButton(
               label: 'Get Started',
               onPressed: () async {
-                context.navigator.pushNamedAndRemoveUntil(
-                  SignInScreen.path,
-                  (_) => false,
-                );
+                if (context.mounted) {
+                  context.navigator.pushNamedAndRemoveUntil(
+                    SignInScreen.path,
+                    (_) => false,
+                  );
+                }
 
                 await ref
                     .read(appDeviceRepoProvider)
                     .setIsFirstTimeInstallApp(false);
+                // WidgetsBinding.instance.addPostFrameCallback((_) async {
+                //
+                // });
               },
             )
           : null,
@@ -57,7 +64,7 @@ class OnBoardingScreen extends ConsumerWidget {
               ),
             ],
           ),
-          if (ref.watch(onBoardingIndexProvider) != 2)
+          if (index != 2)
             Positioned(
               bottom: 0,
               left: 0,

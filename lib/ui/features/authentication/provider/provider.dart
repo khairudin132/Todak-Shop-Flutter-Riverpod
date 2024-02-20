@@ -20,7 +20,7 @@ class PasswordTextField extends _$PasswordTextField {
   @override
   TextFieldModel build() {
     return TextFieldModel(
-      fieldLabel: 'Username',
+      fieldLabel: 'Password',
       controller: TextEditingController(),
     );
   }

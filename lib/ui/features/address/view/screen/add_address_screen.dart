@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todak_shop/core/core.dart';
@@ -22,35 +21,19 @@ class AddAddressScreen extends ConsumerWidget {
         label: 'Save',
         onPressed: () async {
           if (_formKey.currentState!.validate()) {
-            // ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+            await ref.read(addressListProvider.notifier).addAddress();
 
-            final result =
-                await ref.read(addressListProvider.notifier).addAddress();
+            if (context.mounted) {
+              await showAppAlertDialog(
+                context,
+                title: 'Address',
+                message: 'Success Add Address',
+              );
+            }
 
             if (context.mounted) {
               context.navigator.pop();
             }
-
-            // result.when(
-            //   data: (data) async {
-            //     if (context.mounted) {
-            //       context.navigator.pushNamedAndRemoveUntil(
-            //         MainBottomNavScreen.path,
-            //         (_) => false,
-            //       );
-            //     }
-            //   },
-            //   error: (error) async {
-            //     if (context.mounted) {
-            //       await showAppAlertDialog(
-            //         context,
-            //         title: 'Sign In',
-            //         message: error.codeMessage,
-            //         errors: error.errors,
-            //       );
-            //     }
-            //   },
-            // );
           }
         },
       ),
