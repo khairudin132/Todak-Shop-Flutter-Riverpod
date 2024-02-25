@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "738030759608",
+    "project_id": "shoppy-c5ea7",
+    "storage_bucket": "shoppy-c5ea7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738030759608:android:ee8b8994a54e281b64ce4d",
+        "android_client_info": {
+          "package_name": "com.example.todak_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF3Fk3XzWWfhjI7_IA40nJIRinJRUFefA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

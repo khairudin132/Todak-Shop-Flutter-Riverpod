@@ -1,11 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todak_shop/core/core.dart';
+import 'package:todak_shop/firebase_options.dart';
 import 'package:todak_shop/ui/ui.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   final sharedPrefs = await SharedPreferences.getInstance();
 
