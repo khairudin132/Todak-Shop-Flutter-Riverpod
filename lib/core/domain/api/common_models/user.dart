@@ -19,6 +19,8 @@ class User {
   String? image;
   String? token;
 
+  User.empty() : this();
+
   factory User.fromJson(Map<String, dynamic> map) {
     return User(
       id: map['id'],

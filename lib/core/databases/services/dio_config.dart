@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:talker_dio_logger/talker_dio_logger.dart';
 
 import 'package:todak_shop/core/core.dart';
 

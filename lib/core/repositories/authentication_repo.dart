@@ -10,14 +10,19 @@ class AuthenticationRepo implements AuthenticationInterface {
 
   final ProviderRef _ref;
 
+  AuthenticationApiClient get _apiClient =>
+      _ref.read(authenticationApiClientProvider);
+
+  AuthenticationLocalStorage get _localStorage =>
+      _ref.read(authenticationLocalStorageProvider);
+
   User? _user;
 
   @override
   User? get user => _user;
 
   @override
-  String? get getAccountToken =>
-      _ref.read(authenticationLocalStorageProvider).getAccountToken;
+  String? get getAccountToken => _localStorage.getAccountToken;
 
   @override
   DateTime? get getTokenExpirationDate => getAccountToken.isNullOrEmpty
@@ -25,18 +30,15 @@ class AuthenticationRepo implements AuthenticationInterface {
       : JwtDecoder.getExpirationDate(getAccountToken!);
 
   @override
-  Future<void> setAccountToken(String token) async => await _ref
-      .read(authenticationLocalStorageProvider)
-      .setAccountToken(token);
+  Future<void> setAccountToken(String token) async =>
+      await _localStorage.setAccountToken(token);
 
   @override
-  bool get getIsLoggedIn =>
-      _ref.read(authenticationLocalStorageProvider).getIsLoggedIn ?? false;
+  bool get getIsLoggedIn => _localStorage.getIsLoggedIn ?? false;
 
   @override
-  Future<void> setIsLoggedIn(bool isLoggedIn) async => await _ref
-      .read(authenticationLocalStorageProvider)
-      .setIsLoggedIn(isLoggedIn);
+  Future<void> setIsLoggedIn(bool isLoggedIn) async =>
+      await _localStorage.setIsLoggedIn(isLoggedIn);
 
   @override
   bool get isTokenExpired => getAccountToken.isNullOrEmpty
@@ -45,7 +47,7 @@ class AuthenticationRepo implements AuthenticationInterface {
 
   @override
   Future<void> signIn(SignInRequest request) async {
-    final result = await _ref.read(apiSignInProvider(request: request).future);
+    final result = await _apiClient.apiSignIn(request: request);
 
     result.when(
       data: (data) async {
@@ -59,7 +61,7 @@ class AuthenticationRepo implements AuthenticationInterface {
 
   @override
   Future<void> getCurrentAuthUser() async {
-    final result = await _ref.read(apiGetCurrentAuthUserProvider.future);
+    final result = await _apiClient.apiGetCurrentAuthUser();
 
     result.when(
       data: (data) {
@@ -78,7 +80,7 @@ class AuthenticationRepo implements AuthenticationInterface {
   @override
   Future<void> reset() async {
     _user = null;
-    await _ref.read(authenticationLocalStorageProvider).reset([
+    await _localStorage.reset([
       Constant.accountTokenKey,
       Constant.isLoggedInKey,
     ]);

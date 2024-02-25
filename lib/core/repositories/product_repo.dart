@@ -1,5 +1,5 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:collection/collection.dart';
 
 import 'package:todak_shop/core/core.dart';
 
@@ -10,9 +10,11 @@ class ProductRepo implements ProductInterface {
 
   final ProviderRef _ref;
 
+  ProductApiClient get _apiClient => _ref.read(productApiClientProvider);
+
   @override
   Future<List<CategoryItem>> getListOfCategories() async {
-    final result = await _ref.read(apiGetCategoriesProvider.future);
+    final result = await _apiClient.apiGetCategories();
 
     return result.when(
       data: (data) {
@@ -30,8 +32,7 @@ class ProductRepo implements ProductInterface {
 
   @override
   Future<List<Product>> getListOfProducts({String? category}) async {
-    final result =
-        await _ref.read(apiGetProductsProvider(category: category).future);
+    final result = await _apiClient.apiGetProducts(category: category);
 
     return result.when(
       data: (data) {
@@ -43,7 +44,7 @@ class ProductRepo implements ProductInterface {
 
   @override
   Future<Product?> getProductById(int id) async {
-    final result = await _ref.read(apiGetProductDetailProvider(id: id).future);
+    final result = await _apiClient.apiGetProductDetail(id: id);
 
     return result.when(
       data: (data) {

@@ -1,6 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todak_shop/core/core.dart';
-import 'package:todak_shop/ui/features/address/provider/provider.dart';
 
 part 'provider.g.dart';
 

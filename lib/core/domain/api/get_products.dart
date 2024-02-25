@@ -18,4 +18,8 @@ class GetProductsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'products': products?.map((x) => x.toMap()).toList(),
+      };
 }

@@ -22,7 +22,7 @@ final usernameTextFieldProvider =
 );
 
 typedef _$UsernameTextField = AutoDisposeNotifier<TextFieldModel>;
-String _$passwordTextFieldHash() => r'c4b91d27f2cabb37496e0f4ab49de4f7d51ef76e';
+String _$passwordTextFieldHash() => r'390da3d046a1bc2d96cd67fa62552b308a4c3e3c';
 
 /// See also [PasswordTextField].
 @ProviderFor(PasswordTextField)
