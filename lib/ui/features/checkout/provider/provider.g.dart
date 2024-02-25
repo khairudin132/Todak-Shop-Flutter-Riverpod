@@ -23,7 +23,7 @@ final checkoutCartItemProvider = AutoDisposeNotifierProvider<CheckoutCartItem,
 
 typedef _$CheckoutCartItem
     = AutoDisposeNotifier<({List<Cart> carts, String totalPrice})>;
-String _$checkoutToOrderHash() => r'37e0f9015c9925f7dd80fa00b4afccfd6bff6590';
+String _$checkoutToOrderHash() => r'6f29fa1bc456aa26b067c8b23e46da0d8444d680';
 
 /// See also [CheckoutToOrder].
 @ProviderFor(CheckoutToOrder)

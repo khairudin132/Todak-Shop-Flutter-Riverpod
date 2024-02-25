@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todak_shop/core/core.dart';
-import 'package:todak_shop/ui/ui.dart';
 
 class AddressTile extends StatelessWidget {
   const AddressTile({

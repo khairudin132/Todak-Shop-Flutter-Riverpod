@@ -38,7 +38,7 @@ final saveAddressProvider =
 );
 
 typedef _$SaveAddress = AutoDisposeNotifier<Address?>;
-String _$addressListHash() => r'b23a58958419f315f155df5c4c0c1b46da6c0258';
+String _$addressListHash() => r'a58ea0d3a94413cf7c701d66ea99805a00b0e30e';
 
 /// See also [AddressList].
 @ProviderFor(AddressList)

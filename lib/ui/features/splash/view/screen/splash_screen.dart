@@ -40,6 +40,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     // If the token is expired, reset authentication and navigate to sign-in screen
     if (isTokenExpired) {
       await ref.read(authenticationRepoProvider).reset();
+
       if (context.mounted) {
         context.navigator.pushNamedAndRemoveUntil(
           SignInScreen.path,
