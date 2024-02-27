@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,19 +17,19 @@ class AddressRepo implements AddressInterface {
   Address? get getSaveAddress {
     final address = _ref.read(addressLocalStorageProvider).getSaveAddress;
 
-    return address != null ? Address.fromJson(address) : null;
+    return address != null ? Address.fromJson(jsonDecode(address)) : null;
   }
 
   @override
   Future<void> saveAddress(Address address) async => await _ref
       .read(addressLocalStorageProvider)
-      .setSaveAddress(address.toJson());
+      .setSaveAddress(jsonEncode(address.toJson()));
 
   @override
   List<Address> get getListOfAddresses => _listOfAddresses = _ref
           .read(addressLocalStorageProvider)
           .getListOfAddresses
-          ?.map((e) => Address.fromJson(e))
+          ?.map((e) => Address.fromJson(jsonDecode(e)))
           .toList() ??
       [];
 
@@ -73,7 +74,7 @@ class AddressRepo implements AddressInterface {
 
   Future<void> _updateAddressLocal(List<Address> listOfAddresses) async {
     final listOfAddressesString =
-        listOfAddresses.map((e) => (e.toJson())).toList();
+        listOfAddresses.map((e) => (jsonEncode(e))).toList();
 
     await _ref.read(addressLocalStorageProvider).clearAddress();
     await _ref

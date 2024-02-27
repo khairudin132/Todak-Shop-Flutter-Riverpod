@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +17,7 @@ class OrderRepo implements OrderInterface {
   List<Order> get getListOfOrders => _listOfOrders = _ref
           .read(orderLocalStorageProvider)
           .getListOfOrders
-          ?.map((e) => Order.fromJson(e))
+          ?.map((e) => Order.fromJson(jsonDecode(e)))
           .toList() ??
       [];
 
@@ -48,7 +49,8 @@ class OrderRepo implements OrderInterface {
   }
 
   Future<void> _updateOrderLocal(List<Order> listOfOrders) async {
-    final listOfOrdersString = listOfOrders.map((e) => (e.toJson())).toList();
+    final listOfOrdersString =
+        listOfOrders.map((e) => (jsonEncode(e))).toList();
 
     await _ref.read(orderLocalStorageProvider).clearOrder();
     await _ref

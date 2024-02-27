@@ -1,34 +1,18 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'product.dart';
 
-class CartItem {
-  CartItem({
-    this.quantity,
-    this.product,
-  });
+part 'cart_item.freezed.dart';
+part 'cart_item.g.dart';
 
-  int? quantity;
-  Product? product;
+@freezed
+class CartItem with _$CartItem {
+  @JsonSerializable(explicitToJson: true)
+  factory CartItem({
+    @JsonKey(name: 'quantity') int? quantity,
+    @JsonKey(name: 'product') Product? product,
+  }) = _CartItem;
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'quantity': quantity,
-      'product': product?.toMap(),
-    };
-  }
-
-  factory CartItem.fromMap(Map<String, dynamic> map) {
-    return CartItem(
-      quantity: map['quantity'] != null ? map['quantity'] as int : null,
-      product: map['product'] != null
-          ? Product.fromMap(map['product'] as Map<String, dynamic>)
-          : null,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory CartItem.fromJson(String source) =>
-      CartItem.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory CartItem.fromJson(Map<String, dynamic> json) =>
+      _$CartItemFromJson(json);
 }

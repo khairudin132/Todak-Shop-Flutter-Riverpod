@@ -204,7 +204,7 @@ void main() {
       when(mockNetwork.networkStorage).thenReturn(mockDio);
       when(mockDio.get(path)).thenAnswer((_) async => Response(
             requestOptions: RequestOptions(path: path),
-            data: Product().toMap(),
+            data: Product().toJson(),
             statusCode: 200,
           ));
 

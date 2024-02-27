@@ -1,44 +1,17 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'order_item.dart';
 
-class Order {
-  Order({
-    this.id,
-    this.item,
-  });
+part 'order.freezed.dart';
+part 'order.g.dart';
 
-  int? id;
-  OrderItem? item;
+@freezed
+class Order with _$Order {
+  @JsonSerializable(explicitToJson: true)
+  factory Order({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'item') OrderItem? item,
+  }) = _Order;
 
-  Order copyWith({
-    int? id,
-    OrderItem? item,
-  }) {
-    return Order(
-      id: id ?? this.id,
-      item: item ?? this.item,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'item': item?.toMap(),
-    };
-  }
-
-  factory Order.fromMap(Map<String, dynamic> map) {
-    return Order(
-      id: map['id'] != null ? map['id'] as int : null,
-      item: map['item'] != null
-          ? OrderItem.fromMap(map['item'] as Map<String, dynamic>)
-          : null,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Order.fromJson(String source) =>
-      Order.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 }

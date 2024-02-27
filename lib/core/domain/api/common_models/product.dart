@@ -1,84 +1,25 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Product {
-  Product({
-    this.id,
-    this.title,
-    this.description,
-    this.price,
-    this.discountPercentage,
-    this.rating,
-    this.stock,
-    this.brand,
-    this.category,
-    this.thumbnail,
-    this.images,
-  });
+part 'product.freezed.dart';
+part 'product.g.dart';
 
-  int? id;
-  String? title;
-  String? description;
-  int? price;
-  double? discountPercentage;
-  double? rating;
-  int? stock;
-  String? brand;
-  String? category;
-  String? thumbnail;
-  List<String>? images;
+@freezed
+class Product with _$Product {
+  @JsonSerializable()
+  factory Product({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'price') int? price,
+    @JsonKey(name: 'discountPercentage') double? discountPercentage,
+    @JsonKey(name: 'rating') double? rating,
+    @JsonKey(name: 'stock') int? stock,
+    @JsonKey(name: 'brand') String? brand,
+    @JsonKey(name: 'category') String? category,
+    @JsonKey(name: 'thumbnail') String? thumbnail,
+    @JsonKey(name: 'images') List<String>? images,
+  }) = _Product;
 
-  Product.empty() {
-    id = null;
-    title = null;
-    description = null;
-    price = null;
-    discountPercentage = null;
-    rating = null;
-    stock = null;
-    brand = null;
-    category = null;
-    thumbnail = null;
-    images = null;
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'title': title,
-      'description': description,
-      'price': price,
-      'discountPercentage': discountPercentage,
-      'rating': rating,
-      'stock': stock,
-      'brand': brand,
-      'category': category,
-      'thumbnail': thumbnail,
-      'images': images,
-    };
-  }
-
-  factory Product.fromMap(Map<String, dynamic> map) {
-    return Product(
-      id: map['id'] as int?,
-      title: map['title'] as String?,
-      description: map['description'] as String?,
-      price: map['price'] as int?,
-      discountPercentage: map['discountPercentage'] != null
-          ? (map['discountPercentage'] as num).toDouble()
-          : null,
-      rating: map['rating'] != null ? (map['rating'] as num).toDouble() : null,
-      stock: map['stock'] as int?,
-      brand: map['brand'] as String?,
-      category: map['category'] as String?,
-      thumbnail: map['thumbnail'] as String?,
-      images: map['images'] != null
-          ? List<String>.from(map['images'] as List<dynamic>)
-          : null,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Product.fromJson(String source) =>
-      Product.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Product.fromJson(Map<String, dynamic> json) =>
+      _$ProductFromJson(json);
 }

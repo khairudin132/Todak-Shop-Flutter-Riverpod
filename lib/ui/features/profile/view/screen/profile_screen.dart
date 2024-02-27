@@ -48,7 +48,7 @@ class _UserDetails extends ConsumerWidget {
       _LastName(lastName: user?.lastName ?? ''),
       _Email(email: user?.email ?? ''),
       _Gender(gender: user?.gender ?? ''),
-      _Address(),
+      const _Address(),
     ];
 
     return ListViewSeparatedItem(
