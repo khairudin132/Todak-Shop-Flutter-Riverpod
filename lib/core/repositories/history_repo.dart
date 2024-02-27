@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todak_shop/core/core.dart';
 
@@ -21,7 +23,7 @@ class HistoryRepo implements HistoryInterface {
   void getListOfHistories() => _listOfHistories = _ref
           .read(historyLocalStorageProvider)
           .getListOfHistories
-          ?.map((e) => History.fromJson(e))
+          ?.map((e) => History.fromJson(jsonDecode(e)))
           .toList() ??
       [];
 
@@ -40,7 +42,7 @@ class HistoryRepo implements HistoryInterface {
 
   Future<void> _updateHistoryLocal(List<History> listOfHistories) async {
     final listOfHistoriesString =
-        listOfHistories.map((e) => (e.toJson())).toList();
+        listOfHistories.map((e) => (jsonEncode(e))).toList();
 
     await clearHistory();
     await _ref

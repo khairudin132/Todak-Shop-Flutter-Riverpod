@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +17,7 @@ class CartRepo implements CartInterface {
   List<Cart> get getListOfCarts => _listOfCarts = _ref
           .read(cartLocalStorageProvider)
           .getListOfCarts
-          ?.map((e) => Cart.fromJson(e))
+          ?.map((e) => Cart.fromJson(jsonDecode(e)))
           .toList() ??
       [];
 
@@ -54,7 +55,7 @@ class CartRepo implements CartInterface {
   }
 
   Future<void> _updateCartLocal(List<Cart> listOfCarts) async {
-    final listOfCartsString = listOfCarts.map((e) => (e.toJson())).toList();
+    final listOfCartsString = listOfCarts.map((e) => (jsonEncode(e))).toList();
 
     await _ref.read(cartLocalStorageProvider).clearCart();
     await _ref.read(cartLocalStorageProvider).setListOfCarts(listOfCartsString);

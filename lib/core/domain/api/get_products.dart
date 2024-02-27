@@ -1,25 +1,15 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:todak_shop/core/domain/api/common_models/product.dart';
 
-class GetProductsResponse {
-  GetProductsResponse({
-    this.products,
-  });
+part 'get_products.freezed.dart';
+part 'get_products.g.dart';
 
-  List<Product>? products;
+@freezed
+class GetProductsResponse with _$GetProductsResponse {
+  factory GetProductsResponse({
+    @JsonKey(name: 'products') List<Product>? products,
+  }) = _GetProductsResponse;
 
-  factory GetProductsResponse.fromJson(Map<String, dynamic> map) {
-    return GetProductsResponse(
-      products: map['products'] != null
-          ? List<Product>.from(
-              (map['products'] as List<dynamic>).map<Product?>(
-                (x) => Product.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        'products': products?.map((x) => x.toMap()).toList(),
-      };
+  factory GetProductsResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetProductsResponseFromJson(json);
 }

@@ -1,49 +1,21 @@
-class User {
-  User({
-    this.id,
-    this.username,
-    this.email,
-    this.firstName,
-    this.lastName,
-    this.gender,
-    this.image,
-    this.token,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  int? id;
-  String? username;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? gender;
-  String? image;
-  String? token;
+part 'user.freezed.dart';
+part 'user.g.dart';
 
-  User.empty() : this();
+@freezed
+class User with _$User {
+  @JsonSerializable()
+  factory User({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'username') String? username,
+    @JsonKey(name: 'email') String? email,
+    @JsonKey(name: 'firstName') String? firstName,
+    @JsonKey(name: 'lastName') String? lastName,
+    @JsonKey(name: 'gender') String? gender,
+    @JsonKey(name: 'image') String? image,
+    @JsonKey(name: 'token') String? token,
+  }) = _User;
 
-  factory User.fromJson(Map<String, dynamic> map) {
-    return User(
-      id: map['id'],
-      username: map['username'],
-      email: map['email'],
-      firstName: map['firstName'],
-      lastName: map['lastName'],
-      gender: map['gender'],
-      image: map['image'],
-      token: map['token'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'id': id,
-      'username': username,
-      'email': email,
-      'firstName': firstName,
-      'lastName': lastName,
-      'gender': gender,
-      'image': image,
-      'token': token,
-    };
-  }
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

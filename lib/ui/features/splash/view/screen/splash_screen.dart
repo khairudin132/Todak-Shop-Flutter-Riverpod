@@ -20,19 +20,15 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   void initState() {
     super.initState();
 
-    // schedular binding
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkCurrentUser();
     });
-
-    // _checkCurrentUser();
   }
 
   Future<void> _checkCurrentUser() async {
     final user = ref.read(currentAuthUserProvider);
     final isFirstTimer =
         ref.read(appDeviceRepoProvider).getIsFirstTimeInstallApp;
-    final isLoggedIn = ref.read(authenticationRepoProvider).getIsLoggedIn;
     final isTokenExpired = ref.read(authenticationRepoProvider).isTokenExpired;
 
     bool isAuthenticated = user != null;

@@ -1,44 +1,16 @@
-import 'dart:convert';
-
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:todak_shop/core/core.dart';
 
-class Cart {
-  Cart({
-    this.id,
-    this.item,
-  });
+part 'cart.freezed.dart';
+part 'cart.g.dart';
 
-  int? id;
-  CartItem? item;
+@freezed
+class Cart with _$Cart {
+  @JsonSerializable(explicitToJson: true)
+  factory Cart({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'item') CartItem? item,
+  }) = _Cart;
 
-  Cart copyWith({
-    int? id,
-    CartItem? item,
-  }) {
-    return Cart(
-      id: id ?? this.id,
-      item: item ?? this.item,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'item': item?.toMap(),
-    };
-  }
-
-  factory Cart.fromMap(Map<String, dynamic> map) {
-    return Cart(
-      id: map['id'] != null ? map['id'] as int : null,
-      item: map['item'] != null
-          ? CartItem.fromMap(map['item'] as Map<String, dynamic>)
-          : null,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Cart.fromJson(String source) =>
-      Cart.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);
 }
