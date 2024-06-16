@@ -5,6 +5,7 @@ import 'package:todak_shop/ui/features/address/provider/provider.dart';
 import 'package:todak_shop/ui/features/address/view/widget/widget.dart';
 import 'package:todak_shop/ui/features/authentication/provider/provider.dart';
 import 'package:todak_shop/ui/features/authentication/view/widget/widget.dart';
+import 'package:todak_shop/ui/features/main_bottom_nav/controller/controller.dart';
 import 'package:todak_shop/ui/ui.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -24,9 +25,42 @@ class ProfileScreen extends ConsumerWidget {
       floatingActionButton: ConfirmButton(
         label: 'Sign Out',
         onPressed: () async {
-          await ref.read(currentAuthUserProvider.notifier).signOut();
-          context.navigator
-              .pushNamedAndRemoveUntil(SplashScreen.path, (route) => false);
+          final result =
+              await ref.read(currentAuthUserProvider.notifier).signOut();
+
+          result.when(
+            data: (data) async {
+              if (context.mounted) {
+                final result =
+                    await ref.read(currentAuthUserProvider.notifier).reset();
+                result.when(
+                  data: (data) {
+                    context.navigator.pushReplacementNamed(SplashScreen.path);
+                  },
+                  error: (error) async {
+                    if (context.mounted) {
+                      await showAppAlertDialog(
+                        context,
+                        title: 'Error Sign Out',
+                        message: error.codeMessage,
+                        errors: error.errors,
+                      );
+                    }
+                  },
+                );
+              }
+            },
+            error: (error) async {
+              if (context.mounted) {
+                await showAppAlertDialog(
+                  context,
+                  title: 'Error Sign Out',
+                  message: error.codeMessage,
+                  errors: error.errors,
+                );
+              }
+            },
+          );
         },
       ),
       child: const Column(
@@ -46,7 +80,9 @@ class _UserDetails extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(currentAuthUserProvider);
 
-    String fullName = '${user!.firstName} ${user.lastName}';
+    if (user == null) return const SizedBox.shrink();
+
+    String fullName = '${user.firstName} ${user.lastName}';
 
     return Card(
       child: Container(

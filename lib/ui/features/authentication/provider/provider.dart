@@ -138,9 +138,26 @@ class CurrentAuthUser extends _$CurrentAuthUser {
 
   Future<ApiResult<void>> signOut() async {
     try {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+
       await ref.read(authenticationRepoProvider).signOut();
 
-      state = ref.read(authenticationRepoProvider).user;
+      return ApiSuccess(value: null);
+    } on ApiError catch (e) {
+      return e;
+    } finally {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+    }
+  }
+
+  Future<ApiResult<void>> reset() async {
+    try {
+      await ref.read(authenticationRepoProvider).reset();
+      final user = ref.read(authenticationRepoProvider).user;
+
+      if (user != null) {
+        return ApiError(message: 'Please try again');
+      }
 
       return ApiSuccess(value: null);
     } on ApiError catch (e) {

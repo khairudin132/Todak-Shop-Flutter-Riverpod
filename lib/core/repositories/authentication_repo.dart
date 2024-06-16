@@ -83,9 +83,7 @@ class AuthenticationRepo implements AuthenticationInterface {
     final result = await _apiClient.signOut();
 
     result.when(
-      data: (data) {
-        _user = null;
-      },
+      data: (data) {},
       error: (error) => throw error,
     );
   }
