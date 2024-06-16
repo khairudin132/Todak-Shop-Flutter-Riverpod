@@ -1,4 +1,8 @@
+import 'package:todak_shop/core/constants/firebase_constants.dart';
+
 class Constant {
+  static FirebaseConstants firebaseConstants = const FirebaseConstants();
+
   static const String isFirstTimeInstallAppKey = 'isFirstTimeInstallApp';
 
   static const String isLoggedInKey = 'isLoggedIn';

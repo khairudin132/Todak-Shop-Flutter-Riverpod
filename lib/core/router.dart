@@ -32,6 +32,11 @@ final _listOfPages = [
     path: SignInScreen.path,
   ),
 
+  RouterEntity(
+    builder: (arguments) => SignUpScreen(),
+    path: SignUpScreen.path,
+  ),
+
   // Main
   RouterEntity(
     builder: (arguments) => const MainBottomNavScreen(),

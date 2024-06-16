@@ -26,16 +26,17 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   Future<void> _checkCurrentUser() async {
-    final user = ref.read(currentAuthUserProvider);
+    await ref.read(currentAuthUserProvider.notifier).getCurrentAuthUser();
+
     final isFirstTimer =
         ref.read(appDeviceRepoProvider).getIsFirstTimeInstallApp;
     final isTokenExpired = ref.read(authenticationRepoProvider).isTokenExpired;
 
-    bool isAuthenticated = user != null;
+    final isAuthenticatedUser = ref.read(currentAuthUserProvider) != null;
 
     // If the token is expired, reset authentication and navigate to sign-in screen
     if (isTokenExpired) {
-      await ref.read(authenticationRepoProvider).reset();
+      await ref.read(authenticationRepoProvider).signOut();
 
       if (context.mounted) {
         context.navigator.pushNamedAndRemoveUntil(
@@ -58,7 +59,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     }
 
     // If user is authenticated, navigate to main bottom navigation screen, else show sign-in screen
-    if (isAuthenticated) {
+    if (isAuthenticatedUser) {
       if (context.mounted) {
         context.navigator.pushNamedAndRemoveUntil(
           MainBottomNavScreen.path,
@@ -66,22 +67,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         );
       }
     } else {
-      // Attempt to get the current authenticated user, or handle the sign-in flow
-      await ref.read(currentAuthUserProvider.notifier).getCurrentAuthUser();
       if (context.mounted) {
-        // After attempting to get the current user, check authentication status again
-        final updatedUser = ref.read(currentAuthUserProvider);
-        if (updatedUser != null) {
-          context.navigator.pushNamedAndRemoveUntil(
-            MainBottomNavScreen.path,
-            (_) => false,
-          );
-        } else {
-          context.navigator.pushNamedAndRemoveUntil(
-            SignInScreen.path,
-            (_) => false,
-          );
-        }
+        context.navigator.pushNamedAndRemoveUntil(
+          SignInScreen.path,
+          (_) => false,
+        );
       }
     }
   }

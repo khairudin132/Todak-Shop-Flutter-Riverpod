@@ -1,34 +1,73 @@
-import 'package:dio/dio.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todak_shop/core/core.dart';
 
-final authenticationApiClientProvider = Provider(
-    (ref) => AuthenticationApiClient(ref.read(networkStorageServiceProvider)));
+final authenticationApiClientProvider =
+    Provider((ref) => AuthenticationApiClient());
 
 class AuthenticationApiClient {
-  AuthenticationApiClient(this._network);
+  AuthenticationApiClient();
 
-  final NetworkStorageService _network;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Sign In
-  Future<ApiResult<User>> apiSignIn({
-    required SignInRequest request,
-  }) async {
+  Future<ApiResult<void>> signUp({required SignUpRequest request}) async {
     try {
-      final result = await _network.networkStorage.post(
-        'auth/login',
-        data: request.toJson(),
+      final credential = await _auth.createUserWithEmailAndPassword(
+        email: request.email,
+        password: request.password,
       );
 
-      final data = result.data == null ? null : User.fromJson(result.data);
+      if (credential.user != null) {
+        await credential.user!.updateDisplayName(request.username);
 
-      return ApiSuccess(value: data);
-    } on DioException catch (e, s) {
+        final user = UserProfile(
+          id: credential.user!.uid,
+          username: request.username,
+          email: request.email,
+          firstName: request.firstName,
+          lastName: request.lastName,
+        );
+
+        await _firestore
+            .collection(Constant.firebaseConstants.users)
+            .doc(credential.user!.uid)
+            .set(user.toJson());
+
+        await credential.user!.sendEmailVerification();
+      }
+
+      return ApiSuccess(value: null);
+    } on FirebaseAuthException catch (e) {
       return ApiError(
-        code: e.response?.statusCode,
+        code: e.code,
         message: e.message,
-        errors: e.response?.data as Map<String, dynamic>?,
+        stackTrace: e.stackTrace,
+      );
+    } catch (e, s) {
+      return ApiError(
+        message: e.toString(),
         stackTrace: s,
+      );
+    }
+  }
+
+  // Sign In
+  Future<ApiResult<UserCredential>> signIn(
+      {required SignInRequest request}) async {
+    try {
+      final userCredential = await _auth.signInWithEmailAndPassword(
+        email: request.email,
+        password: request.password,
+      );
+
+      return ApiSuccess(value: userCredential);
+    } on FirebaseAuthException catch (e) {
+      return ApiError(
+        code: e.code,
+        message: e.message,
+        stackTrace: e.stackTrace,
       );
     } catch (e, s) {
       return ApiError(
@@ -39,19 +78,46 @@ class AuthenticationApiClient {
   }
 
   // Get Current User
-  Future<ApiResult<User>> apiGetCurrentAuthUser() async {
+  Future<ApiResult<UserProfile>> apiGetCurrentAuthUser() async {
     try {
-      final result = await _network.networkStorage.get('auth/me');
+      final currentUser = _auth.currentUser;
+      UserProfile? user;
 
-      final data = result.data == null ? null : User.fromJson(result.data);
+      if (currentUser != null) {
+        final result = await _firestore
+            .collection(Constant.firebaseConstants.users)
+            .doc(currentUser.uid)
+            .get();
 
-      return ApiSuccess(value: data);
-    } on DioException catch (e, s) {
+        user =
+            result.data() == null ? null : UserProfile.fromJson(result.data()!);
+      }
+
+      return ApiSuccess(value: user);
+    } on FirebaseAuthException catch (e) {
       return ApiError(
-        code: e.response?.statusCode,
+        code: e.code,
         message: e.message,
-        errors: e.response?.data as Map<String, dynamic>?,
+        stackTrace: e.stackTrace,
+      );
+    } catch (e, s) {
+      return ApiError(
+        message: e.toString(),
         stackTrace: s,
+      );
+    }
+  }
+
+  // signout
+  Future<ApiResult<void>> signOut() async {
+    try {
+      await _auth.signOut();
+      return ApiSuccess(value: null);
+    } on FirebaseAuthException catch (e) {
+      return ApiError(
+        code: e.code,
+        message: e.message,
+        stackTrace: e.stackTrace,
       );
     } catch (e, s) {
       return ApiError(

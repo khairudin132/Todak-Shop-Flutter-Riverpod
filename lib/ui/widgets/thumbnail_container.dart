@@ -16,7 +16,7 @@ class ThumbnailContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedContainer(
+    return CachedNetworkContainer(
       imageUrl: imageUrl,
       width: width,
       height: height,

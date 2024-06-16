@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class AppIconsAdaptive {
-  // EMAIL
+  // CLOCK
   static IconData get clock =>
       Platform.isAndroid ? Icons.watch_later_outlined : CupertinoIcons.clock;
+
+  // EDIT
+  static IconData get edit =>
+      Platform.isAndroid ? Icons.edit : CupertinoIcons.pencil;
 
   // EMAIL
   static IconData get email =>
