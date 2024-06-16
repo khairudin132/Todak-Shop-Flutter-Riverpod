@@ -22,7 +22,7 @@ class ProductApiClient {
       return ApiSuccess(value: data);
     } on DioException catch (e, s) {
       return ApiError(
-        code: e.response?.statusCode,
+        code: e.response?.statusCode.toString(),
         message: e.message,
         errors: e.response?.data['errors'],
         stackTrace: s,
@@ -56,7 +56,7 @@ class ProductApiClient {
       return ApiSuccess(value: data);
     } on DioException catch (e, s) {
       return ApiError(
-        code: e.response?.statusCode,
+        code: e.response?.statusCode.toString(),
         message: e.message,
         errors: e.response?.data['errors'],
         stackTrace: s,
@@ -79,7 +79,7 @@ class ProductApiClient {
       return ApiSuccess(value: data);
     } on DioException catch (e, s) {
       return ApiError(
-        code: e.response?.statusCode,
+        code: e.response?.statusCode.toString(),
         message: e.message,
         errors: e.response?.data['errors'],
         stackTrace: s,

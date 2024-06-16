@@ -8,7 +8,7 @@ sealed class ApiResult<T> {
   });
 
   final T? value;
-  final int? code;
+  final String? code;
   final String? message;
   final Map<String, dynamic>? errors;
   final StackTrace? stackTrace;

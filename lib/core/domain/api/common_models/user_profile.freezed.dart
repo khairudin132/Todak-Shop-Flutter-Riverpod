@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user.dart';
+part of 'user_profile.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,14 +14,14 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
+UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
+  return _UserProfile.fromJson(json);
 }
 
 /// @nodoc
-mixin _$User {
+mixin _$UserProfile {
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'username')
   String? get username => throw _privateConstructorUsedError;
   @JsonKey(name: 'email')
@@ -30,38 +30,34 @@ mixin _$User {
   String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastName')
   String? get lastName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'gender')
-  String? get gender => throw _privateConstructorUsedError;
-  @JsonKey(name: 'image')
-  String? get image => throw _privateConstructorUsedError;
-  @JsonKey(name: 'token')
-  String? get token => throw _privateConstructorUsedError;
+  @JsonKey(name: 'profilePicture')
+  String? get profilePicture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $UserProfileCopyWith<UserProfile> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
+abstract class $UserProfileCopyWith<$Res> {
+  factory $UserProfileCopyWith(
+          UserProfile value, $Res Function(UserProfile) then) =
+      _$UserProfileCopyWithImpl<$Res, UserProfile>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'username') String? username,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'firstName') String? firstName,
       @JsonKey(name: 'lastName') String? lastName,
-      @JsonKey(name: 'gender') String? gender,
-      @JsonKey(name: 'image') String? image,
-      @JsonKey(name: 'token') String? token});
+      @JsonKey(name: 'profilePicture') String? profilePicture});
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
+    implements $UserProfileCopyWith<$Res> {
+  _$UserProfileCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -76,15 +72,13 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? email = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
-    Object? gender = freezed,
-    Object? image = freezed,
-    Object? token = freezed,
+    Object? profilePicture = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -101,45 +95,37 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      gender: freezed == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      profilePicture: freezed == profilePicture
+          ? _value.profilePicture
+          : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$UserImplCopyWith(
-          _$UserImpl value, $Res Function(_$UserImpl) then) =
-      __$$UserImplCopyWithImpl<$Res>;
+abstract class _$$UserProfileImplCopyWith<$Res>
+    implements $UserProfileCopyWith<$Res> {
+  factory _$$UserProfileImplCopyWith(
+          _$UserProfileImpl value, $Res Function(_$UserProfileImpl) then) =
+      __$$UserProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'username') String? username,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'firstName') String? firstName,
       @JsonKey(name: 'lastName') String? lastName,
-      @JsonKey(name: 'gender') String? gender,
-      @JsonKey(name: 'image') String? image,
-      @JsonKey(name: 'token') String? token});
+      @JsonKey(name: 'profilePicture') String? profilePicture});
 }
 
 /// @nodoc
-class __$$UserImplCopyWithImpl<$Res>
-    extends _$UserCopyWithImpl<$Res, _$UserImpl>
-    implements _$$UserImplCopyWith<$Res> {
-  __$$UserImplCopyWithImpl(_$UserImpl _value, $Res Function(_$UserImpl) _then)
+class __$$UserProfileImplCopyWithImpl<$Res>
+    extends _$UserProfileCopyWithImpl<$Res, _$UserProfileImpl>
+    implements _$$UserProfileImplCopyWith<$Res> {
+  __$$UserProfileImplCopyWithImpl(
+      _$UserProfileImpl _value, $Res Function(_$UserProfileImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -150,15 +136,13 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? email = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
-    Object? gender = freezed,
-    Object? image = freezed,
-    Object? token = freezed,
+    Object? profilePicture = freezed,
   }) {
-    return _then(_$UserImpl(
+    return _then(_$UserProfileImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -175,17 +159,9 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      gender: freezed == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      profilePicture: freezed == profilePicture
+          ? _value.profilePicture
+          : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -194,23 +170,21 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable()
-class _$UserImpl implements _User {
-  _$UserImpl(
+class _$UserProfileImpl implements _UserProfile {
+  _$UserProfileImpl(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'username') this.username,
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'firstName') this.firstName,
       @JsonKey(name: 'lastName') this.lastName,
-      @JsonKey(name: 'gender') this.gender,
-      @JsonKey(name: 'image') this.image,
-      @JsonKey(name: 'token') this.token});
+      @JsonKey(name: 'profilePicture') this.profilePicture});
 
-  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserImplFromJson(json);
+  factory _$UserProfileImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserProfileImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  final int? id;
+  final String? id;
   @override
   @JsonKey(name: 'username')
   final String? username;
@@ -224,25 +198,19 @@ class _$UserImpl implements _User {
   @JsonKey(name: 'lastName')
   final String? lastName;
   @override
-  @JsonKey(name: 'gender')
-  final String? gender;
-  @override
-  @JsonKey(name: 'image')
-  final String? image;
-  @override
-  @JsonKey(name: 'token')
-  final String? token;
+  @JsonKey(name: 'profilePicture')
+  final String? profilePicture;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, gender: $gender, image: $image, token: $token)';
+    return 'UserProfile(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, profilePicture: $profilePicture)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserImpl &&
+            other is _$UserProfileImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.username, username) ||
                 other.username == username) &&
@@ -251,46 +219,45 @@ class _$UserImpl implements _User {
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.profilePicture, profilePicture) ||
+                other.profilePicture == profilePicture));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, email, firstName,
-      lastName, gender, image, token);
+  int get hashCode => Object.hash(
+      runtimeType, id, username, email, firstName, lastName, profilePicture);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
-      __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
+  _$$UserProfileImplCopyWith<_$UserProfileImpl> get copyWith =>
+      __$$UserProfileImplCopyWithImpl<_$UserProfileImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserImplToJson(
+    return _$$UserProfileImplToJson(
       this,
     );
   }
 }
 
-abstract class _User implements User {
-  factory _User(
-      {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'username') final String? username,
-      @JsonKey(name: 'email') final String? email,
-      @JsonKey(name: 'firstName') final String? firstName,
-      @JsonKey(name: 'lastName') final String? lastName,
-      @JsonKey(name: 'gender') final String? gender,
-      @JsonKey(name: 'image') final String? image,
-      @JsonKey(name: 'token') final String? token}) = _$UserImpl;
+abstract class _UserProfile implements UserProfile {
+  factory _UserProfile(
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'username') final String? username,
+          @JsonKey(name: 'email') final String? email,
+          @JsonKey(name: 'firstName') final String? firstName,
+          @JsonKey(name: 'lastName') final String? lastName,
+          @JsonKey(name: 'profilePicture') final String? profilePicture}) =
+      _$UserProfileImpl;
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
+  factory _UserProfile.fromJson(Map<String, dynamic> json) =
+      _$UserProfileImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  int? get id;
+  String? get id;
   @override
   @JsonKey(name: 'username')
   String? get username;
@@ -304,16 +271,10 @@ abstract class _User implements User {
   @JsonKey(name: 'lastName')
   String? get lastName;
   @override
-  @JsonKey(name: 'gender')
-  String? get gender;
-  @override
-  @JsonKey(name: 'image')
-  String? get image;
-  @override
-  @JsonKey(name: 'token')
-  String? get token;
+  @JsonKey(name: 'profilePicture')
+  String? get profilePicture;
   @override
   @JsonKey(ignore: true)
-  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
+  _$$UserProfileImplCopyWith<_$UserProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

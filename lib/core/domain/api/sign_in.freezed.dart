@@ -20,10 +20,8 @@ SignInRequest _$SignInRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignInRequest {
-  @JsonKey(name: 'username')
-  String? get username => throw _privateConstructorUsedError;
-  @JsonKey(name: 'password')
-  String? get password => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,9 +35,7 @@ abstract class $SignInRequestCopyWith<$Res> {
           SignInRequest value, $Res Function(SignInRequest) then) =
       _$SignInRequestCopyWithImpl<$Res, SignInRequest>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'password') String? password});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -55,18 +51,18 @@ class _$SignInRequestCopyWithImpl<$Res, $Val extends SignInRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = freezed,
-    Object? password = freezed,
+    Object? email = null,
+    Object? password = null,
   }) {
     return _then(_value.copyWith(
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -79,9 +75,7 @@ abstract class _$$SignInRequestImplCopyWith<$Res>
       __$$SignInRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'password') String? password});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -95,42 +89,39 @@ class __$$SignInRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = freezed,
-    Object? password = freezed,
+    Object? email = null,
+    Object? password = null,
   }) {
     return _then(_$SignInRequestImpl(
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 @JsonSerializable()
 class _$SignInRequestImpl implements _SignInRequest {
-  _$SignInRequestImpl(
-      {@JsonKey(name: 'username') this.username,
-      @JsonKey(name: 'password') this.password});
+  _$SignInRequestImpl({required this.email, required this.password});
 
   factory _$SignInRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignInRequestImplFromJson(json);
 
   @override
-  @JsonKey(name: 'username')
-  final String? username;
+  final String email;
   @override
-  @JsonKey(name: 'password')
-  final String? password;
+  final String password;
 
   @override
   String toString() {
-    return 'SignInRequest(username: $username, password: $password)';
+    return 'SignInRequest(email: $email, password: $password)';
   }
 
   @override
@@ -138,15 +129,14 @@ class _$SignInRequestImpl implements _SignInRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignInRequestImpl &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, username, password);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -164,18 +154,16 @@ class _$SignInRequestImpl implements _SignInRequest {
 
 abstract class _SignInRequest implements SignInRequest {
   factory _SignInRequest(
-      {@JsonKey(name: 'username') final String? username,
-      @JsonKey(name: 'password') final String? password}) = _$SignInRequestImpl;
+      {required final String email,
+      required final String password}) = _$SignInRequestImpl;
 
   factory _SignInRequest.fromJson(Map<String, dynamic> json) =
       _$SignInRequestImpl.fromJson;
 
   @override
-  @JsonKey(name: 'username')
-  String? get username;
+  String get email;
   @override
-  @JsonKey(name: 'password')
-  String? get password;
+  String get password;
   @override
   @JsonKey(ignore: true)
   _$$SignInRequestImplCopyWith<_$SignInRequestImpl> get copyWith =>

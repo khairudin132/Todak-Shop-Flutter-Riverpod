@@ -31,9 +31,7 @@ class MainBottomNavScreen extends ConsumerWidget {
                   title: 'Session Expired',
                   message: 'Your session has expired. Please log in again.',
                   onPressed: () async {
-                await ref
-                    .read(currentAuthUserProvider.notifier)
-                    .resetAuthUser();
+                await ref.read(currentAuthUserProvider.notifier).signOut();
                 if (context.mounted) {
                   context.navigator.pushNamedAndRemoveUntil(
                     SignInScreen.path,

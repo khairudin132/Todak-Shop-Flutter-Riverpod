@@ -30,7 +30,7 @@ class DioService implements NetworkStorageInterface<Response> {
   Map<String, dynamic>? get getAuthorizationHeader {
     var headers = <String, dynamic>{};
 
-    final token = _authentication.getAccountToken;
+    final token = _authentication.getUserToken;
     if (!token.isNullOrEmpty) {
       headers['Authorization'] = 'Bearer $token';
     }
@@ -148,7 +148,7 @@ class DioService implements NetworkStorageInterface<Response> {
           },
           onError: (DioException e, handler) {
             // Handle token expiration errors specifically
-            if (isTokenExpired==true) {
+            if (isTokenExpired == true) {
               return handler.reject(
                 DioException.requestCancelled(
                   requestOptions: e.requestOptions,

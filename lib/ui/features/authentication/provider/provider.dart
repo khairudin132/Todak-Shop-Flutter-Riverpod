@@ -16,6 +16,39 @@ class UsernameTextField extends _$UsernameTextField {
 }
 
 @riverpod
+class EmailTextField extends _$EmailTextField {
+  @override
+  TextFieldModel build() {
+    return TextFieldModel(
+      fieldLabel: 'Email',
+      controller: TextEditingController(),
+    );
+  }
+}
+
+@riverpod
+class FirstNameTextField extends _$FirstNameTextField {
+  @override
+  TextFieldModel build() {
+    return TextFieldModel(
+      fieldLabel: 'First Name',
+      controller: TextEditingController(),
+    );
+  }
+}
+
+@riverpod
+class LastNameTextField extends _$LastNameTextField {
+  @override
+  TextFieldModel build() {
+    return TextFieldModel(
+      fieldLabel: 'Last Name',
+      controller: TextEditingController(),
+    );
+  }
+}
+
+@riverpod
 class PasswordTextField extends _$PasswordTextField {
   @override
   TextFieldModel build() {
@@ -26,28 +59,62 @@ class PasswordTextField extends _$PasswordTextField {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CurrentAuthUser extends _$CurrentAuthUser {
   @override
-  User? build() {
-    return ref.read(authenticationRepoProvider).user;
+  UserProfile? build() {
+    return null;
+  }
+
+  void clearTextFormField() {
+    ref.read(usernameTextFieldProvider).controller.clear();
+    ref.read(emailTextFieldProvider).controller.clear();
+    ref.read(firstNameTextFieldProvider).controller.clear();
+    ref.read(lastNameTextFieldProvider).controller.clear();
+    ref.read(passwordTextFieldProvider).controller.clear();
+  }
+
+  Future<ApiResult<void>> signUp() async {
+    try {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+
+      final username = ref.read(usernameTextFieldProvider);
+      final email = ref.read(emailTextFieldProvider);
+      final firstName = ref.read(firstNameTextFieldProvider);
+      final lastName = ref.read(lastNameTextFieldProvider);
+      final password = ref.read(passwordTextFieldProvider);
+
+      await ref.read(authenticationRepoProvider).signUp(
+            SignUpRequest(
+              username: username.value!,
+              email: email.value!,
+              firstName: firstName.value!,
+              lastName: lastName.value!,
+              password: password.value!,
+            ),
+          );
+
+      return ApiSuccess(value: null);
+    } on ApiError catch (e) {
+      return e;
+    } finally {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+    }
   }
 
   Future<ApiResult<void>> signIn() async {
     try {
       ref.read(appLoaderProvider.notifier).setLoaderValue(true);
 
-      final username = ref.read(usernameTextFieldProvider);
+      final email = ref.read(emailTextFieldProvider);
       final password = ref.read(passwordTextFieldProvider);
 
       await ref.read(authenticationRepoProvider).signIn(
             SignInRequest(
-              username: username.value,
-              password: password.value,
+              email: email.value!,
+              password: password.value!,
             ),
           );
-
-      state = ref.read(authenticationRepoProvider).user;
 
       return ApiSuccess(value: null);
     } on ApiError catch (e) {
@@ -69,11 +136,28 @@ class CurrentAuthUser extends _$CurrentAuthUser {
     }
   }
 
-  Future<ApiResult<void>> resetAuthUser() async {
+  Future<ApiResult<void>> signOut() async {
+    try {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+
+      await ref.read(authenticationRepoProvider).signOut();
+
+      return ApiSuccess(value: null);
+    } on ApiError catch (e) {
+      return e;
+    } finally {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+    }
+  }
+
+  Future<ApiResult<void>> reset() async {
     try {
       await ref.read(authenticationRepoProvider).reset();
+      final user = ref.read(authenticationRepoProvider).user;
 
-      state = ref.read(authenticationRepoProvider).user;
+      if (user != null) {
+        return ApiError(message: 'Please try again');
+      }
 
       return ApiSuccess(value: null);
     } on ApiError catch (e) {

@@ -5,9 +5,10 @@ part 'sign_in.g.dart';
 
 @freezed
 class SignInRequest with _$SignInRequest {
+  @JsonSerializable()
   factory SignInRequest({
-    @JsonKey(name: 'username') String? username,
-    @JsonKey(name: 'password') String? password,
+    required String email,
+    required String password,
   }) = _SignInRequest;
 
   factory SignInRequest.fromJson(Map<String, dynamic> json) =>

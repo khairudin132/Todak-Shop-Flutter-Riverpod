@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todak_shop/core/core.dart';
 import 'package:todak_shop/ui/features/shop/provider/provider.dart';
 import 'package:todak_shop/ui/ui.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ShopScreen extends ConsumerStatefulWidget {
   const ShopScreen({super.key});
@@ -48,8 +48,8 @@ class _ProductCarouselCategory extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        _CategoryList(),
-        _ProductList(),
+        // _CategoryList(),
+        // _ProductList(),
       ],
     );
   }
@@ -178,7 +178,7 @@ class _ProductCard extends StatelessWidget {
           children: [
             // Image
             Flexible(
-              child: CachedContainer(
+              child: CachedNetworkContainer(
                 imageUrl: product.thumbnail ?? '',
                 width: double.infinity,
                 height: double.infinity,

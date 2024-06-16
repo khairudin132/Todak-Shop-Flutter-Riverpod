@@ -1,9 +1,12 @@
+import 'dart:typed_data';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shimmer/shimmer.dart';
 
-class CachedContainer extends StatelessWidget {
-  const CachedContainer({
+class CachedNetworkContainer extends StatelessWidget {
+  const CachedNetworkContainer({
     super.key,
     required this.imageUrl,
     required this.width,
@@ -35,6 +38,53 @@ class CachedContainer extends StatelessWidget {
           width: width,
           height: height,
         ),
+      ),
+    );
+  }
+}
+
+class CachedMemoryContainer extends StatelessWidget {
+  const CachedMemoryContainer({
+    super.key,
+    required this.imageUrl,
+    required this.width,
+    required this.height,
+    this.borderRadius = BorderRadius.zero,
+  });
+
+  final XFile imageUrl;
+  final double width;
+  final double height;
+  final BorderRadiusGeometry borderRadius;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: borderRadius,
+      child: FutureBuilder<Uint8List>(
+        future: imageUrl.readAsBytes(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Image.memory(
+              snapshot.data!,
+              width: width,
+              height: height,
+              fit: BoxFit.cover,
+            );
+          }
+
+          if (snapshot.hasError) {
+            return _ErrorWidget(
+              width: width,
+              height: height,
+            );
+          }
+
+          return _Placeholder(
+            width: width,
+            height: height,
+          );
+        },
       ),
     );
   }
