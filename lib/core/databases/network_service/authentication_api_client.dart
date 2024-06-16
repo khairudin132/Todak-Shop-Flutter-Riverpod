@@ -62,6 +62,15 @@ class AuthenticationApiClient {
         password: request.password,
       );
 
+      final user = userCredential.user;
+
+      if (user?.emailVerified == false) {
+        return ApiError(
+          code: "email_not_verified",
+          message: "Email is not verified",
+        );
+      }
+
       return ApiSuccess(value: userCredential);
     } on FirebaseAuthException catch (e) {
       return ApiError(
