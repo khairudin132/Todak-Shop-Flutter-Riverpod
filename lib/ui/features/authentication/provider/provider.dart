@@ -66,6 +66,14 @@ class CurrentAuthUser extends _$CurrentAuthUser {
     return null;
   }
 
+  void clearTextFormField() {
+    ref.read(usernameTextFieldProvider).controller.clear();
+    ref.read(emailTextFieldProvider).controller.clear();
+    ref.read(firstNameTextFieldProvider).controller.clear();
+    ref.read(lastNameTextFieldProvider).controller.clear();
+    ref.read(passwordTextFieldProvider).controller.clear();
+  }
+
   Future<ApiResult<void>> signUp() async {
     try {
       ref.read(appLoaderProvider.notifier).setLoaderValue(true);

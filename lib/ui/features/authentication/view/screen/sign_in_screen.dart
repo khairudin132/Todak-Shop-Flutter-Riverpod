@@ -99,6 +99,9 @@ class SignInScreen extends ConsumerWidget {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
+                    ref
+                        .read(currentAuthUserProvider.notifier)
+                        .clearTextFormField();
                     context.navigator.pushNamed(SignUpScreen.path);
                   },
               ),
