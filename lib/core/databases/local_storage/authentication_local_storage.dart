@@ -13,9 +13,22 @@ class AuthenticationLocalStorage {
       _storage.localStorage.getString(key: Constant.accountTokenKey);
 
   Future<void> setAccountToken(String token) async =>
-      _storage.localStorage.setString(
+      await _storage.localStorage.setString(
         key: Constant.accountTokenKey,
         value: token,
+      );
+
+  DateTime? get getAccountTokenExpirationDate => _storage.localStorage
+          .getString(key: Constant.accountTokenExpirationDateKey)
+          .isNullOrEmpty
+      ? null
+      : DateTime.tryParse(_storage.localStorage
+          .getString(key: Constant.accountTokenExpirationDateKey)!);
+
+  Future<void> setAccountTokenExpirationDate(String stringDateTime) async =>
+      await _storage.localStorage.setString(
+        key: Constant.accountTokenExpirationDateKey,
+        value: stringDateTime,
       );
 
   bool? get getIsLoggedIn =>

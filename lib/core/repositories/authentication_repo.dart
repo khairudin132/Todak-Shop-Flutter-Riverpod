@@ -23,22 +23,19 @@ class AuthenticationRepo implements AuthenticationInterface {
   @override
   UserProfile? get user => _user;
 
-  String? _getUserToken;
+  @override
+  String? get getUserToken => _localStorage.getAccountToken;
 
   @override
-  String? get getUserToken => _getUserToken;
-
-  DateTime? _getTokenExpirationDate;
-
-  @override
-  DateTime? get getTokenExpirationDate => _getTokenExpirationDate;
+  DateTime? get getTokenExpirationDate =>
+      _localStorage.getAccountTokenExpirationDate;
 
   @override
   bool get isTokenExpired {
-    if (_getTokenExpirationDate == null) {
+    if (getTokenExpirationDate == null) {
       return true;
     }
-    return _getTokenExpirationDate!.isBefore(DateTime.now().toUtc());
+    return getTokenExpirationDate!.isBefore(DateTime.now().toUtc());
   }
 
   @override
@@ -60,9 +57,13 @@ class AuthenticationRepo implements AuthenticationInterface {
         final token =
             await data!.user!.getIdTokenResult().then((value) => value);
 
-        _getUserToken = token.token;
+        final getUserToken = token.token;
+        await _localStorage.setAccountToken(getUserToken!);
 
-        _getTokenExpirationDate = token.expirationTime;
+        final getTokenExpirationDate = token.expirationTime;
+        await _localStorage.setAccountTokenExpirationDate(
+          getTokenExpirationDate!.toIso8601String(),
+        );
       },
       error: (error) => throw error,
     );
@@ -93,6 +94,8 @@ class AuthenticationRepo implements AuthenticationInterface {
     _user = null;
     await _localStorage.reset([
       Constant.isLoggedInKey,
+      Constant.accountTokenKey,
+      Constant.accountTokenExpirationDateKey,
     ]);
   }
 }

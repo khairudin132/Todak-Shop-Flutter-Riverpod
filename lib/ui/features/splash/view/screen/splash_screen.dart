@@ -26,28 +26,20 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   Future<void> _checkCurrentUser() async {
+    // Fetch the current authenticated user
     await ref.read(currentAuthUserProvider.notifier).getCurrentAuthUser();
 
+    // Check if it's the first time the user has installed the app
     final isFirstTimer =
         ref.read(appDeviceRepoProvider).getIsFirstTimeInstallApp;
+
+    // Check if the token is expired
     final isTokenExpired = ref.read(authenticationRepoProvider).isTokenExpired;
 
+    // Check if there is an authenticated user
     final isAuthenticatedUser = ref.read(currentAuthUserProvider) != null;
 
-    // If the token is expired, reset authentication and navigate to sign-in screen
-    if (isTokenExpired) {
-      await ref.read(authenticationRepoProvider).signOut();
-
-      if (context.mounted) {
-        context.navigator.pushNamedAndRemoveUntil(
-          SignInScreen.path,
-          (_) => false,
-        );
-      }
-      return;
-    }
-
-    // If it's the first time the user has installed the app, show onboarding screen
+    // Handle first-time app installation
     if (isFirstTimer) {
       if (context.mounted) {
         context.navigator.pushNamedAndRemoveUntil(
@@ -58,7 +50,19 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       return;
     }
 
-    // If user is authenticated, navigate to main bottom navigation screen, else show sign-in screen
+    // Handle token expiration
+    if (isTokenExpired) {
+      await ref.read(authenticationRepoProvider).signOut();
+      if (context.mounted) {
+        context.navigator.pushNamedAndRemoveUntil(
+          SignInScreen.path,
+          (_) => false,
+        );
+      }
+      return;
+    }
+
+    // Navigate based on authentication status
     if (isAuthenticatedUser) {
       if (context.mounted) {
         context.navigator.pushNamedAndRemoveUntil(

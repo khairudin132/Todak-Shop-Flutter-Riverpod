@@ -5,7 +5,6 @@ import 'package:todak_shop/ui/features/address/provider/provider.dart';
 import 'package:todak_shop/ui/features/address/view/widget/widget.dart';
 import 'package:todak_shop/ui/features/authentication/provider/provider.dart';
 import 'package:todak_shop/ui/features/authentication/view/widget/widget.dart';
-import 'package:todak_shop/ui/features/main_bottom_nav/controller/controller.dart';
 import 'package:todak_shop/ui/ui.dart';
 
 class ProfileScreen extends ConsumerWidget {

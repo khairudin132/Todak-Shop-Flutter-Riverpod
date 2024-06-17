@@ -9,6 +9,9 @@ class Constant {
 
   static const String accountTokenKey = 'accountToken';
 
+  static const String accountTokenExpirationDateKey =
+      'accountTokenExpirationDate';
+
   static const String themeModeKey = 'themeMode';
 
   static const String cartKey = 'cart';

@@ -32,9 +32,6 @@ class OnBoardingScreen extends ConsumerWidget {
                 await ref
                     .read(appDeviceRepoProvider)
                     .setIsFirstTimeInstallApp(false);
-                // WidgetsBinding.instance.addPostFrameCallback((_) async {
-                //
-                // });
               },
             )
           : null,

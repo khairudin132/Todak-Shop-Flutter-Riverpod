@@ -63,7 +63,7 @@ class PasswordTextField extends _$PasswordTextField {
 class CurrentAuthUser extends _$CurrentAuthUser {
   @override
   UserProfile? build() {
-    return null;
+    return ref.read(authenticationRepoProvider).user;
   }
 
   void clearTextFormField() {
