@@ -6,44 +6,28 @@ part of 'provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$currentSelectAddressHash() =>
-    r'fd89ca16f3711077288f347e809a313ff8321bea';
+String _$defaultAddressHash() => r'53401a1f17c49afcfd3688aa69bb756ee691d563';
 
-/// See also [CurrentSelectAddress].
-@ProviderFor(CurrentSelectAddress)
-final currentSelectAddressProvider =
-    AutoDisposeNotifierProvider<CurrentSelectAddress, Address?>.internal(
-  CurrentSelectAddress.new,
-  name: r'currentSelectAddressProvider',
+/// See also [DefaultAddress].
+@ProviderFor(DefaultAddress)
+final defaultAddressProvider =
+    AutoDisposeNotifierProvider<DefaultAddress, Address?>.internal(
+  DefaultAddress.new,
+  name: r'defaultAddressProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$currentSelectAddressHash,
+      : _$defaultAddressHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$CurrentSelectAddress = AutoDisposeNotifier<Address?>;
-String _$saveAddressHash() => r'6b128b71bc723fa4e50faef4874e12f7555d518d';
-
-/// See also [SaveAddress].
-@ProviderFor(SaveAddress)
-final saveAddressProvider =
-    AutoDisposeNotifierProvider<SaveAddress, Address?>.internal(
-  SaveAddress.new,
-  name: r'saveAddressProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$saveAddressHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SaveAddress = AutoDisposeNotifier<Address?>;
-String _$addressListHash() => r'a58ea0d3a94413cf7c701d66ea99805a00b0e30e';
+typedef _$DefaultAddress = AutoDisposeNotifier<Address?>;
+String _$addressListHash() => r'1f5ae74f8e394e6420f49c870a4b57b16a0143e0';
 
 /// See also [AddressList].
 @ProviderFor(AddressList)
 final addressListProvider =
-    AutoDisposeNotifierProvider<AddressList, List<Address>>.internal(
+    AutoDisposeAsyncNotifierProvider<AddressList, List<Address>>.internal(
   AddressList.new,
   name: r'addressListProvider',
   debugGetCreateSourceHash:
@@ -52,7 +36,7 @@ final addressListProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$AddressList = AutoDisposeNotifier<List<Address>>;
+typedef _$AddressList = AutoDisposeAsyncNotifier<List<Address>>;
 String _$address1TextFieldHash() => r'98883ff71be38fb4cb5a0d6922c14084a51aa0f1';
 
 /// See also [Address1TextField].

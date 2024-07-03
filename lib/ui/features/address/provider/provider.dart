@@ -5,10 +5,33 @@ import 'package:todak_shop/core/core.dart';
 part 'provider.g.dart';
 
 @riverpod
-class CurrentSelectAddress extends _$CurrentSelectAddress {
+class DefaultAddress extends _$DefaultAddress {
   @override
   Address? build() {
-    return ref.read(saveAddressProvider);
+    return null;
+  }
+
+  Future<ApiResult<void>> getDefaultAddress() async {
+    try {
+      state = await ref.read(addressRepoProvider).getDefaultAddress();
+      return ApiSuccess(value: null);
+    } on ApiError catch (e) {
+      return e;
+    }
+  }
+
+  Future<ApiResult<void>> setDefaultAddress(String id) async {
+    try {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+
+      await ref.read(addressRepoProvider).setDefaultAddress(id);
+
+      return ApiSuccess(value: null);
+    } on ApiError catch (e) {
+      return e;
+    } finally {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+    }
   }
 
   void updateSelectAddress(Address address) {
@@ -17,29 +40,13 @@ class CurrentSelectAddress extends _$CurrentSelectAddress {
 }
 
 @riverpod
-class SaveAddress extends _$SaveAddress {
-  @override
-  Address? build() {
-    return ref.read(addressRepoProvider).getSaveAddress;
-  }
-
-  Future<void> saveAddress() async {
-    final address = ref.read(currentSelectAddressProvider);
-
-    await ref.read(addressRepoProvider).saveAddress(address!);
-
-    state = ref.read(addressRepoProvider).getSaveAddress;
-  }
-}
-
-@riverpod
 class AddressList extends _$AddressList {
   @override
-  List<Address> build() {
-    return ref.read(addressRepoProvider).getListOfAddresses;
+  Future<List<Address>> build() async {
+    return await ref.read(addressRepoProvider).getListOfAddresses();
   }
 
-  Future<void> addAddress() async {
+  Future<ApiResult<void>> addAddress() async {
     try {
       ref.read(appLoaderProvider.notifier).setLoaderValue(true);
 
@@ -49,17 +56,23 @@ class AddressList extends _$AddressList {
       final postcode = ref.read(postcodeTextFieldProvider).value;
       final stateText = ref.read(stateTextFieldProvider).value;
 
-      await ref.read(addressRepoProvider).addAddress(Address(
-            address1: address1,
-            address2: address2,
-            city: city,
-            postcode: postcode.isNullOrEmpty ? null : int.tryParse(postcode!),
-            state: stateText,
-          ));
+      await ref.read(addressRepoProvider).addAddress(
+            Address(
+              address1: address1,
+              address2: address2,
+              city: city,
+              postcode: postcode.isNullOrEmpty ? null : int.tryParse(postcode!),
+              state: stateText,
+            ),
+          );
 
-      state = ref.read(addressRepoProvider).getListOfAddresses;
+      state = AsyncValue.data(
+        await ref.read(addressRepoProvider).getListOfAddresses(),
+      );
 
-      await Future.delayed(const Duration(seconds: 1));
+      return ApiSuccess();
+    } on ApiError catch (e) {
+      return e;
     } finally {
       ref.read(appLoaderProvider.notifier).setLoaderValue(false);
     }

@@ -48,8 +48,8 @@ class _ProductCarouselCategory extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        // _CategoryList(),
-        // _ProductList(),
+        _CategoryList(),
+        _ProductList(),
       ],
     );
   }

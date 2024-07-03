@@ -132,7 +132,7 @@ class _Address extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var address = ref.watch(saveAddressProvider);
+    var address = ref.watch(defaultAddressProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -49,9 +49,9 @@ class TotalPriceCart extends _$TotalPriceCart {
   String build() {
     final list = ref.watch(collectCartItemForCheckoutProvider);
 
-    final total = list
-        .map((e) => (e.item?.product?.price ?? 0) * e.item!.quantity!)
-        .fold(0, (previousValue, element) => previousValue + element);
+    final double total = list
+        .map((e) => (e.item?.product?.price ?? 0.0) * e.item!.quantity!)
+        .fold(0.0, (previousValue, element) => previousValue + element);
 
     return total.toString();
   }

@@ -6,7 +6,7 @@ part of 'provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$checkoutCartItemHash() => r'6faba34959df95f322a9121e3cee5793a3998d9a';
+String _$checkoutCartItemHash() => r'84a2a38c9b9065ba85d7f3f9d4b19dbb840c288c';
 
 /// See also [CheckoutCartItem].
 @ProviderFor(CheckoutCartItem)
@@ -23,7 +23,7 @@ final checkoutCartItemProvider = AutoDisposeNotifierProvider<CheckoutCartItem,
 
 typedef _$CheckoutCartItem
     = AutoDisposeNotifier<({List<Cart> carts, String totalPrice})>;
-String _$checkoutToOrderHash() => r'6f29fa1bc456aa26b067c8b23e46da0d8444d680';
+String _$checkoutToOrderHash() => r'6a286f9ff9485ad6521a6a6999d92dc9b192702a';
 
 /// See also [CheckoutToOrder].
 @ProviderFor(CheckoutToOrder)

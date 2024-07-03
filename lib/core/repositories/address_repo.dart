@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:math';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todak_shop/core/core.dart';
 
@@ -11,74 +8,79 @@ class AddressRepo implements AddressInterface {
 
   final ProviderRef _ref;
 
-  var _listOfAddresses = <Address>[];
+  AddressApiClient get _apiClient => _ref.read(addressApiClientProvider);
 
   @override
-  Address? get getSaveAddress {
-    final address = _ref.read(addressLocalStorageProvider).getSaveAddress;
+  Future<Address?> getAddressById(String id) async {
+    final result = await _apiClient.getAddressById(id);
 
-    return address != null ? Address.fromJson(jsonDecode(address)) : null;
+    return result.when(
+      data: (data) => data,
+      error: (error) => throw error,
+    );
   }
 
   @override
-  Future<void> saveAddress(Address address) async => await _ref
-      .read(addressLocalStorageProvider)
-      .setSaveAddress(jsonEncode(address.toJson()));
+  Future<List<Address>> getListOfAddresses() async {
+    final result = await _apiClient.getListOfAddresses();
 
-  @override
-  List<Address> get getListOfAddresses => _listOfAddresses = _ref
-          .read(addressLocalStorageProvider)
-          .getListOfAddresses
-          ?.map((e) => Address.fromJson(jsonDecode(e)))
-          .toList() ??
-      [];
+    return result.when(
+      data: (data) => data ?? [],
+      error: (error) => throw error,
+    );
+  }
 
   @override
   Future<void> addAddress(Address address) async {
-    // Find the highest current ID in the list of addresses, or use -1 if the list is empty
-    final int currentMaxId = _listOfAddresses.isNullOrEmpty
-        ? -1
-        : _listOfAddresses.map((e) => e.id ?? 0).reduce(max);
+    final result =
+        await _ref.read(addressApiClientProvider).addAddress(address: address);
 
-    // Assign the next ID as one more than the highest ID
-    final int nextId = currentMaxId + 1;
-
-    // Create a new Address object with the new ID.
-    final Address newAddress = address.copyWith(id: nextId);
-
-    // Add the new Address object to the list.
-    _listOfAddresses.add(newAddress);
-
-    // Update the address in local storage or database.
-    await _updateAddressLocal(_listOfAddresses);
+    result.when(
+      data: (data) {},
+      error: (error) => throw error,
+    );
   }
 
   @override
   Future<void> updateAddress(Address address) async {
-    final indexAdress =
-        _listOfAddresses.indexWhere((element) => element.id == address.id);
+    final result = await _ref
+        .read(addressApiClientProvider)
+        .updateAddress(address: address);
 
-    _listOfAddresses.removeWhere((element) => element.id == address.id);
-
-    _listOfAddresses.insert(indexAdress, address);
-
-    await _updateAddressLocal(_listOfAddresses);
+    result.when(
+      data: (data) {},
+      error: (error) => throw error,
+    );
   }
 
   @override
-  Future<void> deleteAddress(int id) async {
-    _listOfAddresses.removeWhere((element) => element.id == id);
+  Future<void> deleteAddress(String id) async {
+    final result =
+        await _ref.read(addressApiClientProvider).removeAddressById(id);
 
-    await _updateAddressLocal(_listOfAddresses);
+    result.when(
+      data: (data) {},
+      error: (error) => throw error,
+    );
   }
 
-  Future<void> _updateAddressLocal(List<Address> listOfAddresses) async {
-    final listOfAddressesString =
-        listOfAddresses.map((e) => (jsonEncode(e))).toList();
+  @override
+  Future<void> setDefaultAddress(String id) async {
+    final result = await _apiClient.setDefaultAddress(id);
 
-    await _ref.read(addressLocalStorageProvider).clearAddress();
-    await _ref
-        .read(addressLocalStorageProvider)
-        .setListOfAddresses(listOfAddressesString);
+    result.when(
+      data: (data) {},
+      error: (error) => throw error,
+    );
+  }
+
+  @override
+  Future<Address?> getDefaultAddress() async {
+    final result = await _apiClient.getDefaultAddress();
+
+    return result.when(
+      data: (data) => data,
+      error: (error) => throw error,
+    );
   }
 }

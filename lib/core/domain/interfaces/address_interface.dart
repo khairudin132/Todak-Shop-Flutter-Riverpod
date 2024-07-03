@@ -1,15 +1,17 @@
 import 'package:todak_shop/core/domain/domain.dart';
 
 abstract class AddressInterface {
-  Address? get getSaveAddress;
+  Future<Address?> getAddressById(String id);
 
-  Future<void> saveAddress(Address address);
-
-  List<Address> get getListOfAddresses;
+  Future<List<Address>> getListOfAddresses();
 
   Future<void> addAddress(Address address);
 
   Future<void> updateAddress(Address address);
 
-  Future<void> deleteAddress(int id);
+  Future<void> deleteAddress(String id);
+
+  Future<void> setDefaultAddress(String id);
+
+  Future<Address?> getDefaultAddress();
 }
