@@ -21,7 +21,7 @@ class ProductRepo implements ProductInterface {
         return data?.categories
                 ?.mapIndexed((index, element) => CategoryItem(
                       index: index + 1,
-                      rawString: element,
+                      rawString: element['name'],
                     ))
                 .toList() ??
             [];

@@ -13,9 +13,9 @@ class CheckoutCartItem extends _$CheckoutCartItem {
   }
 
   void getCarts(List<Cart> carts) {
-    final total = carts
-        .map((e) => (e.item?.product?.price ?? 0) * e.item!.quantity!)
-        .fold(0, (previousValue, element) => previousValue + element);
+    final double total = carts
+        .map((e) => (e.item?.product?.price ?? 0.0) * e.item!.quantity!)
+        .fold(0.0, (previousValue, element) => previousValue + element);
     state = (carts: carts, totalPrice: total.toString());
   }
 }
@@ -34,16 +34,16 @@ class CheckoutToOrder extends _$CheckoutToOrder {
       final listOfCarts = ref.read(checkoutCartItemProvider).carts;
       final totalPrice = ref.read(checkoutCartItemProvider).totalPrice;
 
-      final currentSaveAddress = ref.read(saveAddressProvider);
+      final defaultAddress = ref.read(defaultAddressProvider);
 
-      if (currentSaveAddress == null) {
+      if (defaultAddress == null) {
         return ApiError(message: 'Please save your address first');
       }
 
       final order = Order(
         item: OrderItem(
           carts: listOfCarts,
-          address: currentSaveAddress,
+          address: defaultAddress,
           totalPrice: int.tryParse(totalPrice),
           createdAt: DateTime.now(),
         ),

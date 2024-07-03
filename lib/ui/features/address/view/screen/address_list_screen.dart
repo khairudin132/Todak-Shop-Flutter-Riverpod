@@ -5,14 +5,29 @@ import 'package:todak_shop/ui/features/address/provider/provider.dart';
 import 'package:todak_shop/ui/features/address/view/widget/widget.dart';
 import 'package:todak_shop/ui/ui.dart';
 
-class AddressListScreen extends ConsumerWidget {
+class AddressListScreen extends ConsumerStatefulWidget {
   const AddressListScreen({super.key});
 
   static const path = '/AddressListScreen';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final selectedAddress = ref.watch(currentSelectAddressProvider);
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AddressListScreenState();
+}
+
+class _AddressListScreenState extends ConsumerState<AddressListScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ref.read(defaultAddressProvider.notifier).getDefaultAddress();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final selectedAddress = ref.watch(defaultAddressProvider);
 
     return PageBase(
       appBar: AppBar(
@@ -32,7 +47,9 @@ class AddressListScreen extends ConsumerWidget {
             onPressed: selectedAddress == null
                 ? null
                 : () async {
-                    await ref.read(saveAddressProvider.notifier).saveAddress();
+                    await ref
+                        .read(defaultAddressProvider.notifier)
+                        .setDefaultAddress(selectedAddress.id!);
 
                     if (context.mounted) {
                       context.navigator.pop();
@@ -42,49 +59,44 @@ class AddressListScreen extends ConsumerWidget {
         ],
       ),
       hasBottomGap: true,
-      child: ListView(
-        shrinkWrap: false,
-        children: [
-          const _AddressItemList(),
-        ].separatorListWidget(const SizedBox(height: 16)),
-      ),
+      child: const _AddressList(),
     );
   }
 }
 
-class _AddressItemList extends ConsumerStatefulWidget {
-  const _AddressItemList();
+class _AddressList extends ConsumerWidget {
+  const _AddressList();
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      __AddressItemListState();
-}
-
-class __AddressItemListState extends ConsumerState<_AddressItemList> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final listOfAddresses = ref.watch(addressListProvider);
 
-    return ListViewSeparatedItem(
-      list: listOfAddresses,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        final address = listOfAddresses[index];
+    return listOfAddresses.when(
+      data: (list) {
+        return ListViewSeparatedItem(
+          list: list,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            final address = list[index];
 
-        final selected =
-            address.id == ref.watch(currentSelectAddressProvider)?.id;
+            final selected =
+                address.id == ref.watch(defaultAddressProvider)?.id;
 
-        return AddressTile.select(
-          address: address,
-          value: selected,
-          onChanged: (value) {
-            ref
-                .read(currentSelectAddressProvider.notifier)
-                .updateSelectAddress(address);
+            return AddressTile.select(
+              address: address,
+              value: selected,
+              onChanged: (value) {
+                ref
+                    .read(defaultAddressProvider.notifier)
+                    .updateSelectAddress(address);
+              },
+            );
           },
         );
       },
+      error: asyncError,
+      loading: () => const AppProgressIndicator(),
     );
   }
 }

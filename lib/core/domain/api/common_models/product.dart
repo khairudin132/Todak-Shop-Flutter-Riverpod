@@ -10,7 +10,7 @@ class Product with _$Product {
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'price') int? price,
+    @JsonKey(name: 'price') double? price,
     @JsonKey(name: 'discountPercentage') double? discountPercentage,
     @JsonKey(name: 'rating') double? rating,
     @JsonKey(name: 'stock') int? stock,

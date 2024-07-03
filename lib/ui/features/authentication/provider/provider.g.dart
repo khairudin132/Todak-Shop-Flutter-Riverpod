@@ -87,7 +87,7 @@ final passwordTextFieldProvider =
 );
 
 typedef _$PasswordTextField = AutoDisposeNotifier<TextFieldModel>;
-String _$currentAuthUserHash() => r'588d6a1cb7c37f0cab1ba0a15a317ef4279fdb93';
+String _$currentAuthUserHash() => r'96419a214566b453ca7930605bd69badbd418631';
 
 /// See also [CurrentAuthUser].
 @ProviderFor(CurrentAuthUser)

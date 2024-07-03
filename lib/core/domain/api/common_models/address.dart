@@ -7,7 +7,7 @@ part 'address.g.dart';
 class Address with _$Address {
   @JsonSerializable()
   factory Address({
-    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'phoneNumber') String? phoneNumber,
     @JsonKey(name: 'address1') String? address1,

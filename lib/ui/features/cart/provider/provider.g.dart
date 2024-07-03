@@ -39,7 +39,7 @@ final collectCartItemForCheckoutProvider = AutoDisposeNotifierProvider<
 );
 
 typedef _$CollectCartItemForCheckout = AutoDisposeNotifier<List<Cart>>;
-String _$totalPriceCartHash() => r'f4da95c7018c0916d6151b4a22b91ca1d9337995';
+String _$totalPriceCartHash() => r'0552b115c291d7a6bc9d24007ae55cb0b695c830';
 
 /// See also [TotalPriceCart].
 @ProviderFor(TotalPriceCart)

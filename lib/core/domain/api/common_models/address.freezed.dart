@@ -21,7 +21,7 @@ Address _$AddressFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Address {
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'phoneNumber')
@@ -52,7 +52,7 @@ abstract class $AddressCopyWith<$Res> {
       _$AddressCopyWithImpl<$Res, Address>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'phoneNumber') String? phoneNumber,
       @JsonKey(name: 'address1') String? address1,
@@ -92,7 +92,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -141,7 +141,7 @@ abstract class _$$AddressImplCopyWith<$Res> implements $AddressCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'phoneNumber') String? phoneNumber,
       @JsonKey(name: 'address1') String? address1,
@@ -179,7 +179,7 @@ class __$$AddressImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -241,7 +241,7 @@ class _$AddressImpl implements _Address {
 
   @override
   @JsonKey(name: 'id')
-  final int? id;
+  final String? id;
   @override
   @JsonKey(name: 'name')
   final String? name;
@@ -318,7 +318,7 @@ class _$AddressImpl implements _Address {
 
 abstract class _Address implements Address {
   factory _Address(
-      {@JsonKey(name: 'id') final int? id,
+      {@JsonKey(name: 'id') final String? id,
       @JsonKey(name: 'name') final String? name,
       @JsonKey(name: 'phoneNumber') final String? phoneNumber,
       @JsonKey(name: 'address1') final String? address1,
@@ -333,7 +333,7 @@ abstract class _Address implements Address {
 
   @override
   @JsonKey(name: 'id')
-  int? get id;
+  String? get id;
   @override
   @JsonKey(name: 'name')
   String? get name;

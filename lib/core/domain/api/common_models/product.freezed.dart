@@ -27,7 +27,7 @@ mixin _$Product {
   @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'price')
-  int? get price => throw _privateConstructorUsedError;
+  double? get price => throw _privateConstructorUsedError;
   @JsonKey(name: 'discountPercentage')
   double? get discountPercentage => throw _privateConstructorUsedError;
   @JsonKey(name: 'rating')
@@ -57,7 +57,7 @@ abstract class $ProductCopyWith<$Res> {
       {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'price') int? price,
+      @JsonKey(name: 'price') double? price,
       @JsonKey(name: 'discountPercentage') double? discountPercentage,
       @JsonKey(name: 'rating') double? rating,
       @JsonKey(name: 'stock') int? stock,
@@ -108,7 +108,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       discountPercentage: freezed == discountPercentage
           ? _value.discountPercentage
           : discountPercentage // ignore: cast_nullable_to_non_nullable
@@ -152,7 +152,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'price') int? price,
+      @JsonKey(name: 'price') double? price,
       @JsonKey(name: 'discountPercentage') double? discountPercentage,
       @JsonKey(name: 'rating') double? rating,
       @JsonKey(name: 'stock') int? stock,
@@ -201,7 +201,7 @@ class __$$ProductImplCopyWithImpl<$Res>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       discountPercentage: freezed == discountPercentage
           ? _value.discountPercentage
           : discountPercentage // ignore: cast_nullable_to_non_nullable
@@ -266,7 +266,7 @@ class _$ProductImpl implements _Product {
   final String? description;
   @override
   @JsonKey(name: 'price')
-  final int? price;
+  final double? price;
   @override
   @JsonKey(name: 'discountPercentage')
   final double? discountPercentage;
@@ -358,7 +358,7 @@ abstract class _Product implements Product {
       {@JsonKey(name: 'id') final int? id,
       @JsonKey(name: 'title') final String? title,
       @JsonKey(name: 'description') final String? description,
-      @JsonKey(name: 'price') final int? price,
+      @JsonKey(name: 'price') final double? price,
       @JsonKey(name: 'discountPercentage') final double? discountPercentage,
       @JsonKey(name: 'rating') final double? rating,
       @JsonKey(name: 'stock') final int? stock,
@@ -380,7 +380,7 @@ abstract class _Product implements Product {
   String? get description;
   @override
   @JsonKey(name: 'price')
-  int? get price;
+  double? get price;
   @override
   @JsonKey(name: 'discountPercentage')
   double? get discountPercentage;

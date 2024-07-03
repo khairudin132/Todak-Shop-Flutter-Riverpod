@@ -27,8 +27,9 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       ref.read(checkoutCartItemProvider.notifier).getCarts(widget.carts);
+      await ref.read(defaultAddressProvider.notifier).getDefaultAddress();
     });
   }
 
@@ -114,7 +115,7 @@ class _Address extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var address = ref.watch(saveAddressProvider);
+    final address = ref.watch(defaultAddressProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

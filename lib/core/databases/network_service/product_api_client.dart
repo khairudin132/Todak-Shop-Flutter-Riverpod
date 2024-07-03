@@ -15,9 +15,11 @@ class ProductApiClient {
     try {
       final result = await _network.networkStorage.get('products/categories');
 
-      final data = result.data == null
-          ? null
-          : GetCategoriesResponse(categories: result.data);
+      if (result.data == null) {
+        return ApiSuccess(value: null);
+      }
+
+      final data = GetCategoriesResponse(categories: result.data);
 
       return ApiSuccess(value: data);
     } on DioException catch (e, s) {
