@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todak_shop/ui/features/main_bottom_nav/controller/controller.dart';
+import 'package:todak_shop/ui/features/main_bottom_nav/provider/provider.dart';
 
 import '../../../../../core/core.dart';
 import '../../../../ui.dart';

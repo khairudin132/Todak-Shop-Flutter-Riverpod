@@ -21,11 +21,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _checkCurrentUser();
+      _checkCurrentUser(context);
     });
   }
 
-  Future<void> _checkCurrentUser() async {
+  Future<void> _checkCurrentUser(BuildContext context) async {
     // Fetch the current authenticated user
     await ref.read(currentAuthUserProvider.notifier).getCurrentAuthUser();
 

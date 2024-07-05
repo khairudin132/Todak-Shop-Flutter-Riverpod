@@ -6,7 +6,7 @@ import 'package:todak_shop/core/gen/assets.gen.dart';
 import 'package:todak_shop/ui/features/onboarding/view/widgets/onboarding_base.dart';
 import 'package:todak_shop/ui/ui.dart';
 
-import '../../controller/controller.dart';
+import '../../provider/provider.dart';
 
 class OnBoardingScreen extends ConsumerWidget {
   const OnBoardingScreen({super.key});

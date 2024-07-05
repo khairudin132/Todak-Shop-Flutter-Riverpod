@@ -5,10 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todak_shop/core/core.dart';
 import 'package:todak_shop/ui/features/authentication/provider/provider.dart';
 import 'package:todak_shop/ui/features/authentication/view/widget/widget.dart';
-import 'package:todak_shop/ui/features/shop/view/screen/shop_screen.dart';
 import 'package:todak_shop/ui/ui.dart';
 
-import '../../controller/controller.dart';
+import '../../provider/provider.dart';
 
 class MainBottomNavScreen extends ConsumerWidget {
   const MainBottomNavScreen({super.key});

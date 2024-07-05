@@ -46,6 +46,20 @@ class AddressList extends _$AddressList {
     return await ref.read(addressRepoProvider).getListOfAddresses();
   }
 
+  Future<ApiResult<Address?>> getAddressById(String id) async {
+    try {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+
+      final address = await ref.read(addressRepoProvider).getAddressById(id);
+
+      return ApiSuccess(value: address);
+    } on ApiError<Address?> catch (e) {
+      return e;
+    } finally {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+    }
+  }
+
   Future<ApiResult<void>> addAddress() async {
     try {
       ref.read(appLoaderProvider.notifier).setLoaderValue(true);
@@ -65,6 +79,56 @@ class AddressList extends _$AddressList {
               state: stateText,
             ),
           );
+
+      state = AsyncValue.data(
+        await ref.read(addressRepoProvider).getListOfAddresses(),
+      );
+
+      return ApiSuccess();
+    } on ApiError catch (e) {
+      return e;
+    } finally {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+    }
+  }
+
+  Future<ApiResult<void>> updateAddress() async {
+    try {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+
+      final address1 = ref.read(address1TextFieldProvider).value;
+      final address2 = ref.read(address2TextFieldProvider).value;
+      final city = ref.read(cityTextFieldProvider).value;
+      final postcode = ref.read(postcodeTextFieldProvider).value;
+      final stateText = ref.read(stateTextFieldProvider).value;
+
+      await ref.read(addressRepoProvider).updateAddress(
+            Address(
+              address1: address1,
+              address2: address2,
+              city: city,
+              postcode: postcode.isNullOrEmpty ? null : int.tryParse(postcode!),
+              state: stateText,
+            ),
+          );
+
+      state = AsyncValue.data(
+        await ref.read(addressRepoProvider).getListOfAddresses(),
+      );
+
+      return ApiSuccess();
+    } on ApiError catch (e) {
+      return e;
+    } finally {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+    }
+  }
+
+  Future<ApiResult<void>> deleteAddress(String id) async {
+    try {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+
+      await ref.read(addressRepoProvider).deleteAddress(id);
 
       state = AsyncValue.data(
         await ref.read(addressRepoProvider).getListOfAddresses(),
