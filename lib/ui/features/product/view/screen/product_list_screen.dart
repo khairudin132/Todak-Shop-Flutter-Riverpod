@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todak_shop/core/core.dart';
-import 'package:todak_shop/ui/features/shop/provider/provider.dart';
+import 'package:todak_shop/ui/features/product/provider/provider.dart';
 import 'package:todak_shop/ui/ui.dart';
 
 class ShopScreen extends ConsumerStatefulWidget {

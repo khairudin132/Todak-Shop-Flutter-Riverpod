@@ -1,10 +1,11 @@
 export 'constants/constants.dart';
-export 'databases/databases.dart';
+export 'data/data.dart';
+export 'data/databases/databases.dart';
 export 'domain/domain.dart';
 export 'extensions/extensions.dart';
 export 'mixins/mixins.dart';
-export 'repositories/repositories.dart';
+export 'data/repositories/repositories.dart';
 export 'router.dart';
-export 'databases/services/services.dart';
+export 'data/databases/services/services.dart';
 export 'theme/theme.dart';
 export 'utils/utils.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todak_shop/core/core.dart';
 import 'package:todak_shop/ui/features/address/provider/provider.dart';
 import 'package:todak_shop/ui/features/address/view/widget/widget.dart';
-import 'package:todak_shop/ui/features/main_bottom_nav/controller/controller.dart';
+import 'package:todak_shop/ui/features/main_bottom_nav/provider/provider.dart';
 import 'package:todak_shop/ui/ui.dart';
 
 import '../../provider/provider.dart';
