@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:math';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todak_shop/core/core.dart';
 
@@ -11,53 +8,35 @@ class CartRepo implements CartInterface {
 
   final ProviderRef _ref;
 
-  var _listOfCarts = <Cart>[];
+  CartApiClient get _apiClient => _ref.read(cartApiClientProvider);
 
   @override
-  List<Cart> get getListOfCarts => _listOfCarts = _ref
-          .read(cartLocalStorageProvider)
-          .getListOfCarts
-          ?.map((e) => Cart.fromJson(jsonDecode(e)))
-          .toList() ??
-      [];
+  Future<List<Cart>> getListOfCarts() async {
+    final result = await _apiClient.getListOfCartItems();
+
+    return result.when(
+      data: (data) => data ?? [],
+      error: (error) => throw error,
+    );
+  }
 
   @override
   Future<void> addCart(Cart cart) async {
-    // Find the highest current ID in the list of carts, or use -1 if the list is empty
-    final int currentMaxId = _listOfCarts.isNullOrEmpty
-        ? -1
-        : _listOfCarts.map((e) => e.id ?? 0).reduce(max);
+    final result = await _apiClient.addCartItem(cartItem: cart);
 
-    // Assign the next ID as one more than the highest ID
-    final int nextId = currentMaxId + 1;
-
-    // Create a new Cart object with the new ID.
-    final Cart newCart = cart.copyWith(id: nextId);
-
-    // Add the new Cart object to the list.
-    _listOfCarts.add(newCart);
-
-    // Update the cart in local storage or database.
-    await _updateCartLocal(_listOfCarts);
+    result.when(
+      data: (data) {},
+      error: (error) => throw error,
+    );
   }
 
   @override
-  Future<void> removeCart(List<Cart> selectedCarts) async {
-    _listOfCarts.removeWhere((element) => selectedCarts.contains(element));
+  Future<void> removeCartItem(String id) async {
+    final result = await _apiClient.removeCartItemById(id);
 
-    await _updateCartLocal(_listOfCarts);
-  }
-
-  @override
-  Future<void> clearCart() async {
-    _listOfCarts.clear();
-    await _ref.read(cartLocalStorageProvider).clearCart();
-  }
-
-  Future<void> _updateCartLocal(List<Cart> listOfCarts) async {
-    final listOfCartsString = listOfCarts.map((e) => (jsonEncode(e))).toList();
-
-    await _ref.read(cartLocalStorageProvider).clearCart();
-    await _ref.read(cartLocalStorageProvider).setListOfCarts(listOfCartsString);
+    result.when(
+      data: (data) {},
+      error: (error) => throw error,
+    );
   }
 }

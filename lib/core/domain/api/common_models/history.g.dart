@@ -8,11 +8,11 @@ part of 'history.dart';
 
 _$HistoryImpl _$$HistoryImplFromJson(Map<String, dynamic> json) =>
     _$HistoryImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       product: json['product'] == null
           ? null
           : Product.fromJson(json['product'] as Map<String, dynamic>),
-      viewTimes: json['viewTimes'] as int?,
+      viewTimes: (json['viewTimes'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$HistoryImplToJson(_$HistoryImpl instance) =>

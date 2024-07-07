@@ -4,22 +4,46 @@ import 'package:todak_shop/core/core.dart';
 part 'provider.g.dart';
 
 @riverpod
-class AddProductToCart extends _$AddProductToCart {
+class CartItemsList extends _$CartItemsList {
   @override
-  List<Cart> build() {
-    return ref.read(cartRepoProvider).getListOfCarts;
+  Future<List<Cart>> build() async {
+    return await ref.read(cartRepoProvider).getListOfCarts();
   }
 
-  Future<void> addCart(Cart cart) async {
-    await ref.read(cartRepoProvider).addCart(cart);
+  Future<ApiResult<void>> addCart(Cart cart) async {
+    try {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
 
-    state = ref.read(cartRepoProvider).getListOfCarts;
+      await ref.read(cartRepoProvider).addCart(cart);
+
+      state = AsyncData(
+        await ref.read(cartRepoProvider).getListOfCarts(),
+      );
+
+      return ApiSuccess();
+    } on ApiError catch (e) {
+      return e;
+    } finally {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+    }
   }
 
-  Future<void> removeCart(List<Cart> carts) async {
-    await ref.read(cartRepoProvider).removeCart(carts);
+  Future<ApiResult<void>> removeCartItem(String id) async {
+    try {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(true);
 
-    state = ref.read(cartRepoProvider).getListOfCarts;
+      await ref.read(cartRepoProvider).removeCartItem(id);
+
+      state = AsyncData(
+        await ref.read(cartRepoProvider).getListOfCarts(),
+      );
+
+      return ApiSuccess();
+    } on ApiError catch (e) {
+      return e;
+    } finally {
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+    }
   }
 }
 
@@ -40,6 +64,21 @@ class CollectCartItemForCheckout extends _$CollectCartItemForCheckout {
 
   void clearCart() {
     state = [];
+  }
+}
+
+@riverpod
+class TotalCartQuantity extends _$TotalCartQuantity {
+  @override
+  Stream<int> build() async* {
+    // final list = ref.watch(cartItemsListProvider);
+    final getCarts = await ref.watch(cartItemsListProvider.future);
+
+    final totalQuantity = getCarts
+        .map((e) => e.item?.quantity ?? 0)
+        .fold(0, (previousValue, element) => previousValue + element);
+
+    yield totalQuantity;
   }
 }
 

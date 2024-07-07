@@ -8,7 +8,7 @@ part 'cart.g.dart';
 class Cart with _$Cart {
   @JsonSerializable(explicitToJson: true)
   factory Cart({
-    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'item') CartItem? item,
   }) = _Cart;
 

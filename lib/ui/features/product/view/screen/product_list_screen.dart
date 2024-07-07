@@ -5,16 +5,11 @@ import 'package:todak_shop/core/core.dart';
 import 'package:todak_shop/ui/features/product/provider/provider.dart';
 import 'package:todak_shop/ui/ui.dart';
 
-class ShopScreen extends ConsumerStatefulWidget {
+class ShopScreen extends ConsumerWidget {
   const ShopScreen({super.key});
 
   @override
-  ConsumerState<ShopScreen> createState() => _ShopScreenState();
-}
-
-class _ShopScreenState extends ConsumerState<ShopScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return PageBase(
       appBar: AppBar(
         actions: const [

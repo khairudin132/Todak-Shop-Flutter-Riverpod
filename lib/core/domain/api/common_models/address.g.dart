@@ -13,7 +13,7 @@ _$AddressImpl _$$AddressImplFromJson(Map<String, dynamic> json) =>
       phoneNumber: json['phoneNumber'] as String?,
       address1: json['address1'] as String?,
       address2: json['address2'] as String?,
-      postcode: json['postcode'] as int?,
+      postcode: (json['postcode'] as num?)?.toInt(),
       district: json['district'] as String?,
       city: json['city'] as String?,
       state: json['state'] as String?,

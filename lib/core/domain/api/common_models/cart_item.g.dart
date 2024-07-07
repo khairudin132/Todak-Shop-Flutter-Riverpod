@@ -8,7 +8,7 @@ part of 'cart_item.dart';
 
 _$CartItemImpl _$$CartItemImplFromJson(Map<String, dynamic> json) =>
     _$CartItemImpl(
-      quantity: json['quantity'] as int?,
+      quantity: (json['quantity'] as num?)?.toInt(),
       product: json['product'] == null
           ? null
           : Product.fromJson(json['product'] as Map<String, dynamic>),

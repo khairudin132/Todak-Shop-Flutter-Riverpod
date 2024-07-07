@@ -6,22 +6,22 @@ part of 'provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addProductToCartHash() => r'48afeabf09ff0a049c1f1b65eba4d4577a77b109';
+String _$cartItemsListHash() => r'66c3004ff294d2bfa43d0076d643e2a8fe6e82f8';
 
-/// See also [AddProductToCart].
-@ProviderFor(AddProductToCart)
-final addProductToCartProvider =
-    AutoDisposeNotifierProvider<AddProductToCart, List<Cart>>.internal(
-  AddProductToCart.new,
-  name: r'addProductToCartProvider',
+/// See also [CartItemsList].
+@ProviderFor(CartItemsList)
+final cartItemsListProvider =
+    AutoDisposeAsyncNotifierProvider<CartItemsList, List<Cart>>.internal(
+  CartItemsList.new,
+  name: r'cartItemsListProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$addProductToCartHash,
+      : _$cartItemsListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AddProductToCart = AutoDisposeNotifier<List<Cart>>;
+typedef _$CartItemsList = AutoDisposeAsyncNotifier<List<Cart>>;
 String _$collectCartItemForCheckoutHash() =>
     r'aec2a027fd6e0e82ab1450caf7535db778ef1e0b';
 
@@ -39,6 +39,22 @@ final collectCartItemForCheckoutProvider = AutoDisposeNotifierProvider<
 );
 
 typedef _$CollectCartItemForCheckout = AutoDisposeNotifier<List<Cart>>;
+String _$totalCartQuantityHash() => r'a5adc68f6ee6e0d9baebf714227b980d60578eaf';
+
+/// See also [TotalCartQuantity].
+@ProviderFor(TotalCartQuantity)
+final totalCartQuantityProvider =
+    AutoDisposeStreamNotifierProvider<TotalCartQuantity, int>.internal(
+  TotalCartQuantity.new,
+  name: r'totalCartQuantityProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$totalCartQuantityHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$TotalCartQuantity = AutoDisposeStreamNotifier<int>;
 String _$totalPriceCartHash() => r'0552b115c291d7a6bc9d24007ae55cb0b695c830';
 
 /// See also [TotalPriceCart].
