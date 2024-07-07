@@ -130,7 +130,7 @@ class AddressList extends _$AddressList {
 
       await ref.read(addressRepoProvider).deleteAddress(id);
 
-      state = AsyncValue.data(
+      state = AsyncData(
         await ref.read(addressRepoProvider).getListOfAddresses(),
       );
 

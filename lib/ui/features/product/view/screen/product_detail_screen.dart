@@ -42,7 +42,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
             product: productItem,
             onPressed: (cartItem) async {
               await ref
-                  .read(addProductToCartProvider.notifier)
+                  .read(cartItemsListProvider.notifier)
                   .addCart(Cart(item: cartItem));
             },
           );

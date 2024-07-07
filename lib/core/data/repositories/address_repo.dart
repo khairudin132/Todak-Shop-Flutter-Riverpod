@@ -32,8 +32,7 @@ class AddressRepo implements AddressInterface {
 
   @override
   Future<void> addAddress(Address address) async {
-    final result =
-        await _ref.read(addressApiClientProvider).addAddress(address: address);
+    final result = await _apiClient.addAddress(address: address);
 
     result.when(
       data: (data) {},
@@ -55,8 +54,7 @@ class AddressRepo implements AddressInterface {
 
   @override
   Future<void> deleteAddress(String id) async {
-    final result =
-        await _ref.read(addressApiClientProvider).removeAddressById(id);
+    final result = await _apiClient.removeAddressById(id);
 
     result.when(
       data: (data) {},

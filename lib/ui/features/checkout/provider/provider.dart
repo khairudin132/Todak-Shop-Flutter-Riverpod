@@ -50,7 +50,8 @@ class CheckoutToOrder extends _$CheckoutToOrder {
       );
 
       await ref.read(orderRepoProvider).addOrder(order);
-      await ref.read(addProductToCartProvider.notifier).removeCart(listOfCarts);
+      // TODO remove cart in order
+      // await ref.read(cartItemsListProvider.notifier).removeCart(listOfCarts);
       ref.read(collectCartItemForCheckoutProvider.notifier).clearCart();
 
       await Future.delayed(const Duration(seconds: 1));

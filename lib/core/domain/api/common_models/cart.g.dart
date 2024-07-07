@@ -7,7 +7,7 @@ part of 'cart.dart';
 // **************************************************************************
 
 _$CartImpl _$$CartImplFromJson(Map<String, dynamic> json) => _$CartImpl(
-      id: json['id'] as int?,
+      id: json['id'] as String?,
       item: json['item'] == null
           ? null
           : CartItem.fromJson(json['item'] as Map<String, dynamic>),

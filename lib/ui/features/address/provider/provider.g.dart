@@ -22,7 +22,7 @@ final defaultAddressProvider =
 );
 
 typedef _$DefaultAddress = AutoDisposeNotifier<Address?>;
-String _$addressListHash() => r'1f5ae74f8e394e6420f49c870a4b57b16a0143e0';
+String _$addressListHash() => r'8b77ed84a5989461ab69495979cd91ca630d9772';
 
 /// See also [AddressList].
 @ProviderFor(AddressList)

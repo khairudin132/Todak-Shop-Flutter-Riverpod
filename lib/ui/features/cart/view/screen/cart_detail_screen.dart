@@ -81,34 +81,49 @@ class _CartItemList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final listOfCarts = ref.watch(addProductToCartProvider);
+    final listOfCarts = ref.watch(cartItemsListProvider);
 
-    return ListViewSeparatedItem(
-      list: listOfCarts,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        var selected = false;
+    return listOfCarts.when(
+      data: (list) {
+        return ListViewSeparatedItem(
+          list: list,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            var selected = false;
 
-        final cart = listOfCarts[index];
+            final cart = list[index];
 
-        return CartTile(
-          cart: cart,
-          value: selected,
-          onChanged: (value) {
-            selected = value;
-            if (value == true) {
-              ref
-                  .read(collectCartItemForCheckoutProvider.notifier)
-                  .addCartItem(cart);
-            } else if (value == false) {
-              ref
-                  .read(collectCartItemForCheckoutProvider.notifier)
-                  .deleteCartItem(cart);
-            }
+            return Dismissible(
+              key: Key(cart.id!),
+              background: Container(color: context.theme.highlightColor),
+              onDismissed: (direction) {
+                ref
+                    .read(cartItemsListProvider.notifier)
+                    .removeCartItem(cart.id!);
+              },
+              child: CartTile(
+                cart: cart,
+                value: selected,
+                onChanged: (value) {
+                  selected = value;
+                  if (value == true) {
+                    ref
+                        .read(collectCartItemForCheckoutProvider.notifier)
+                        .addCartItem(cart);
+                  } else if (value == false) {
+                    ref
+                        .read(collectCartItemForCheckoutProvider.notifier)
+                        .deleteCartItem(cart);
+                  }
+                },
+              ),
+            );
           },
         );
       },
+      error: asyncError,
+      loading: () => const AppProgressIndicator(),
     );
   }
 }

@@ -1,11 +1,9 @@
 import 'package:todak_shop/core/domain/domain.dart';
 
 abstract class CartInterface {
-  List<Cart> get getListOfCarts;
+  Future<List<Cart>> getListOfCarts();
 
   Future<void> addCart(Cart cart);
 
-  Future<void> removeCart(List<Cart> cart);
-
-  Future<void> clearCart();
+  Future<void> removeCartItem(String id);
 }

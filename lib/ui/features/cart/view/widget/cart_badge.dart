@@ -10,7 +10,7 @@ class CartBadge extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final total = ref.watch(addProductToCartProvider).length;
+    // final total = ref.watch(totalCartQuantityProvider);
 
     return badges.Badge(
       position: badges.BadgePosition.topEnd(top: 0, end: 3),
@@ -22,9 +22,23 @@ class CartBadge extends ConsumerWidget {
       badgeStyle: const badges.BadgeStyle(
         badgeColor: Colors.red,
       ),
-      badgeContent: Text(
-        total.toString(),
-        style: const TextStyle(color: Colors.white),
+      badgeContent: Consumer(
+        builder: (context, ref, child) {
+          final total = ref.watch(totalCartQuantityProvider);
+
+          var totalQuantity = 0;
+
+          total.whenData(
+            (value) => totalQuantity = value,
+          );
+
+          return Text(
+            totalQuantity.toString(),
+            style: context.textTheme.titleMedium?.copyWith(
+              color: Colors.white,
+            ),
+          );
+        },
       ),
       child: IconButton(
         icon: const Icon(Icons.shopping_cart),

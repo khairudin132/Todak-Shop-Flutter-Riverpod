@@ -21,7 +21,7 @@ Cart _$CartFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Cart {
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'item')
   CartItem? get item => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $CartCopyWith<$Res> {
       _$CartCopyWithImpl<$Res, Cart>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'item') CartItem? item});
+      {@JsonKey(name: 'id') String? id, @JsonKey(name: 'item') CartItem? item});
 
   $CartItemCopyWith<$Res>? get item;
 }
@@ -61,7 +61,7 @@ class _$CartCopyWithImpl<$Res, $Val extends Cart>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       item: freezed == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
@@ -90,7 +90,7 @@ abstract class _$$CartImplCopyWith<$Res> implements $CartCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'item') CartItem? item});
+      {@JsonKey(name: 'id') String? id, @JsonKey(name: 'item') CartItem? item});
 
   @override
   $CartItemCopyWith<$Res>? get item;
@@ -113,7 +113,7 @@ class __$$CartImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       item: freezed == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
@@ -133,7 +133,7 @@ class _$CartImpl implements _Cart {
 
   @override
   @JsonKey(name: 'id')
-  final int? id;
+  final String? id;
   @override
   @JsonKey(name: 'item')
   final CartItem? item;
@@ -172,14 +172,14 @@ class _$CartImpl implements _Cart {
 
 abstract class _Cart implements Cart {
   factory _Cart(
-      {@JsonKey(name: 'id') final int? id,
+      {@JsonKey(name: 'id') final String? id,
       @JsonKey(name: 'item') final CartItem? item}) = _$CartImpl;
 
   factory _Cart.fromJson(Map<String, dynamic> json) = _$CartImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  int? get id;
+  String? get id;
   @override
   @JsonKey(name: 'item')
   CartItem? get item;
