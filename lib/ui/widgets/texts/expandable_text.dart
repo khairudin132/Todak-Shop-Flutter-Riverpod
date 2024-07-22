@@ -2,49 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:todak_shop/core/core.dart';
 
-class SectionHeader extends StatelessWidget {
-  const SectionHeader({super.key, required this.header});
-
-  final String header;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      header,
-      style: context.textTheme.headlineMedium,
-    );
-  }
-}
-
-class IconLabel extends StatelessWidget {
-  const IconLabel({
-    super.key,
-    required this.icon,
-    required this.label,
-  });
-
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(
-          icon,
-          size: 18,
-        ),
-        const SizedBox(width: 5),
-        Text(
-          label,
-          style: context.textTheme.labelLarge,
-        ),
-      ],
-    );
-  }
-}
-
 class ExpandableText extends StatefulWidget {
   const ExpandableText({
     super.key,
@@ -111,47 +68,6 @@ class _ExpandableTextState extends State<ExpandableText> {
             ),
         ],
       ),
-    );
-  }
-}
-
-class NoItemsFound extends StatelessWidget {
-  const NoItemsFound({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text('No items found');
-  }
-}
-
-class LabelSubtile extends StatelessWidget {
-  const LabelSubtile({
-    super.key,
-    required this.label,
-    required this.subtitle,
-  });
-
-  final String label;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          label,
-          style: context.textTheme.titleMedium!.copyWith(
-            fontSize: 15,
-          ),
-        ),
-        const SizedBox(height: 2),
-        Text(
-          subtitle,
-          style: context.textTheme.bodyMedium,
-        ),
-      ],
     );
   }
 }

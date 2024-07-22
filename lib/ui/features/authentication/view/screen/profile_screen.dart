@@ -96,15 +96,15 @@ class _UserDetails extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ...[
-                    LabelSubtile(
+                    LabelDetail(
                       label: 'Name',
                       subtitle: fullName,
                     ),
-                    LabelSubtile(
+                    LabelDetail(
                       label: 'Email',
                       subtitle: user.email ?? '',
                     ),
-                    // LabelSubtile(
+                    // LabelDetail(
                     //   label: 'First Name',
                     //   subtitle: user.firstName ?? '',
                     // ),
