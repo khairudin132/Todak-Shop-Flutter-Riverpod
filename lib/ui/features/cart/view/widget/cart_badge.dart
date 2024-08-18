@@ -10,7 +10,10 @@ class CartBadge extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final total = ref.watch(totalCartQuantityProvider);
+    final currentRouterEntity = AppRouter.getCurrentRouterEntity(context);
+
+    final bool isCartDetailScreen =
+        currentRouterEntity?.path == CartDetailScreen.path;
 
     return badges.Badge(
       position: badges.BadgePosition.topEnd(top: 0, end: 3),
@@ -42,10 +45,14 @@ class CartBadge extends ConsumerWidget {
       ),
       child: IconButton(
         icon: const Icon(Icons.shopping_cart),
-        onPressed: () {
-          ref.read(collectCartItemForCheckoutProvider.notifier).clearCart();
-          context.navigator.pushNamed(CartDetailScreen.path);
-        },
+        onPressed: isCartDetailScreen
+            ? () {}
+            : () {
+                ref
+                    .read(collectCartItemForCheckoutProvider.notifier)
+                    .clearCart();
+                context.navigator.pushNamed(CartDetailScreen.path);
+              },
       ),
     );
   }

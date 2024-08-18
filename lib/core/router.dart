@@ -106,4 +106,11 @@ class AppRouter {
       settings: settings,
     );
   }
+
+  static RouterEntity? getCurrentRouterEntity(BuildContext context) {
+    final currentRouteName = ModalRoute.of(context)?.settings.name;
+    return _listOfPages.firstWhere(
+      (element) => element.path == currentRouteName,
+    );
+  }
 }
