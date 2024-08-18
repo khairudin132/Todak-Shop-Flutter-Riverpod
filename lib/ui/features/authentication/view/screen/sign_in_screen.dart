@@ -17,6 +17,9 @@ class SignInScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final email = ref.watch(emailTextFieldProvider);
+    final password = ref.watch(passwordTextFieldProvider);
+
     return FormPageBase(
       formKey: _formKey,
       title: 'Sign In',
@@ -70,25 +73,17 @@ class SignInScreen extends ConsumerWidget {
         },
       ),
       children: [
-        Consumer(builder: (context, ref, widget) {
-          final email = ref.watch(emailTextFieldProvider);
-
-          return LearningTextFormField(
-            controller: email.controller,
-            label: email.fieldLabel,
-            prefixIcon: Icon(AppIconsAdaptive.profile),
-            validator: email.validate,
-          );
-        }),
-        Consumer(builder: (context, ref, widget) {
-          final password = ref.watch(passwordTextFieldProvider);
-
-          return LearningPasswordFormField(
-            controller: password.controller,
-            label: password.fieldLabel,
-            validator: password.validate,
-          );
-        }),
+        LearningTextFormField(
+          controller: email.controller,
+          label: email.fieldLabel,
+          prefixIcon: Icon(AppIconsAdaptive.profile),
+          validator: email.validate,
+        ),
+        LearningPasswordFormField(
+          controller: password.controller,
+          label: password.fieldLabel,
+          validator: password.validate,
+        ),
         Text.rich(
           TextSpan(
             text: 'Don\'t have an account? ',

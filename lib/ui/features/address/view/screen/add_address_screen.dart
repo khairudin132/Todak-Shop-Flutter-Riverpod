@@ -14,6 +14,12 @@ class AddAddressScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final address1 = ref.watch(address1TextFieldProvider);
+    final address2 = ref.watch(address2TextFieldProvider);
+    final city = ref.watch(cityTextFieldProvider);
+    final postcode = ref.watch(postcodeTextFieldProvider);
+    final state = ref.watch(stateTextFieldProvider);
+
     return FormPageBase(
       formKey: _formKey,
       title: 'Add Address',
@@ -38,57 +44,37 @@ class AddAddressScreen extends ConsumerWidget {
         },
       ),
       children: [
-        Consumer(builder: (context, ref, widget) {
-          final address1 = ref.watch(address1TextFieldProvider);
-
-          return LearningTextFormField(
-            controller: address1.controller,
-            label: address1.fieldLabel,
-            prefixIcon: const Icon(Icons.mail),
-            validator: address1.validate,
-          );
-        }),
-        Consumer(builder: (context, ref, widget) {
-          final address2 = ref.watch(address2TextFieldProvider);
-
-          return LearningTextFormField(
-            controller: address2.controller,
-            label: address2.fieldLabel,
-            prefixIcon: const Icon(Icons.mail),
-            validator: address2.validate,
-          );
-        }),
-        Consumer(builder: (context, ref, widget) {
-          final city = ref.watch(cityTextFieldProvider);
-
-          return LearningTextFormField(
-            controller: city.controller,
-            label: city.fieldLabel,
-            prefixIcon: const Icon(Icons.mail),
-            validator: city.validate,
-          );
-        }),
-        Consumer(builder: (context, ref, widget) {
-          final postcode = ref.watch(postcodeTextFieldProvider);
-
-          return LearningTextFormField(
-            keyboardType: TextInputType.number,
-            controller: postcode.controller,
-            label: postcode.fieldLabel,
-            prefixIcon: const Icon(Icons.mail),
-            validator: postcode.validate,
-          );
-        }),
-        Consumer(builder: (context, ref, widget) {
-          final state = ref.watch(stateTextFieldProvider);
-
-          return LearningTextFormField(
-            controller: state.controller,
-            label: state.fieldLabel,
-            prefixIcon: const Icon(Icons.mail),
-            validator: state.validate,
-          );
-        }),
+        LearningTextFormField(
+          controller: address1.controller,
+          label: address1.fieldLabel,
+          prefixIcon: const Icon(Icons.mail),
+          validator: address1.validate,
+        ),
+        LearningTextFormField(
+          controller: address2.controller,
+          label: address2.fieldLabel,
+          prefixIcon: const Icon(Icons.mail),
+          validator: address2.validate,
+        ),
+        LearningTextFormField(
+          controller: city.controller,
+          label: city.fieldLabel,
+          prefixIcon: const Icon(Icons.mail),
+          validator: city.validate,
+        ),
+        LearningTextFormField(
+          keyboardType: TextInputType.number,
+          controller: postcode.controller,
+          label: postcode.fieldLabel,
+          prefixIcon: const Icon(Icons.mail),
+          validator: postcode.validate,
+        ),
+        LearningTextFormField(
+          controller: state.controller,
+          label: state.fieldLabel,
+          prefixIcon: const Icon(Icons.mail),
+          validator: state.validate,
+        ),
       ],
     );
   }

@@ -15,6 +15,12 @@ class SignUpScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final username = ref.watch(usernameTextFieldProvider);
+    final email = ref.watch(emailTextFieldProvider);
+    final firstName = ref.watch(firstNameTextFieldProvider);
+    final lastName = ref.watch(lastNameTextFieldProvider);
+    final password = ref.watch(passwordTextFieldProvider);
+
     return PopScope(
       onPopInvoked: (didPop) =>
           ref.read(currentAuthUserProvider.notifier).clearTextFormField(),
@@ -57,55 +63,35 @@ class SignUpScreen extends ConsumerWidget {
           },
         ),
         children: [
-          Consumer(builder: (context, ref, widget) {
-            final username = ref.watch(usernameTextFieldProvider);
-
-            return LearningTextFormField(
-              controller: username.controller,
-              label: username.fieldLabel,
-              prefixIcon: Icon(AppIconsAdaptive.profile),
-              validator: username.validate,
-            );
-          }),
-          Consumer(builder: (context, ref, widget) {
-            final email = ref.watch(emailTextFieldProvider);
-
-            return LearningTextFormField(
-              controller: email.controller,
-              label: email.fieldLabel,
-              prefixIcon: Icon(AppIconsAdaptive.profile),
-              validator: email.validate,
-            );
-          }),
-          Consumer(builder: (context, ref, widget) {
-            final firstName = ref.watch(firstNameTextFieldProvider);
-
-            return LearningTextFormField(
-              controller: firstName.controller,
-              label: firstName.fieldLabel,
-              prefixIcon: Icon(AppIconsAdaptive.profile),
-              validator: firstName.validate,
-            );
-          }),
-          Consumer(builder: (context, ref, widget) {
-            final lastName = ref.watch(lastNameTextFieldProvider);
-
-            return LearningTextFormField(
-              controller: lastName.controller,
-              label: lastName.fieldLabel,
-              prefixIcon: Icon(AppIconsAdaptive.profile),
-              validator: lastName.validate,
-            );
-          }),
-          Consumer(builder: (context, ref, widget) {
-            final password = ref.watch(passwordTextFieldProvider);
-
-            return LearningPasswordFormField(
-              controller: password.controller,
-              label: password.fieldLabel,
-              validator: password.validate,
-            );
-          }),
+          LearningTextFormField(
+            controller: username.controller,
+            label: username.fieldLabel,
+            prefixIcon: Icon(AppIconsAdaptive.profile),
+            validator: username.validate,
+          ),
+          LearningTextFormField(
+            controller: email.controller,
+            label: email.fieldLabel,
+            prefixIcon: Icon(AppIconsAdaptive.profile),
+            validator: email.validate,
+          ),
+          LearningTextFormField(
+            controller: firstName.controller,
+            label: firstName.fieldLabel,
+            prefixIcon: Icon(AppIconsAdaptive.profile),
+            validator: firstName.validate,
+          ),
+          LearningTextFormField(
+            controller: lastName.controller,
+            label: lastName.fieldLabel,
+            prefixIcon: Icon(AppIconsAdaptive.profile),
+            validator: lastName.validate,
+          ),
+          LearningPasswordFormField(
+            controller: password.controller,
+            label: password.fieldLabel,
+            validator: password.validate,
+          ),
         ],
       ),
     );
