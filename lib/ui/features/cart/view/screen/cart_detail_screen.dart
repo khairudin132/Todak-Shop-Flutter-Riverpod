@@ -12,31 +12,12 @@ class CartDetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Cart'),
-        actions: const [
-          CartBadge(),
-        ],
+      appBar: const ShoppyAppBarModel(
+        title: 'Cart',
+        requireCartBadge: true,
       ),
       isFloatingActionButtonExpanded: false,
-      floatingActionButton: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16)
-            .add(const EdgeInsets.only(top: 16)),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              spreadRadius: 0,
-              blurRadius: 5,
-              offset: const Offset(
-                0,
-                -3,
-              ),
-            ),
-          ],
-        ),
+      floatingActionButton: FabWhiteContainer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,

@@ -30,9 +30,7 @@ class _AddressListScreenState extends ConsumerState<AddressListScreen> {
     final selectedAddress = ref.watch(defaultAddressProvider);
 
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Address'),
-      ),
+      appBar: const ShoppyAppBarModel(title: 'Address'),
       floatingActionButton: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,

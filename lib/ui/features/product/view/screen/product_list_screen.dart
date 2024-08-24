@@ -11,11 +11,7 @@ class ShopScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PageBase(
-      appBar: AppBar(
-        actions: const [
-          CartBadge(),
-        ],
-      ),
+      appBar: const ShoppyAppBarModel(requireCartBadge: true),
       hasBodyPadding: false,
       child: RefreshIndicator.adaptive(
         onRefresh: () => Future.wait([

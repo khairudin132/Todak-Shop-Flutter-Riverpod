@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:todak_shop/core/core.dart';
+import 'package:todak_shop/ui/features/cart/view/widget/cart_badge.dart';
 
 import 'buttons/buttons.dart';
+
+class ShoppyAppBarModel {
+  const ShoppyAppBarModel({
+    this.title,
+    this.requireCartBadge = false,
+    this.actions,
+  });
+
+  final String? title;
+  final bool requireCartBadge;
+  final List<Widget>? actions;
+}
 
 class PageBase extends StatelessWidget {
   const PageBase({
@@ -16,7 +29,7 @@ class PageBase extends StatelessWidget {
     this.hasBodyPadding = true,
   });
 
-  final PreferredSizeWidget? appBar;
+  final ShoppyAppBarModel? appBar;
   final Widget? endDrawer;
   final Widget child;
   final bool hasBottomGap;
@@ -33,7 +46,16 @@ class PageBase extends StatelessWidget {
         bottom: false,
         maintainBottomViewPadding: true,
         child: Scaffold(
-          appBar: appBar,
+          appBar: appBar != null
+              ? AppBar(
+                  title:
+                      appBar!.title.isNullOrEmpty ? null : Text(appBar!.title!),
+                  actions: [
+                    ...?appBar?.actions,
+                    if (appBar!.requireCartBadge) const CartBadge(),
+                  ],
+                )
+              : null,
           endDrawer: endDrawer,
           body: Padding(
             padding:
@@ -77,9 +99,7 @@ class FormPageBase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageBase(
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      appBar: ShoppyAppBarModel(title: title),
       hasBottomGap: true,
       floatingActionButton: button,
       child: Form(

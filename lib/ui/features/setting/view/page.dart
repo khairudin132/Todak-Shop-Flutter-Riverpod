@@ -10,11 +10,9 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageBase(
-      appBar: AppBar(
-        title: const Text('Setting'),
-      ),
-      child: const Column(
+    return const PageBase(
+      appBar: ShoppyAppBarModel(title: 'Setting'),
+      child: Column(
         children: [
           ExpansionTile(
             title: Text('Theme Mode'),

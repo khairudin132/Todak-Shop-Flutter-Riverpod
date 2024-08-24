@@ -36,28 +36,9 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
   @override
   Widget build(BuildContext context) {
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Checkout'),
-      ),
+      appBar: const ShoppyAppBarModel(title: 'Checkout'),
       isFloatingActionButtonExpanded: false,
-      floatingActionButton: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16)
-            .add(const EdgeInsets.only(top: 16)),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              spreadRadius: 0,
-              blurRadius: 5,
-              offset: const Offset(
-                0,
-                -3,
-              ),
-            ),
-          ],
-        ),
+      floatingActionButton: FabWhiteContainer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,

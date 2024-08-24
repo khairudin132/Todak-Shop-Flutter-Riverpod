@@ -3,6 +3,7 @@ export 'images/avatar_container.dart';
 export 'buttons/buttons.dart';
 export 'images/cached_container.dart';
 export 'dialogs/dialogs.dart';
+export 'fab_white_container.dart';
 export 'form_fields/form_fields.dart';
 export 'global_loader.dart';
 export 'list.dart';

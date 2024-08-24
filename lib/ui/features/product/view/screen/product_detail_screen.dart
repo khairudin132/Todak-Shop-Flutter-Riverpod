@@ -28,11 +28,9 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
     final product = ref.watch(getProductDetailProvider(widget.id));
 
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Product Detail'),
-        actions: const [
-          CartBadge(),
-        ],
+      appBar: const ShoppyAppBarModel(
+        title: 'Product Detail',
+        requireCartBadge: true,
       ),
       floatingActionButton: ConfirmButton(
         label: 'Buy',

@@ -24,9 +24,7 @@ class OrderDetailScreen extends ConsumerWidget {
     ];
 
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Order Detail'),
-      ),
+      appBar: const ShoppyAppBarModel(title: 'Order Detail'),
       hasBottomGap: true,
       child: ListViewSeparatedItem(
         list: list,

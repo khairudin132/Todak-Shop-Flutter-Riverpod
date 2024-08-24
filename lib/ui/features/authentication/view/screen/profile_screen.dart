@@ -13,7 +13,7 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PageBase(
-      appBar: AppBar(
+      appBar: ShoppyAppBarModel(
         actions: [
           IconButton(
             onPressed: () => context.navigator.pushNamed(SettingScreen.path),
