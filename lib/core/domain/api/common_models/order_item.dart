@@ -10,7 +10,7 @@ class OrderItem with _$OrderItem {
   factory OrderItem({
     @JsonKey(name: 'carts') List<Cart>? carts,
     @JsonKey(name: 'address') Address? address,
-    @JsonKey(name: 'totalPrice') int? totalPrice,
+    @JsonKey(name: 'totalPrice') String? totalPrice,
     @JsonKey(name: 'createdAt') DateTime? createdAt,
   }) = _OrderItem;
 

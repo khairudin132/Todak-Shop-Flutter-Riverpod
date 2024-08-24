@@ -6,4 +6,6 @@ class FirebaseConstants {
   final String addresses = 'addresses';
 
   final String carts = 'carts';
+
+  final String orders = 'orders';
 }

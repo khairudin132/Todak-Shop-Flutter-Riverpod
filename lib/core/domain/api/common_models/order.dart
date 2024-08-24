@@ -9,7 +9,7 @@ part 'order.g.dart';
 class Order with _$Order {
   @JsonSerializable(explicitToJson: true)
   factory Order({
-    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'item') OrderItem? item,
   }) = _Order;
 

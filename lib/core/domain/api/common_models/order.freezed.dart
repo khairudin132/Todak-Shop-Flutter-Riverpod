@@ -21,12 +21,16 @@ Order _$OrderFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Order {
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'item')
   OrderItem? get item => throw _privateConstructorUsedError;
 
+  /// Serializes this Order to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Order
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OrderCopyWith<Order> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -36,7 +40,8 @@ abstract class $OrderCopyWith<$Res> {
       _$OrderCopyWithImpl<$Res, Order>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'item') OrderItem? item});
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'item') OrderItem? item});
 
   $OrderItemCopyWith<$Res>? get item;
 }
@@ -51,6 +56,8 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Order
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -61,7 +68,7 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       item: freezed == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
@@ -69,6 +76,8 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     ) as $Val);
   }
 
+  /// Create a copy of Order
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OrderItemCopyWith<$Res>? get item {
@@ -90,7 +99,8 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'item') OrderItem? item});
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'item') OrderItem? item});
 
   @override
   $OrderItemCopyWith<$Res>? get item;
@@ -104,6 +114,8 @@ class __$$OrderImplCopyWithImpl<$Res>
       _$OrderImpl _value, $Res Function(_$OrderImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Order
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,7 +126,7 @@ class __$$OrderImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       item: freezed == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
@@ -134,7 +146,7 @@ class _$OrderImpl implements _Order {
 
   @override
   @JsonKey(name: 'id')
-  final int? id;
+  final String? id;
   @override
   @JsonKey(name: 'item')
   final OrderItem? item;
@@ -153,11 +165,13 @@ class _$OrderImpl implements _Order {
             (identical(other.item, item) || other.item == item));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, item);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Order
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>
@@ -173,19 +187,22 @@ class _$OrderImpl implements _Order {
 
 abstract class _Order implements Order {
   factory _Order(
-      {@JsonKey(name: 'id') final int? id,
+      {@JsonKey(name: 'id') final String? id,
       @JsonKey(name: 'item') final OrderItem? item}) = _$OrderImpl;
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$OrderImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  int? get id;
+  String? get id;
   @override
   @JsonKey(name: 'item')
   OrderItem? get item;
+
+  /// Create a copy of Order
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

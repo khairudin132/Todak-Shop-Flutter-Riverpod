@@ -7,7 +7,7 @@ part of 'order.dart';
 // **************************************************************************
 
 _$OrderImpl _$$OrderImplFromJson(Map<String, dynamic> json) => _$OrderImpl(
-      id: (json['id'] as num?)?.toInt(),
+      id: json['id'] as String?,
       item: json['item'] == null
           ? null
           : OrderItem.fromJson(json['item'] as Map<String, dynamic>),

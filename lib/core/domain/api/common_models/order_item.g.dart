@@ -14,7 +14,7 @@ _$OrderItemImpl _$$OrderItemImplFromJson(Map<String, dynamic> json) =>
       address: json['address'] == null
           ? null
           : Address.fromJson(json['address'] as Map<String, dynamic>),
-      totalPrice: (json['totalPrice'] as num?)?.toInt(),
+      totalPrice: json['totalPrice'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
