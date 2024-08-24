@@ -23,8 +23,12 @@ mixin _$GetProductsResponse {
   @JsonKey(name: 'products')
   List<Product>? get products => throw _privateConstructorUsedError;
 
+  /// Serializes this GetProductsResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetProductsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetProductsResponseCopyWith<GetProductsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$GetProductsResponseCopyWithImpl<$Res, $Val extends GetProductsResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetProductsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +87,8 @@ class __$$GetProductsResponseImplCopyWithImpl<$Res>
       $Res Function(_$GetProductsResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetProductsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,12 +137,14 @@ class _$GetProductsResponseImpl implements _GetProductsResponse {
             const DeepCollectionEquality().equals(other._products, _products));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetProductsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetProductsResponseImplCopyWith<_$GetProductsResponseImpl> get copyWith =>
@@ -160,8 +170,11 @@ abstract class _GetProductsResponse implements GetProductsResponse {
   @override
   @JsonKey(name: 'products')
   List<Product>? get products;
+
+  /// Create a copy of GetProductsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetProductsResponseImplCopyWith<_$GetProductsResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

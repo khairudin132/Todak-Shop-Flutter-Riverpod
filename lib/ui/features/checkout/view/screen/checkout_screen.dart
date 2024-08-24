@@ -48,8 +48,9 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
             ConfirmButton(
               label: 'Order',
               onPressed: () async {
-                final result =
-                    await ref.read(checkoutToOrderProvider.notifier).checkout();
+                final result = await ref
+                    .read(checkoutCartItemProvider.notifier)
+                    .checkout();
 
                 result.when(
                   data: (data) async {

@@ -112,7 +112,7 @@ class _Address extends ConsumerWidget {
 class _TotalPrice extends StatelessWidget {
   const _TotalPrice({required this.price});
 
-  final int price;
+  final String price;
 
   @override
   Widget build(BuildContext context) {

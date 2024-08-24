@@ -28,23 +28,27 @@ class _OrderItemList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final listOfOrders = ref.watch(orderListProvider);
+    final listOfOrders = ref.watch(orderItemsListProvider);
 
-    return ListViewSeparatedItem(
-      list: listOfOrders,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        final order = listOfOrders[index];
-        return OrderTile(
-          order: order,
-          onPressed: () => context.navigator.pushNamed(
-            OrderDetailScreen.path,
-            arguments: {'order': order},
-          ),
-        );
-      },
-      separatorBuilder: (context, index) => const SizedBox(height: 12),
+    return listOfOrders.when(
+      data: (data) => ListViewSeparatedItem(
+        list: data,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          final order = data[index];
+          return OrderTile(
+            order: order,
+            onPressed: () => context.navigator.pushNamed(
+              OrderDetailScreen.path,
+              arguments: {'order': order},
+            ),
+          );
+        },
+        separatorBuilder: (context, index) => const SizedBox(height: 12),
+      ),
+      error: asyncError,
+      loading: () => const AppProgressIndicator(),
     );
   }
 }

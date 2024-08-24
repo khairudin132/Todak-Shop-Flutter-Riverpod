@@ -27,8 +27,12 @@ mixin _$History {
   @JsonKey(name: 'viewTimes')
   int? get viewTimes => throw _privateConstructorUsedError;
 
+  /// Serializes this History to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of History
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HistoryCopyWith<History> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -55,6 +59,8 @@ class _$HistoryCopyWithImpl<$Res, $Val extends History>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of History
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -78,6 +84,8 @@ class _$HistoryCopyWithImpl<$Res, $Val extends History>
     ) as $Val);
   }
 
+  /// Create a copy of History
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductCopyWith<$Res>? get product {
@@ -115,6 +123,8 @@ class __$$HistoryImplCopyWithImpl<$Res>
       _$HistoryImpl _value, $Res Function(_$HistoryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of History
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -177,11 +187,13 @@ class _$HistoryImpl implements _History {
                 other.viewTimes == viewTimes));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, product, viewTimes);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of History
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HistoryImplCopyWith<_$HistoryImpl> get copyWith =>
@@ -212,8 +224,11 @@ abstract class _History implements History {
   @override
   @JsonKey(name: 'viewTimes')
   int? get viewTimes;
+
+  /// Create a copy of History
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HistoryImplCopyWith<_$HistoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

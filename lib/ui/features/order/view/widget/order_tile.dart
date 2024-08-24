@@ -178,7 +178,7 @@ class _BasicInfo extends StatelessWidget {
 
   final Order order;
 
-  int get price => order.item!.totalPrice!;
+  String get price => order.item!.totalPrice!;
 
   DateTime get dateTime => order.item!.createdAt!;
 
@@ -197,7 +197,7 @@ class _BasicInfo extends StatelessWidget {
 class _TotalPrice extends StatelessWidget {
   const _TotalPrice({required this.price});
 
-  final int price;
+  final String price;
 
   @override
   Widget build(BuildContext context) {

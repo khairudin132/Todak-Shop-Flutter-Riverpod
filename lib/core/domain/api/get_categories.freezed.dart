@@ -23,8 +23,12 @@ GetCategoriesResponse _$GetCategoriesResponseFromJson(
 mixin _$GetCategoriesResponse {
   List<dynamic>? get categories => throw _privateConstructorUsedError;
 
+  /// Serializes this GetCategoriesResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GetCategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GetCategoriesResponseCopyWith<GetCategoriesResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$GetCategoriesResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GetCategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -84,6 +90,8 @@ class __$$GetCategoriesResponseImplCopyWithImpl<$Res>
       $Res Function(_$GetCategoriesResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GetCategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,12 +140,14 @@ class _$GetCategoriesResponseImpl implements _GetCategoriesResponse {
                 .equals(other._categories, _categories));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_categories));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GetCategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetCategoriesResponseImplCopyWith<_$GetCategoriesResponseImpl>
@@ -161,8 +171,11 @@ abstract class _GetCategoriesResponse implements GetCategoriesResponse {
 
   @override
   List<dynamic>? get categories;
+
+  /// Create a copy of GetCategoriesResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetCategoriesResponseImplCopyWith<_$GetCategoriesResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

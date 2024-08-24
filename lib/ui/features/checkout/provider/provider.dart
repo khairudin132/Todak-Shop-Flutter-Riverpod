@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart' hide Order;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todak_shop/core/core.dart';
 import 'package:todak_shop/ui/features/address/provider/provider.dart';
 import 'package:todak_shop/ui/features/cart/provider/provider.dart';
+import 'package:todak_shop/ui/features/order/provider/provider.dart';
 
 part 'provider.g.dart';
 
@@ -18,21 +20,13 @@ class CheckoutCartItem extends _$CheckoutCartItem {
         .fold(0.0, (previousValue, element) => previousValue + element);
     state = (carts: carts, totalPrice: total.toString());
   }
-}
-
-@riverpod
-class CheckoutToOrder extends _$CheckoutToOrder {
-  @override
-  Future<ApiResult<void>> build() async {
-    return ApiSuccess(value: null);
-  }
 
   Future<ApiResult<void>> checkout() async {
     try {
       ref.read(appLoaderProvider.notifier).setLoaderValue(true);
 
-      final listOfCarts = ref.read(checkoutCartItemProvider).carts;
-      final totalPrice = ref.read(checkoutCartItemProvider).totalPrice;
+      final listOfCarts = state.carts;
+      final totalPrice = state.totalPrice;
 
       final defaultAddress = ref.read(defaultAddressProvider);
 
@@ -44,17 +38,16 @@ class CheckoutToOrder extends _$CheckoutToOrder {
         item: OrderItem(
           carts: listOfCarts,
           address: defaultAddress,
-          totalPrice: int.tryParse(totalPrice),
-          createdAt: DateTime.now(),
+          totalPrice: totalPrice,
+          createdAt: Timestamp.now().toDate(),
         ),
       );
 
-      await ref.read(orderRepoProvider).addOrder(order);
+      await ref.read(orderItemsListProvider.notifier).addOrder(order);
       // TODO remove cart in order
-      // await ref.read(cartItemsListProvider.notifier).removeCart(listOfCarts);
+      // await ref.read(cartItemsListProvider.notifier).removeCartItem(listOfCarts);
       ref.read(collectCartItemForCheckoutProvider.notifier).clearCart();
 
-      await Future.delayed(const Duration(seconds: 1));
 
       return ApiSuccess(value: null);
     } finally {
