@@ -1,49 +1,52 @@
 name: todak_shop
 description: "A Flutter project for digital online Todak Shop"
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.6 <4.0.0'
+  sdk: ">=3.2.6 <4.0.0"
+
+dependency_overrides:
+  collection: 1.18.0
 
 dependencies:
   badges: ^3.1.2
-  cached_network_image: ^3.3.1
-  cloud_firestore: ^4.15.5
-  collection: ^1.18.0
-  cupertino_icons: ^1.0.2
-  dio: ^5.4.0
+  cached_network_image: ^3.4.0
+  cloud_firestore: ^5.2.1
+  collection: ^1.19.0
+  cupertino_icons: ^1.0.8
+  dio: ^5.6.0
   dots_indicator: ^3.0.0
-  firebase_auth: ^4.16.0
-  firebase_core: ^2.24.2
+  firebase_auth: ^5.1.4
+  firebase_core: ^3.3.0
   flutter:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
-  flutter_riverpod: ^2.4.10
-  freezed_annotation: ^2.4.1
-  image_picker: ^1.0.7
-  json_annotation: ^4.8.1
+  flutter_riverpod: ^2.5.1
+  freezed_annotation: ^2.4.4
+  image_picker: ^1.1.2
+  json_annotation: ^4.9.0
   jwt_decoder: ^2.0.1
-  lottie: ^3.0.0
-  riverpod: ^2.5.0
-  riverpod_annotation: ^2.3.4
-  shared_preferences: ^2.2.2
+  lottie: ^3.1.2
+  riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  shared_preferences: ^2.3.2
   shimmer: ^3.0.0
-  talker_dio_logger: ^4.0.2
+  talker_dio_logger: ^4.4.1
 
 dev_dependencies:
-  build_runner: ^2.4.8
-  flutter_gen_runner: ^5.4.0
-  flutter_lints: ^2.0.0
+  build_runner: ^2.4.12
+  flutter_gen_runner: ^5.6.0
+  flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
-  freezed: ^2.4.7
-  json_serializable: ^6.7.1
+  freezed: ^2.5.7
+  json_serializable: ^6.8.0
   mockito: ^5.4.4
-  riverpod_generator: ^2.3.11
-  riverpod_lint: ^2.3.9
+  riverpod_generator: ^2.4.3
+  riverpod_lint: ^2.3.13
 
 flutter_gen:
   output: lib/core/gen
@@ -53,34 +56,3 @@ flutter:
     - assets/
     - assets/lottie/
   uses-material-design: true
-
-  
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
