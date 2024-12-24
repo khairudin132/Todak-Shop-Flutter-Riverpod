@@ -12,4 +12,4 @@ class GetCategoriesResponse with _$GetCategoriesResponse {
 
   factory GetCategoriesResponse.fromJson(Map<String, dynamic> json) =>
       _$GetCategoriesResponseFromJson(json);
-}
+} 
