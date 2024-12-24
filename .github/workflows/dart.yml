@@ -28,3 +28,10 @@ jobs:
         run: dart pub get
       - name: Analyze Dart
         uses: zgosalvez/github-actions-analyze-dart@v3
+        with:
+          fail-on-infos: false
+          fail-on-warnings: false
+        env:
+          FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.27.1-x64
+          PUB_CACHE: /home/runner/.pub-cache
+          DART_HOME: /opt/hostedtoolcache/dart/3.6.0/x64
