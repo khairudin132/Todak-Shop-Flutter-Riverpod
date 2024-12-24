@@ -1,13 +1,15 @@
-on: push
+name: Dart
 
-name: Sample Workflow
+on:
+  # push:
+  #   branches: [ '**' ]
+  pull_request:
+    branches: [ '**' ]
 
 jobs:
   build:
-    name: Example
     runs-on: ubuntu-latest
-    container:
-      image:  google/dart:latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,7 +23,7 @@ jobs:
       # You can specify other versions if desired, see documentation here:
       # https://github.com/dart-lang/setup-dart/blob/main/README.md
       - uses: dart-lang/setup-dart@v1
-      
+
       - name: Install dependencies
         run: dart pub get
       - name: Analyze Dart
