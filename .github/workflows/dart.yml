@@ -7,11 +7,11 @@ on:
     branches: [ '**' ]
 
 jobs:
-  build:
+  dart:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Clone repository
         uses: actions/checkout@v4
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -24,14 +24,33 @@ jobs:
       # https://github.com/dart-lang/setup-dart/blob/main/README.md
       - uses: dart-lang/setup-dart@v1
 
-      - name: Install dependencies
-        run: dart pub get
-      - name: Analyze Dart
-        uses: zgosalvez/github-actions-analyze-dart@v3
+      - uses: invertase/github-action-dart-analyzer@v3
         with:
-          fail-on-infos: false
-          fail-on-warnings: false
-        env:
-          FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.27.1-x64
-          PUB_CACHE: /home/runner/.pub-cache
-          DART_HOME: /opt/hostedtoolcache/dart/3.6.0/x64
+          # (Optional) Treat info level issues as fatal.
+          fatal-infos: false
+
+          # (Optional) Treat warning level issues as fatal
+          # (defaults to true).
+          fatal-warnings: false
+
+          # (Optional) Whether to add annotations to GitHub actions summary / PR
+          # review files.
+          # (defaults to true).
+          annotate: true
+
+          # (Optional) If set to true only annotations will be created and the
+          # GitHub action itself will not fail on Dart analyzer problems. 
+          # (defaults to false).
+          annotate-only: false
+
+          # (Optional) If set to true the GitHub action will run custom_lint
+          # if it is found as dependency in the pubspec.yaml
+          # (defaults to false).
+          custom-lint: false
+
+          # (Optional) The working directory to run the Dart analyzer in 
+          # (defaults to `./`).
+          working-directory: ./
+
+
+
