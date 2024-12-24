@@ -1,74 +1,17 @@
-name: Dart
+on: push
 
-on:
-  # push:
-  #   branches: [ '**' ]
-  pull_request:
-    branches: [ '**' ]
+name: Sample Workflow
 
 jobs:
-  dart:
+  build:
+    name: Example
     runs-on: ubuntu-latest
-
+    container:
+      image:  google/dart:latest
     steps:
-      - name: Clone repository
+      - name: Checkout code
         uses: actions/checkout@v4
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-      - run: flutter --version
-
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      - uses: dart-lang/setup-dart@v1
-
-      - uses: invertase/github-action-dart-analyzer@v3
-        with:
-          # (Optional) Treat info level issues as fatal.
-          fatal-infos: false
-
-          # (Optional) Treat warning level issues as fatal
-          # (defaults to true).
-          fatal-warnings: false
-
-          # (Optional) Whether to add annotations to GitHub actions summary / PR
-          # review files.
-          # (defaults to true).
-          annotate: true
-
-          # (Optional) If set to true only annotations will be created and the
-          # GitHub action itself will not fail on Dart analyzer problems. 
-          # (defaults to false).
-          annotate-only: false
-
-          # (Optional) If set to true the GitHub action will run custom_lint
-          # if it is found as dependency in the pubspec.yaml
-          # (defaults to false).
-          custom-lint: false
-
-          # (Optional) The working directory to run the Dart analyzer in 
-          # (defaults to `./`).
-          working-directory: ./
-
-      # - name: Install dependencies
-      #   run: dart pub get
-
-      # - name: Analyze Dart
-      #   uses: zgosalvez/github-actions-analyze-dart@v2
-
-      # Uncomment this step to verify the use of 'dart format' on each commit.
-      # - name: Verify formatting
-      #   run: dart format --output=none --set-exit-if-changed .
-
-      # # Consider passing '--fatal-infos' for slightly stricter analysis.
-      # - name: Analyze project source
-      #   run: dart analyze --fatal-infos --fatal-warnings .
-
-      # Your project will need to have tests in test/ and a dependency on
-      # package:test for this step to succeed. Note that Flutter projects will
-      # want to change this to 'flutter test'.
-      # - name: Run tests
-      #   run: dart test
-
+      - name: Install dependencies
+        run: dart pub get
+      - name: Analyze Dart
+        uses: zgosalvez/github-actions-analyze-dart@v3
