@@ -6,22 +6,46 @@ part of 'get_categories.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$apiGetCategoriesHash() => r'e40217517d1a493f4cee021c59b587a0ebaa0143';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [apiGetCategories].
 @ProviderFor(apiGetCategories)
-final apiGetCategoriesProvider =
-    AutoDisposeFutureProvider<ApiResult<GetCategoriesResponse>>.internal(
-      apiGetCategories,
-      name: r'apiGetCategoriesProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$apiGetCategoriesHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+final apiGetCategoriesProvider = ApiGetCategoriesProvider._();
 
-typedef ApiGetCategoriesRef =
-    AutoDisposeFutureProviderRef<ApiResult<GetCategoriesResponse>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+final class ApiGetCategoriesProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<ApiResult<GetCategoriesResponse>>,
+          ApiResult<GetCategoriesResponse>,
+          FutureOr<ApiResult<GetCategoriesResponse>>
+        >
+    with
+        $FutureModifier<ApiResult<GetCategoriesResponse>>,
+        $FutureProvider<ApiResult<GetCategoriesResponse>> {
+  ApiGetCategoriesProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'apiGetCategoriesProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$apiGetCategoriesHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<ApiResult<GetCategoriesResponse>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<ApiResult<GetCategoriesResponse>> create(Ref ref) {
+    return apiGetCategories(ref);
+  }
+}
+
+String _$apiGetCategoriesHash() => r'c702cf6857081ccf3be4945fd56d19818fa8bf6c';

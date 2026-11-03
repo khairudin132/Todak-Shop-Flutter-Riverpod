@@ -8,7 +8,7 @@ final addressRepoProvider = Provider((ref) => AddressRepo(ref));
 class AddressRepo implements AddressInterface {
   AddressRepo(this._ref);
 
-  final ProviderRef _ref;
+  final Ref _ref;
 
   var _listOfAddresses = <Address>[];
 

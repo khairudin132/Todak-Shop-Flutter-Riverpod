@@ -8,7 +8,7 @@ final cartRepoProvider = Provider((ref) => CartRepo(ref));
 class CartRepo implements CartInterface {
   CartRepo(this._ref);
 
-  final ProviderRef _ref;
+  final Ref _ref;
 
   var _listOfCarts = <Cart>[];
 

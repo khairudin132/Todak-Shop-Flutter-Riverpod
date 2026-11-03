@@ -8,7 +8,7 @@ final orderRepoProvider = Provider((ref) => OrderRepo(ref));
 class OrderRepo implements OrderInterface {
   OrderRepo(this._ref);
 
-  final ProviderRef _ref;
+  final Ref _ref;
 
   var _listOfOrders = <Order>[];
 

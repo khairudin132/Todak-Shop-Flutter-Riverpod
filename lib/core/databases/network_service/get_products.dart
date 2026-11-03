@@ -6,7 +6,7 @@ part 'get_products.g.dart';
 
 @riverpod
 Future<ApiResult<GetProductsResponse>> apiGetProducts(
-  ApiGetProductsRef ref, {
+  Ref ref, {
   String? category,
 }) async {
   try {

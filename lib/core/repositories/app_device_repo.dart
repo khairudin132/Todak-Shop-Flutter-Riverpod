@@ -8,7 +8,7 @@ final appDeviceRepoProvider = Provider((ref) => AppDeviceRepo(ref));
 class AppDeviceRepo implements AppDeviceInterface {
   AppDeviceRepo(this._ref);
 
-  final ProviderRef _ref;
+  final Ref _ref;
 
   @override
   bool get getIsFirstTimeInstallApp =>

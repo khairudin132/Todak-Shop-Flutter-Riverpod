@@ -6,7 +6,7 @@ part 'sign_in.g.dart';
 
 @riverpod
 Future<ApiResult<User>> apiSignIn(
-  ApiSignInRef ref, {
+  Ref ref, {
   required SignInRequest request,
 }) async {
   try {

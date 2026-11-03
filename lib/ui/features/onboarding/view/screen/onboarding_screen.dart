@@ -70,7 +70,7 @@ class OnBoardingScreen extends ConsumerWidget {
               child: Center(
                 child: DotsIndicator(
                   dotsCount: 3,
-                  position: ref.watch(onBoardingIndexProvider),
+                  position: index.toDouble(),
                   decorator: DotsDecorator(
                     size: const Size.square(9.0),
                     activeSize: const Size(24.0, 8.0),

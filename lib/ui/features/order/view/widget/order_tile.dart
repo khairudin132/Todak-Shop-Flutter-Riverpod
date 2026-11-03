@@ -121,7 +121,9 @@ class _ItemThumbnail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Constant.radius),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                      child: Container(color: Colors.black.withOpacity(0)),
+                      child: Container(
+                        color: Colors.black.withValues(alpha: 0),
+                      ),
                     ),
                   ),
                 ),

@@ -1,6 +1,22 @@
 # todak_shop
 
-A new Flutter project.
+A Flutter e-commerce demo app (Todak Shop) built with Riverpod.
+
+## Requirements
+
+- Flutter `>=3.47.0` (stable) / Dart `^3.13.0`
+- Android: AGP 9.1, Kotlin 2.4, Gradle 9.3, Java 17
+- iOS: 15.0+
+
+```bash
+flutter pub get
+dart run build_runner build   # regenerate *.g.dart and assets.gen.dart
+flutter analyze
+flutter test
+flutter run
+```
+
+See [CLAUDE.md](CLAUDE.md) for architecture and conventions.
 
 ## Getting Started
 

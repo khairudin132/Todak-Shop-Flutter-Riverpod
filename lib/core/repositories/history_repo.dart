@@ -6,7 +6,7 @@ final historyRepoProvider = Provider((ref) => HistoryRepo(ref));
 class HistoryRepo implements HistoryInterface {
   HistoryRepo(this._ref);
 
-  final ProviderRef _ref;
+  final Ref _ref;
 
   var _listOfHistories = <History>[];
 

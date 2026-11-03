@@ -6,7 +6,7 @@ part 'get_product_detail.g.dart';
 
 @riverpod
 Future<ApiResult<Product>> apiGetProductDetail(
-  ApiGetProductDetailRef ref, {
+  Ref ref, {
   required int id,
 }) async {
   try {

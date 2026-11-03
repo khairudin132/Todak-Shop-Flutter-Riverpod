@@ -17,7 +17,7 @@ Future<T> showAppAlertDialog<T>(
     context: context,
     barrierDismissible: false,
     useRootNavigator: false,
-    builder: (_) {
+    builder: (dialogContext) {
       return AlertDialog.adaptive(
         title: Text(title),
         content: Column(
@@ -25,19 +25,17 @@ Future<T> showAppAlertDialog<T>(
           children: [
             Text(message, style: context.textTheme.titleMedium),
             if (errors != null)
-              ...errors.entries
-                  .map(
-                    (e) => Text(
-                      '${e.key}: ${e.value}',
-                      style: TextStyle(color: context.theme.colorScheme.error),
-                    ),
-                  )
-                  .toList(),
+              ...errors.entries.map(
+                (e) => Text(
+                  '${e.key}: ${e.value}',
+                  style: TextStyle(color: context.theme.colorScheme.error),
+                ),
+              ),
           ],
         ),
         actions: [
           TextButton(
-            onPressed: onPressed ?? () => Navigator.pop(_),
+            onPressed: onPressed ?? () => Navigator.pop(dialogContext),
             child: const Text('Ok'),
           ),
         ],

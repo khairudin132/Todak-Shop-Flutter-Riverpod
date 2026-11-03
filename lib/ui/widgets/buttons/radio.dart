@@ -53,11 +53,13 @@ class _CustomLabeledRadioState<T> extends State<CustomLabeledRadio<T>> {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: <Widget>[
-          Radio<T>(
+          RadioGroup<T>(
             groupValue: widget.groupValue,
-            value: widget.value,
             onChanged: widget.onChanged,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
+            child: Radio<T>(
+              value: widget.value,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
           ),
           Text(widget.label),
           const Spacer(),

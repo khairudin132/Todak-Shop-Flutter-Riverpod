@@ -8,7 +8,7 @@ final productRepoProvider = Provider((ref) => ProductRepo(ref));
 class ProductRepo implements ProductInterface {
   ProductRepo(this._ref);
 
-  final ProviderRef _ref;
+  final Ref _ref;
 
   @override
   Future<List<CategoryItem>> getListOfCategories() async {
