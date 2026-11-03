@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(flutter pub get)",
+      "Bash(flutter pub get:*)",
+      "Bash(flutter pub outdated:*)",
+      "Bash(flutter pub deps:*)",
+      "Bash(flutter analyze)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter test)",
+      "Bash(flutter test:*)",
+      "Bash(flutter --version)",
+      "Bash(flutter doctor:*)",
+      "Bash(dart analyze:*)",
+      "Bash(dart format:*)",
+      "Bash(dart fix --dry-run:*)",
+      "Bash(dart run build_runner build:*)",
+      "Bash(dart run build_runner build)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./android/key.properties)",
+      "Read(./android/**/*.jks)",
+      "Read(./android/**/*.keystore)"
+    ]
+  }
+}
