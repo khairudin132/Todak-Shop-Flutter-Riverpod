@@ -4,11 +4,7 @@ import 'dart:convert';
 import 'product.dart';
 
 class History {
-  History({
-    this.id,
-    this.product,
-    this.viewTimes,
-  });
+  History({this.id, this.product, this.viewTimes});
 
   int? id;
   Product? product;

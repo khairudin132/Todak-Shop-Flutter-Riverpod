@@ -13,7 +13,8 @@ class CartRepo implements CartInterface {
   var _listOfCarts = <Cart>[];
 
   @override
-  List<Cart> get getListOfCarts => _listOfCarts = _ref
+  List<Cart> get getListOfCarts => _listOfCarts =
+      _ref
           .read(cartLocalStorageProvider)
           .getListOfCarts
           ?.map((e) => Cart.fromJson(e))

@@ -4,10 +4,7 @@ import 'package:todak_shop/core/core.dart';
 import '../ui/features/features.dart';
 
 class RouterEntity {
-  const RouterEntity({
-    required this.builder,
-    required this.path,
-  });
+  const RouterEntity({required this.builder, required this.path});
 
   final Widget Function(Map<String, dynamic>? arguments) builder;
   final String path;
@@ -27,10 +24,7 @@ final _listOfPages = [
   ),
 
   // Authentication
-  RouterEntity(
-    builder: (arguments) => SignInScreen(),
-    path: SignInScreen.path,
-  ),
+  RouterEntity(builder: (arguments) => SignInScreen(), path: SignInScreen.path),
 
   // Main
   RouterEntity(
@@ -46,9 +40,7 @@ final _listOfPages = [
 
   // Product
   RouterEntity(
-    builder: (arguments) => ProductDetailScreen(
-      id: arguments!['id'] as int,
-    ),
+    builder: (arguments) => ProductDetailScreen(id: arguments!['id'] as int),
     path: ProductDetailScreen.path,
   ),
 
@@ -60,9 +52,8 @@ final _listOfPages = [
 
   // Checkout
   RouterEntity(
-    builder: (arguments) => CheckoutScreen(
-      carts: arguments!['carts'] as List<Cart>,
-    ),
+    builder: (arguments) =>
+        CheckoutScreen(carts: arguments!['carts'] as List<Cart>),
     path: CheckoutScreen.path,
   ),
 
@@ -78,9 +69,8 @@ final _listOfPages = [
 
   // Order
   RouterEntity(
-    builder: (arguments) => OrderDetailScreen(
-      order: arguments!['order'] as Order,
-    ),
+    builder: (arguments) =>
+        OrderDetailScreen(order: arguments!['order'] as Order),
     path: OrderDetailScreen.path,
   ),
 ];

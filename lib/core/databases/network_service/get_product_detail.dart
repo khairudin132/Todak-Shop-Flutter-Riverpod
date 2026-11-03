@@ -26,9 +26,6 @@ Future<ApiResult<Product>> apiGetProductDetail(
       stackTrace: s,
     );
   } catch (e, s) {
-    return ApiError(
-      message: e.toString(),
-      stackTrace: s,
-    );
+    return ApiError(message: e.toString(), stackTrace: s);
   }
 }

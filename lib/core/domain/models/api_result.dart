@@ -37,12 +37,7 @@ class ApiSuccess<T> extends ApiResult<T> {
 }
 
 class ApiError<T> extends ApiResult<T> {
-  ApiError({
-    super.code,
-    super.message,
-    super.errors,
-    super.stackTrace,
-  }) {
+  ApiError({super.code, super.message, super.errors, super.stackTrace}) {
     super.toString();
   }
 

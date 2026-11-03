@@ -13,8 +13,9 @@ String _$appLoaderHash() => r'c047eb4d2414f6a528e7d049b31caf359cfc2301';
 final appLoaderProvider = AutoDisposeNotifierProvider<AppLoader, bool>.internal(
   AppLoader.new,
   name: r'appLoaderProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appLoaderHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$appLoaderHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

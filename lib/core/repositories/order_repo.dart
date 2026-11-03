@@ -13,7 +13,8 @@ class OrderRepo implements OrderInterface {
   var _listOfOrders = <Order>[];
 
   @override
-  List<Order> get getListOfOrders => _listOfOrders = _ref
+  List<Order> get getListOfOrders => _listOfOrders =
+      _ref
           .read(orderLocalStorageProvider)
           .getListOfOrders
           ?.map((e) => Order.fromJson(e))

@@ -14,9 +14,7 @@ final _buttonShape = MaterialStateProperty.all(
 
 final themeData = ThemeData(
   cardTheme: CardTheme(
-    shape: RoundedRectangleBorder(
-      borderRadius: _borderRadius,
-    ),
+    shape: RoundedRectangleBorder(borderRadius: _borderRadius),
   ),
   inputDecorationTheme: InputDecorationTheme(
     isDense: true,
@@ -38,11 +36,7 @@ final themeData = ThemeData(
       fixedSize: _fixedSize,
       shape: _buttonShape,
       textStyle: MaterialStateProperty.all(
-        const TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          letterSpacing: 0.5,
-        ),
+        const TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 0.5),
       ),
     ),
   ),

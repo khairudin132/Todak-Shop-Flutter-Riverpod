@@ -53,14 +53,12 @@ class OnBoardingScreen extends ConsumerWidget {
               OnBoardingBase(
                 imagePath: Assets.lottie.animationOnlineTransaction,
                 title: 'Pay Online',
-                subtitle:
-                    'With any of our online payment methods, you can pay online.',
+                subtitle: 'With any of our online payment methods, you can pay online.',
               ),
               OnBoardingBase(
                 imagePath: Assets.lottie.animationCod,
                 title: 'Cash On Delivery',
-                subtitle:
-                    'We will deliver your product at your doorsteps with cash on delivery.',
+                subtitle: 'We will deliver your product at your doorsteps with cash on delivery.',
               ),
             ],
           ),
@@ -82,7 +80,7 @@ class OnBoardingScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-            )
+            ),
         ],
       ),
     );

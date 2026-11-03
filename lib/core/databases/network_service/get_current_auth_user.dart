@@ -6,7 +6,8 @@ part 'get_current_auth_user.g.dart';
 
 @riverpod
 Future<ApiResult<User>> apiGetCurrentAuthUser(
-    ApiGetCurrentAuthUserRef ref) async {
+  ApiGetCurrentAuthUserRef ref,
+) async {
   try {
     final result = await ref
         .read(networkStorageServiceProvider)
@@ -24,9 +25,6 @@ Future<ApiResult<User>> apiGetCurrentAuthUser(
       stackTrace: s,
     );
   } catch (e, s) {
-    return ApiError(
-      message: e.toString(),
-      stackTrace: s,
-    );
+    return ApiError(message: e.toString(), stackTrace: s);
   }
 }

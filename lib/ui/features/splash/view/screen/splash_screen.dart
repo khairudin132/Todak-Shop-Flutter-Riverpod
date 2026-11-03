@@ -30,8 +30,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   Future<void> _checkCurrentUser() async {
     final user = ref.read(currentAuthUserProvider);
-    final isFirstTimer =
-        ref.read(appDeviceRepoProvider).getIsFirstTimeInstallApp;
+    final isFirstTimer = ref
+        .read(appDeviceRepoProvider)
+        .getIsFirstTimeInstallApp;
     final isLoggedIn = ref.read(authenticationRepoProvider).getIsLoggedIn;
     final isTokenExpired = ref.read(authenticationRepoProvider).isTokenExpired;
 
@@ -92,9 +93,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator.adaptive(),
-      ),
+      body: Center(child: CircularProgressIndicator.adaptive()),
     );
   }
 }

@@ -24,10 +24,7 @@ class ProfileScreen extends StatelessWidget {
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Align(
-            alignment: Alignment.center,
-            child: UserAvatar(radius: 60),
-          ),
+          Align(alignment: Alignment.center, child: UserAvatar(radius: 60)),
           SizedBox(height: 60),
           _UserDetails(),
         ],
@@ -70,10 +67,7 @@ class _FirstName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _LabelSubtile(
-      label: 'First Name',
-      subtitle: firstName,
-    );
+    return _LabelSubtile(label: 'First Name', subtitle: firstName);
   }
 }
 
@@ -84,10 +78,7 @@ class _LastName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _LabelSubtile(
-      label: 'Last Name',
-      subtitle: lastName,
-    );
+    return _LabelSubtile(label: 'Last Name', subtitle: lastName);
   }
 }
 
@@ -98,10 +89,7 @@ class _Email extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _LabelSubtile(
-      label: 'Email',
-      subtitle: email,
-    );
+    return _LabelSubtile(label: 'Email', subtitle: email);
   }
 }
 
@@ -112,10 +100,7 @@ class _Gender extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _LabelSubtile(
-      label: 'Gender',
-      subtitle: gender,
-    );
+    return _LabelSubtile(label: 'Gender', subtitle: gender);
   }
 }
 
@@ -131,9 +116,7 @@ class _Address extends ConsumerWidget {
       children: [
         Text(
           'Address',
-          style: context.textTheme.titleMedium!.copyWith(
-            fontSize: 15,
-          ),
+          style: context.textTheme.titleMedium!.copyWith(fontSize: 15),
         ),
         const SizedBox(height: 6),
         DefaultTextStyle(
@@ -150,10 +133,7 @@ class _Address extends ConsumerWidget {
 }
 
 class _LabelSubtile extends StatelessWidget {
-  const _LabelSubtile({
-    required this.label,
-    required this.subtitle,
-  });
+  const _LabelSubtile({required this.label, required this.subtitle});
 
   final String label;
   final String subtitle;
@@ -166,15 +146,10 @@ class _LabelSubtile extends StatelessWidget {
       children: [
         Text(
           label,
-          style: context.textTheme.titleMedium!.copyWith(
-            fontSize: 15,
-          ),
+          style: context.textTheme.titleMedium!.copyWith(fontSize: 15),
         ),
         const SizedBox(height: 6),
-        Text(
-          subtitle,
-          style: context.textTheme.bodyMedium,
-        ),
+        Text(subtitle, style: context.textTheme.bodyMedium),
       ],
     );
   }

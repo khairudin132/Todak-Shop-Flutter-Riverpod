@@ -3,12 +3,7 @@ import 'dart:convert';
 import 'package:todak_shop/core/domain/domain.dart';
 
 class OrderItem {
-  OrderItem({
-    this.carts,
-    this.address,
-    this.totalPrice,
-    this.createdAt,
-  });
+  OrderItem({this.carts, this.address, this.totalPrice, this.createdAt});
 
   List<Cart>? carts;
   Address? address;

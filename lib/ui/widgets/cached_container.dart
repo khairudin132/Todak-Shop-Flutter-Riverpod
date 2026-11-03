@@ -27,14 +27,10 @@ class CachedContainer extends StatelessWidget {
           height: height,
           imageProvider: imageProvider,
         ),
-        placeholder: (context, url) => _Placeholder(
-          width: width,
-          height: height,
-        ),
-        errorWidget: (context, url, error) => _ErrorWidget(
-          width: width,
-          height: height,
-        ),
+        placeholder: (context, url) =>
+            _Placeholder(width: width, height: height),
+        errorWidget: (context, url, error) =>
+            _ErrorWidget(width: width, height: height),
       ),
     );
   }
@@ -58,10 +54,7 @@ class _ImageBuilder extends StatelessWidget {
       height: height,
       child: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
-          ),
+          image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
         ),
       ),
     );
@@ -69,10 +62,7 @@ class _ImageBuilder extends StatelessWidget {
 }
 
 class _Placeholder extends StatelessWidget {
-  const _Placeholder({
-    required this.width,
-    required this.height,
-  });
+  const _Placeholder({required this.width, required this.height});
 
   final double width;
   final double height;
@@ -92,10 +82,7 @@ class _Placeholder extends StatelessWidget {
 }
 
 class _ErrorWidget extends StatelessWidget {
-  const _ErrorWidget({
-    required this.width,
-    required this.height,
-  });
+  const _ErrorWidget({required this.width, required this.height});
 
   final double width;
   final double height;
@@ -111,11 +98,7 @@ class _ErrorWidget extends StatelessWidget {
 }
 
 class _Base extends StatelessWidget {
-  const _Base({
-    required this.width,
-    required this.height,
-    required this.child,
-  });
+  const _Base({required this.width, required this.height, required this.child});
 
   final double width;
   final double height;
@@ -123,10 +106,6 @@ class _Base extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: height,
-      child: child,
-    );
+    return SizedBox(width: width, height: height, child: child);
   }
 }

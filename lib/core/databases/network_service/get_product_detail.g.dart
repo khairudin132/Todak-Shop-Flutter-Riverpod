@@ -40,21 +40,15 @@ class ApiGetProductDetailFamily extends Family<AsyncValue<ApiResult<Product>>> {
   const ApiGetProductDetailFamily();
 
   /// See also [apiGetProductDetail].
-  ApiGetProductDetailProvider call({
-    required int id,
-  }) {
-    return ApiGetProductDetailProvider(
-      id: id,
-    );
+  ApiGetProductDetailProvider call({required int id}) {
+    return ApiGetProductDetailProvider(id: id);
   }
 
   @override
   ApiGetProductDetailProvider getProviderOverride(
     covariant ApiGetProductDetailProvider provider,
   ) {
-    return call(
-      id: provider.id,
-    );
+    return call(id: provider.id);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -76,24 +70,19 @@ class ApiGetProductDetailFamily extends Family<AsyncValue<ApiResult<Product>>> {
 class ApiGetProductDetailProvider
     extends AutoDisposeFutureProvider<ApiResult<Product>> {
   /// See also [apiGetProductDetail].
-  ApiGetProductDetailProvider({
-    required int id,
-  }) : this._internal(
-          (ref) => apiGetProductDetail(
-            ref as ApiGetProductDetailRef,
-            id: id,
-          ),
-          from: apiGetProductDetailProvider,
-          name: r'apiGetProductDetailProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$apiGetProductDetailHash,
-          dependencies: ApiGetProductDetailFamily._dependencies,
-          allTransitiveDependencies:
-              ApiGetProductDetailFamily._allTransitiveDependencies,
-          id: id,
-        );
+  ApiGetProductDetailProvider({required int id})
+    : this._internal(
+        (ref) => apiGetProductDetail(ref as ApiGetProductDetailRef, id: id),
+        from: apiGetProductDetailProvider,
+        name: r'apiGetProductDetailProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$apiGetProductDetailHash,
+        dependencies: ApiGetProductDetailFamily._dependencies,
+        allTransitiveDependencies:
+            ApiGetProductDetailFamily._allTransitiveDependencies,
+        id: id,
+      );
 
   ApiGetProductDetailProvider._internal(
     super._createNotifier, {
@@ -110,7 +99,7 @@ class ApiGetProductDetailProvider
   @override
   Override overrideWith(
     FutureOr<ApiResult<Product>> Function(ApiGetProductDetailRef provider)
-        create,
+    create,
   ) {
     return ProviderOverride(
       origin: this,

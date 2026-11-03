@@ -7,7 +7,7 @@ class GlobalLoadingIndicator extends ConsumerStatefulWidget {
   final Widget child;
 
   const GlobalLoadingIndicator({required this.child, Key? key})
-      : super(key: key);
+    : super(key: key);
 
   @override
   ConsumerState createState() => _GlobalLoadingIndicatorState();
@@ -27,9 +27,7 @@ class _GlobalLoadingIndicatorState
         // Add a modal barrier so the user cannot interact with the app while the loading indicator is visible
         _entries.add(
           OverlayEntry(
-            builder: (_) => ModalBarrier(
-              color: Colors.black12.withOpacity(.5),
-            ),
+            builder: (_) => ModalBarrier(color: Colors.black12.withOpacity(.5)),
           ),
         );
         _entries.add(

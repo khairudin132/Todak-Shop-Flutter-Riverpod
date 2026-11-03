@@ -25,7 +25,8 @@ class AddressRepo implements AddressInterface {
       .setSaveAddress(address.toJson());
 
   @override
-  List<Address> get getListOfAddresses => _listOfAddresses = _ref
+  List<Address> get getListOfAddresses => _listOfAddresses =
+      _ref
           .read(addressLocalStorageProvider)
           .getListOfAddresses
           ?.map((e) => Address.fromJson(e))
@@ -54,8 +55,9 @@ class AddressRepo implements AddressInterface {
 
   @override
   Future<void> updateAddress(Address address) async {
-    final indexAdress =
-        _listOfAddresses.indexWhere((element) => element.id == address.id);
+    final indexAdress = _listOfAddresses.indexWhere(
+      (element) => element.id == address.id,
+    );
 
     _listOfAddresses.removeWhere((element) => element.id == address.id);
 
@@ -72,8 +74,9 @@ class AddressRepo implements AddressInterface {
   }
 
   Future<void> _updateAddressLocal(List<Address> listOfAddresses) async {
-    final listOfAddressesString =
-        listOfAddresses.map((e) => (e.toJson())).toList();
+    final listOfAddressesString = listOfAddresses
+        .map((e) => (e.toJson()))
+        .toList();
 
     await _ref.read(addressLocalStorageProvider).clearAddress();
     await _ref

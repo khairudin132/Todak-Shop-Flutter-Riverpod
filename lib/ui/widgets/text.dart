@@ -9,19 +9,12 @@ class SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      header,
-      style: context.textTheme.headlineMedium,
-    );
+    return Text(header, style: context.textTheme.headlineMedium);
   }
 }
 
 class IconLabel extends StatelessWidget {
-  const IconLabel({
-    super.key,
-    required this.icon,
-    required this.label,
-  });
+  const IconLabel({super.key, required this.icon, required this.label});
 
   final IconData icon;
   final String label;
@@ -31,26 +24,16 @@ class IconLabel extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
-          icon,
-          size: 18,
-        ),
+        Icon(icon, size: 18),
         const SizedBox(width: 5),
-        Text(
-          label,
-          style: context.textTheme.labelLarge,
-        ),
+        Text(label, style: context.textTheme.labelLarge),
       ],
     );
   }
 }
 
 class ExpandableText extends StatefulWidget {
-  const ExpandableText({
-    super.key,
-    required this.text,
-    this.trimLength = 100,
-  });
+  const ExpandableText({super.key, required this.text, this.trimLength = 100});
 
   final String text;
   final int trimLength;
@@ -104,9 +87,7 @@ class _ExpandableTextState extends State<ExpandableText> {
           if (secondHalf.isNotEmpty)
             TextSpan(
               text: expanded ? ' Read less' : ' Read more',
-              style: context.textTheme.bodyMedium!.copyWith(
-                color: Colors.blue,
-              ),
+              style: context.textTheme.bodyMedium!.copyWith(color: Colors.blue),
               recognizer: _tapGestureRecognizer,
             ),
         ],

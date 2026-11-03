@@ -40,21 +40,15 @@ class ApiGetProductsFamily
   const ApiGetProductsFamily();
 
   /// See also [apiGetProducts].
-  ApiGetProductsProvider call({
-    String? category,
-  }) {
-    return ApiGetProductsProvider(
-      category: category,
-    );
+  ApiGetProductsProvider call({String? category}) {
+    return ApiGetProductsProvider(category: category);
   }
 
   @override
   ApiGetProductsProvider getProviderOverride(
     covariant ApiGetProductsProvider provider,
   ) {
-    return call(
-      category: provider.category,
-    );
+    return call(category: provider.category);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -76,24 +70,19 @@ class ApiGetProductsFamily
 class ApiGetProductsProvider
     extends AutoDisposeFutureProvider<ApiResult<GetProductsResponse>> {
   /// See also [apiGetProducts].
-  ApiGetProductsProvider({
-    String? category,
-  }) : this._internal(
-          (ref) => apiGetProducts(
-            ref as ApiGetProductsRef,
-            category: category,
-          ),
-          from: apiGetProductsProvider,
-          name: r'apiGetProductsProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$apiGetProductsHash,
-          dependencies: ApiGetProductsFamily._dependencies,
-          allTransitiveDependencies:
-              ApiGetProductsFamily._allTransitiveDependencies,
-          category: category,
-        );
+  ApiGetProductsProvider({String? category})
+    : this._internal(
+        (ref) => apiGetProducts(ref as ApiGetProductsRef, category: category),
+        from: apiGetProductsProvider,
+        name: r'apiGetProductsProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$apiGetProductsHash,
+        dependencies: ApiGetProductsFamily._dependencies,
+        allTransitiveDependencies:
+            ApiGetProductsFamily._allTransitiveDependencies,
+        category: category,
+      );
 
   ApiGetProductsProvider._internal(
     super._createNotifier, {
@@ -110,8 +99,9 @@ class ApiGetProductsProvider
   @override
   Override overrideWith(
     FutureOr<ApiResult<GetProductsResponse>> Function(
-            ApiGetProductsRef provider)
-        create,
+      ApiGetProductsRef provider,
+    )
+    create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -129,7 +119,7 @@ class ApiGetProductsProvider
 
   @override
   AutoDisposeFutureProviderElement<ApiResult<GetProductsResponse>>
-      createElement() {
+  createElement() {
     return _ApiGetProductsProviderElement(this);
   }
 

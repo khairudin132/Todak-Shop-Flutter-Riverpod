@@ -12,16 +12,14 @@ Future<ApiResult<GetProductsResponse>> apiGetProducts(
   try {
     final path = category == null ? 'products' : 'products/category/$category';
 
-    final result =
-        await ref.read(networkStorageServiceProvider).networkStorage.get(
-      path,
-      queryParameters: {
-        'select': 'title,thumbnail,price,rating',
-      },
-    );
+    final result = await ref
+        .read(networkStorageServiceProvider)
+        .networkStorage
+        .get(path, queryParameters: {'select': 'title,thumbnail,price,rating'});
 
-    final data =
-        result.data == null ? null : GetProductsResponse.fromJson(result.data);
+    final data = result.data == null
+        ? null
+        : GetProductsResponse.fromJson(result.data);
 
     return ApiSuccess(value: data);
   } on DioException catch (e, s) {
@@ -32,9 +30,6 @@ Future<ApiResult<GetProductsResponse>> apiGetProducts(
       stackTrace: s,
     );
   } catch (e, s) {
-    return ApiError(
-      message: e.toString(),
-      stackTrace: s,
-    );
+    return ApiError(message: e.toString(), stackTrace: s);
   }
 }

@@ -21,9 +21,11 @@ class AppDeviceRepo implements AppDeviceInterface {
 
   @override
   ThemeMode get getThemeMode =>
-      ThemeMode.values.firstWhereOrNull((element) =>
-          element.name ==
-          _ref.read(appDeviceLocalStorageProvider).getThemeMode) ??
+      ThemeMode.values.firstWhereOrNull(
+        (element) =>
+            element.name ==
+            _ref.read(appDeviceLocalStorageProvider).getThemeMode,
+      ) ??
       ThemeMode.system;
 
   @override

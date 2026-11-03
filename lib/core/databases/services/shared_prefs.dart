@@ -5,13 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:todak_shop/core/core.dart';
 
-final sharedPreferencesProvider =
-    Provider<SharedPreferences>((_) => throw UnimplementedError());
+final sharedPreferencesProvider = Provider<SharedPreferences>(
+  (_) => throw UnimplementedError(),
+);
 
 final sharedPreferenceServiceProvider = Provider(
-  (ref) => SharedPreferencesService(
-    ref.read(sharedPreferencesProvider),
-  ),
+  (ref) => SharedPreferencesService(ref.read(sharedPreferencesProvider)),
 );
 
 class SharedPreferencesService implements LocalStorageInterface {
@@ -29,10 +28,7 @@ class SharedPreferencesService implements LocalStorageInterface {
   }
 
   @override
-  Future<void> setString({
-    required String key,
-    required String value,
-  }) async {
+  Future<void> setString({required String key, required String value}) async {
     await _prefs.setString(key, value);
 
     log('Set Prefs $key: $value');
@@ -48,10 +44,7 @@ class SharedPreferencesService implements LocalStorageInterface {
   }
 
   @override
-  Future<void> setBool({
-    required String key,
-    required bool value,
-  }) async {
+  Future<void> setBool({required String key, required bool value}) async {
     await _prefs.setBool(key, value);
 
     log('Set Prefs $key: $value');

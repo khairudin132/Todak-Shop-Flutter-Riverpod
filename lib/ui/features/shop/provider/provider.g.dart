@@ -12,14 +12,14 @@ String _$currentCategoryHash() => r'6da65235715f50e55f6eac77cf5dc4a0f7443be7';
 @ProviderFor(CurrentCategory)
 final currentCategoryProvider =
     NotifierProvider<CurrentCategory, CategoryItem>.internal(
-  CurrentCategory.new,
-  name: r'currentCategoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$currentCategoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      CurrentCategory.new,
+      name: r'currentCategoryProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$currentCategoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$CurrentCategory = Notifier<CategoryItem>;
 String _$listCategoriesHash() => r'52ab56726729af13beceef27c74401be596ba380';
@@ -28,14 +28,14 @@ String _$listCategoriesHash() => r'52ab56726729af13beceef27c74401be596ba380';
 @ProviderFor(ListCategories)
 final listCategoriesProvider =
     AsyncNotifierProvider<ListCategories, List<CategoryItem>>.internal(
-  ListCategories.new,
-  name: r'listCategoriesProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$listCategoriesHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      ListCategories.new,
+      name: r'listCategoriesProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$listCategoriesHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$ListCategories = AsyncNotifier<List<CategoryItem>>;
 // ignore_for_file: type=lint

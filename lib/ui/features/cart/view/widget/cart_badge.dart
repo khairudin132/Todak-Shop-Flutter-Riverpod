@@ -15,13 +15,11 @@ class CartBadge extends ConsumerWidget {
     return badges.Badge(
       position: badges.BadgePosition.topEnd(top: 0, end: 3),
       badgeAnimation: const badges.BadgeAnimation.slide(
-          // disappearanceFadeAnimationDuration: Duration(milliseconds: 200),
-          // curve: Curves.easeInCubic,
-          ),
-      showBadge: true,
-      badgeStyle: const badges.BadgeStyle(
-        badgeColor: Colors.red,
+        // disappearanceFadeAnimationDuration: Duration(milliseconds: 200),
+        // curve: Curves.easeInCubic,
       ),
+      showBadge: true,
+      badgeStyle: const badges.BadgeStyle(badgeColor: Colors.red),
       badgeContent: Text(
         total.toString(),
         style: const TextStyle(color: Colors.white),

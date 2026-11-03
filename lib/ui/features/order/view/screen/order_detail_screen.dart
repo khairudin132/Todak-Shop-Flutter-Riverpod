@@ -5,10 +5,7 @@ import 'package:todak_shop/ui/features/address/view/widget/widget.dart';
 import 'package:todak_shop/ui/ui.dart';
 
 class OrderDetailScreen extends ConsumerWidget {
-  const OrderDetailScreen({
-    super.key,
-    required this.order,
-  });
+  const OrderDetailScreen({super.key, required this.order});
 
   static const path = '/OrderDetailScreen';
 
@@ -20,13 +17,11 @@ class OrderDetailScreen extends ConsumerWidget {
       _DateTime(dateTime: order.item!.createdAt!),
       _Address(address: order.item!.address!),
       _TotalPrice(price: order.item!.totalPrice!),
-      for (var e in order.item!.carts!) CartTile.noCheckbox(cart: e)
+      for (var e in order.item!.carts!) CartTile.noCheckbox(cart: e),
     ];
 
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Order Detail'),
-      ),
+      appBar: AppBar(title: const Text('Order Detail')),
       hasBottomGap: true,
       child: ListViewSeparatedItem(
         list: list,
@@ -64,10 +59,7 @@ class _BoughtDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _HorizontalLabelSubtile(
-      label: 'Date',
-      subtitle: dateTime.date,
-    );
+    return _HorizontalLabelSubtile(label: 'Date', subtitle: dateTime.date);
   }
 }
 
@@ -78,10 +70,7 @@ class _BoughtTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _HorizontalLabelSubtile(
-      label: 'Time',
-      subtitle: dateTime.time,
-    );
+    return _HorizontalLabelSubtile(label: 'Time', subtitle: dateTime.time);
   }
 }
 
@@ -97,9 +86,7 @@ class _Address extends ConsumerWidget {
       children: [
         Text(
           'Address',
-          style: context.textTheme.titleMedium!.copyWith(
-            fontSize: 15,
-          ),
+          style: context.textTheme.titleMedium!.copyWith(fontSize: 15),
         ),
         const SizedBox(height: 6),
         DefaultTextStyle(
@@ -118,18 +105,12 @@ class _TotalPrice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _HorizontalLabelSubtile(
-      label: 'Total Price',
-      subtitle: 'RM $price',
-    );
+    return _HorizontalLabelSubtile(label: 'Total Price', subtitle: 'RM $price');
   }
 }
 
 class _HorizontalLabelSubtile extends StatelessWidget {
-  const _HorizontalLabelSubtile({
-    required this.label,
-    required this.subtitle,
-  });
+  const _HorizontalLabelSubtile({required this.label, required this.subtitle});
 
   final String label;
   final String subtitle;
@@ -141,14 +122,9 @@ class _HorizontalLabelSubtile extends StatelessWidget {
       children: [
         Text(
           label,
-          style: context.textTheme.titleMedium!.copyWith(
-            fontSize: 15,
-          ),
+          style: context.textTheme.titleMedium!.copyWith(fontSize: 15),
         ),
-        Text(
-          subtitle,
-          style: context.textTheme.bodyMedium,
-        ),
+        Text(subtitle, style: context.textTheme.bodyMedium),
       ],
     );
   }

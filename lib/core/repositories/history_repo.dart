@@ -18,7 +18,8 @@ class HistoryRepo implements HistoryInterface {
   History get history => _history;
 
   @override
-  void getListOfHistories() => _listOfHistories = _ref
+  void getListOfHistories() => _listOfHistories =
+      _ref
           .read(historyLocalStorageProvider)
           .getListOfHistories
           ?.map((e) => History.fromJson(e))
@@ -39,8 +40,9 @@ class HistoryRepo implements HistoryInterface {
   }
 
   Future<void> _updateHistoryLocal(List<History> listOfHistories) async {
-    final listOfHistoriesString =
-        listOfHistories.map((e) => (e.toJson())).toList();
+    final listOfHistoriesString = listOfHistories
+        .map((e) => (e.toJson()))
+        .toList();
 
     await clearHistory();
     await _ref

@@ -3,19 +3,13 @@ import 'dart:convert';
 import 'product.dart';
 
 class CartItem {
-  CartItem({
-    this.quantity,
-    this.product,
-  });
+  CartItem({this.quantity, this.product});
 
   int? quantity;
   Product? product;
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'quantity': quantity,
-      'product': product?.toMap(),
-    };
+    return <String, dynamic>{'quantity': quantity, 'product': product?.toMap()};
   }
 
   factory CartItem.fromMap(Map<String, dynamic> map) {

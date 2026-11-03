@@ -1,9 +1,7 @@
 import 'package:todak_shop/core/domain/api/common_models/product.dart';
 
 class GetProductsResponse {
-  GetProductsResponse({
-    this.products,
-  });
+  GetProductsResponse({this.products});
 
   List<Product>? products;
 

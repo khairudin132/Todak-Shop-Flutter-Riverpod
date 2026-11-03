@@ -12,14 +12,14 @@ String _$addProductToCartHash() => r'48afeabf09ff0a049c1f1b65eba4d4577a77b109';
 @ProviderFor(AddProductToCart)
 final addProductToCartProvider =
     AutoDisposeNotifierProvider<AddProductToCart, List<Cart>>.internal(
-  AddProductToCart.new,
-  name: r'addProductToCartProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$addProductToCartHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      AddProductToCart.new,
+      name: r'addProductToCartProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$addProductToCartHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$AddProductToCart = AutoDisposeNotifier<List<Cart>>;
 String _$collectCartItemForCheckoutHash() =>
@@ -27,16 +27,19 @@ String _$collectCartItemForCheckoutHash() =>
 
 /// See also [CollectCartItemForCheckout].
 @ProviderFor(CollectCartItemForCheckout)
-final collectCartItemForCheckoutProvider = AutoDisposeNotifierProvider<
-    CollectCartItemForCheckout, List<Cart>>.internal(
-  CollectCartItemForCheckout.new,
-  name: r'collectCartItemForCheckoutProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$collectCartItemForCheckoutHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final collectCartItemForCheckoutProvider =
+    AutoDisposeNotifierProvider<
+      CollectCartItemForCheckout,
+      List<Cart>
+    >.internal(
+      CollectCartItemForCheckout.new,
+      name: r'collectCartItemForCheckoutProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$collectCartItemForCheckoutHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$CollectCartItemForCheckout = AutoDisposeNotifier<List<Cart>>;
 String _$totalPriceCartHash() => r'f4da95c7018c0916d6151b4a22b91ca1d9337995';
@@ -45,14 +48,14 @@ String _$totalPriceCartHash() => r'f4da95c7018c0916d6151b4a22b91ca1d9337995';
 @ProviderFor(TotalPriceCart)
 final totalPriceCartProvider =
     AutoDisposeNotifierProvider<TotalPriceCart, String>.internal(
-  TotalPriceCart.new,
-  name: r'totalPriceCartProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$totalPriceCartHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      TotalPriceCart.new,
+      name: r'totalPriceCartProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$totalPriceCartHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$TotalPriceCart = AutoDisposeNotifier<String>;
 // ignore_for_file: type=lint

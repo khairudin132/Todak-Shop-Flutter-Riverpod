@@ -24,8 +24,9 @@ class SignInScreen extends ConsumerWidget {
           if (_formKey.currentState!.validate()) {
             // ref.read(appLoaderProvider.notifier).setLoaderValue(true);
 
-            final result =
-                await ref.read(currentAuthUserProvider.notifier).signIn();
+            final result = await ref
+                .read(currentAuthUserProvider.notifier)
+                .signIn();
 
             result.when(
               data: (data) async {
@@ -51,25 +52,29 @@ class SignInScreen extends ConsumerWidget {
         },
       ),
       children: [
-        Consumer(builder: (context, ref, widget) {
-          final username = ref.watch(usernameTextFieldProvider);
+        Consumer(
+          builder: (context, ref, widget) {
+            final username = ref.watch(usernameTextFieldProvider);
 
-          return LearningTextFormField(
-            controller: username.controller,
-            label: username.fieldLabel,
-            prefixIcon: Icon(AppIconsAdaptive.profile),
-            validator: username.validate,
-          );
-        }),
-        Consumer(builder: (context, ref, widget) {
-          final password = ref.watch(passwordTextFieldProvider);
+            return LearningTextFormField(
+              controller: username.controller,
+              label: username.fieldLabel,
+              prefixIcon: Icon(AppIconsAdaptive.profile),
+              validator: username.validate,
+            );
+          },
+        ),
+        Consumer(
+          builder: (context, ref, widget) {
+            final password = ref.watch(passwordTextFieldProvider);
 
-          return LearningPasswordFormField(
-            controller: password.controller,
-            label: password.fieldLabel,
-            validator: password.validate,
-          );
-        }),
+            return LearningPasswordFormField(
+              controller: password.controller,
+              label: password.fieldLabel,
+              validator: password.validate,
+            );
+          },
+        ),
       ],
     );
   }

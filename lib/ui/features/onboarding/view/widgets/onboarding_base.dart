@@ -33,15 +33,9 @@ class OnBoardingBase extends StatelessWidget {
             const SizedBox(height: 40),
 
             // text
-            Text(
-              title,
-              style: context.textTheme.headlineLarge,
-            ),
+            Text(title, style: context.textTheme.headlineLarge),
             const SizedBox(height: 10),
-            Text(
-              subtitle,
-              style: context.textTheme.bodyLarge,
-            ),
+            Text(subtitle, style: context.textTheme.bodyLarge),
           ],
         ),
       ],

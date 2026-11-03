@@ -10,12 +10,10 @@ class CartTile extends StatelessWidget {
     required this.onChanged,
   }) : isCheckbox = true;
 
-  const CartTile.noCheckbox({
-    super.key,
-    required this.cart,
-  })  : isCheckbox = false,
-        value = null,
-        onChanged = null;
+  const CartTile.noCheckbox({super.key, required this.cart})
+    : isCheckbox = false,
+      value = null,
+      onChanged = null;
 
   final Cart cart;
   final bool? value;
@@ -31,11 +29,7 @@ class CartTile extends StatelessWidget {
     return Row(
       children: [
         // Checkbox
-        if (isCheckbox)
-          AppCheckbox(
-            value: value!,
-            onChanged: onChanged!,
-          ),
+        if (isCheckbox) AppCheckbox(value: value!, onChanged: onChanged!),
 
         Expanded(
           child: Row(
@@ -56,14 +50,9 @@ class CartTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      product!.title!,
-                      style: context.textTheme.titleSmall,
-                    ),
+                    Text(product!.title!, style: context.textTheme.titleSmall),
                     const SizedBox(height: 4),
-                    Text(
-                      'Qty: ${item!.quantity.toString()}',
-                    ),
+                    Text('Qty: ${item!.quantity.toString()}'),
                   ],
                 ),
               ),

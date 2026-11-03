@@ -39,21 +39,13 @@ class ApiSignInFamily extends Family<AsyncValue<ApiResult<User>>> {
   const ApiSignInFamily();
 
   /// See also [apiSignIn].
-  ApiSignInProvider call({
-    required SignInRequest request,
-  }) {
-    return ApiSignInProvider(
-      request: request,
-    );
+  ApiSignInProvider call({required SignInRequest request}) {
+    return ApiSignInProvider(request: request);
   }
 
   @override
-  ApiSignInProvider getProviderOverride(
-    covariant ApiSignInProvider provider,
-  ) {
-    return call(
-      request: provider.request,
-    );
+  ApiSignInProvider getProviderOverride(covariant ApiSignInProvider provider) {
+    return call(request: provider.request);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -74,23 +66,18 @@ class ApiSignInFamily extends Family<AsyncValue<ApiResult<User>>> {
 /// See also [apiSignIn].
 class ApiSignInProvider extends AutoDisposeFutureProvider<ApiResult<User>> {
   /// See also [apiSignIn].
-  ApiSignInProvider({
-    required SignInRequest request,
-  }) : this._internal(
-          (ref) => apiSignIn(
-            ref as ApiSignInRef,
-            request: request,
-          ),
-          from: apiSignInProvider,
-          name: r'apiSignInProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$apiSignInHash,
-          dependencies: ApiSignInFamily._dependencies,
-          allTransitiveDependencies: ApiSignInFamily._allTransitiveDependencies,
-          request: request,
-        );
+  ApiSignInProvider({required SignInRequest request})
+    : this._internal(
+        (ref) => apiSignIn(ref as ApiSignInRef, request: request),
+        from: apiSignInProvider,
+        name: r'apiSignInProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$apiSignInHash,
+        dependencies: ApiSignInFamily._dependencies,
+        allTransitiveDependencies: ApiSignInFamily._allTransitiveDependencies,
+        request: request,
+      );
 
   ApiSignInProvider._internal(
     super._createNotifier, {

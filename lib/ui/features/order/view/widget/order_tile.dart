@@ -5,11 +5,7 @@ import 'package:todak_shop/core/core.dart';
 import 'package:todak_shop/ui/ui.dart';
 
 class OrderTile extends StatelessWidget {
-  const OrderTile({
-    super.key,
-    required this.order,
-    required this.onPressed,
-  });
+  const OrderTile({super.key, required this.order, required this.onPressed});
 
   final Order order;
   final VoidCallback onPressed;
@@ -22,10 +18,7 @@ class OrderTile extends StatelessWidget {
         child: Column(
           children: [
             // Item
-            _Item(
-              order: order,
-              onPressed: onPressed,
-            ),
+            _Item(order: order, onPressed: onPressed),
 
             const Divider(),
 
@@ -39,10 +32,7 @@ class OrderTile extends StatelessWidget {
 }
 
 class _Item extends StatelessWidget {
-  const _Item({
-    required this.order,
-    required this.onPressed,
-  });
+  const _Item({required this.order, required this.onPressed});
 
   final Order order;
   final VoidCallback onPressed;
@@ -55,10 +45,7 @@ class _Item extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Items (${order.item!.carts!.length})'),
-            AppTextButton(
-              onPressed: onPressed,
-              label: 'See Details',
-            ),
+            AppTextButton(onPressed: onPressed, label: 'See Details'),
           ],
         ),
         const SizedBox(height: 10),
@@ -106,10 +93,7 @@ class _ItemList extends StatelessWidget {
 }
 
 class _ItemThumbnail extends StatelessWidget {
-  const _ItemThumbnail({
-    required this.product,
-    this.remainingCourses,
-  });
+  const _ItemThumbnail({required this.product, this.remainingCourses});
 
   final Product product;
   final int? remainingCourses;
@@ -137,9 +121,7 @@ class _ItemThumbnail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Constant.radius),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                      child: Container(
-                        color: Colors.black.withOpacity(0),
-                      ),
+                      child: Container(color: Colors.black.withOpacity(0)),
                     ),
                   ),
                 ),
@@ -201,10 +183,7 @@ class _TotalPrice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _LabelSubtile(
-      label: 'Total Price',
-      subtitle: 'RM $price',
-    );
+    return _LabelSubtile(label: 'Total Price', subtitle: 'RM $price');
   }
 }
 
@@ -239,14 +218,8 @@ class _LabelSubtile extends StatelessWidget {
     return Column(
       crossAxisAlignment: crossAxisAlignment,
       children: [
-        Text(
-          label,
-          style: context.textTheme.bodySmall,
-        ),
-        Text(
-          subtitle,
-          style: context.textTheme.titleMedium,
-        ),
+        Text(label, style: context.textTheme.bodySmall),
+        Text(subtitle, style: context.textTheme.titleMedium),
       ],
     );
   }

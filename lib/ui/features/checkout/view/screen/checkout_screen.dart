@@ -9,10 +9,7 @@ import 'package:todak_shop/ui/ui.dart';
 import '../../provider/provider.dart';
 
 class CheckoutScreen extends ConsumerStatefulWidget {
-  const CheckoutScreen({
-    super.key,
-    required this.carts,
-  });
+  const CheckoutScreen({super.key, required this.carts});
 
   static const path = '/CheckoutScreen';
 
@@ -35,9 +32,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
   @override
   Widget build(BuildContext context) {
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Checkout'),
-      ),
+      appBar: AppBar(title: const Text('Checkout')),
       isFloatingActionButtonExpanded: false,
       floatingActionButton: Container(
         width: double.infinity,
@@ -50,10 +45,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
               color: Colors.black.withOpacity(0.3),
               spreadRadius: 0,
               blurRadius: 5,
-              offset: const Offset(
-                0,
-                -3,
-              ),
+              offset: const Offset(0, -3),
             ),
           ],
         ),
@@ -66,8 +58,9 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
             ConfirmButton(
               label: 'Order',
               onPressed: () async {
-                final result =
-                    await ref.read(checkoutToOrderProvider.notifier).checkout();
+                final result = await ref
+                    .read(checkoutToOrderProvider.notifier)
+                    .checkout();
 
                 result.when(
                   data: (data) async {
@@ -79,7 +72,9 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
 
                     if (context.mounted) {
                       context.navigator.pushNamedAndRemoveUntil(
-                          MainBottomNavScreen.path, (route) => false);
+                        MainBottomNavScreen.path,
+                        (route) => false,
+                      );
                       ref.read(bottomTabIndexProvider.notifier).state = 1;
                     }
                   },
@@ -119,9 +114,7 @@ class _Address extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Address',
-        ),
+        const Text('Address'),
         const SizedBox(height: 4),
         AddressTile.change(
           address: address,
@@ -163,10 +156,7 @@ class _TotalPrice extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Text('Total'),
-        Text(
-          'RM $totalPrice',
-          style: context.textTheme.titleMedium,
-        ),
+        Text('RM $totalPrice', style: context.textTheme.titleMedium),
       ],
     );
   }

@@ -85,8 +85,9 @@ class Address {
     return Address(
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] != null ? map['name'] as String : null,
-      phoneNumber:
-          map['phoneNumber'] != null ? map['phoneNumber'] as String : null,
+      phoneNumber: map['phoneNumber'] != null
+          ? map['phoneNumber'] as String
+          : null,
       address1: map['address1'] != null ? map['address1'] as String : null,
       address2: map['address2'] != null ? map['address2'] as String : null,
       postcode: map['postcode'] != null ? map['postcode'] as int : null,

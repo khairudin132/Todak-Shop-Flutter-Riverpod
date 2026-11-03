@@ -23,20 +23,14 @@ class CustomTabState extends InheritedWidget {
 }
 
 class TabViewItem {
-  const TabViewItem({
-    required this.label,
-    required this.view,
-  });
+  const TabViewItem({required this.label, required this.view});
 
   final String label;
   final Widget view;
 }
 
 class CustomTabBar extends StatefulWidget {
-  const CustomTabBar({
-    super.key,
-    required this.tabs,
-  });
+  const CustomTabBar({super.key, required this.tabs});
 
   final List<TabViewItem> tabs;
 
@@ -70,9 +64,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
 }
 
 class _TabBar extends StatelessWidget {
-  const _TabBar({
-    required this.onTap,
-  });
+  const _TabBar({required this.onTap});
 
   final void Function(int value) onTap;
 
@@ -89,11 +81,7 @@ class _TabBar extends StatelessWidget {
             itemCount: tabs.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return _TabBarItem(
-                onTap: onTap,
-                index: index,
-                tab: tabs[index],
-              );
+              return _TabBarItem(onTap: onTap, index: index, tab: tabs[index]);
             },
           ),
         ),
@@ -152,18 +140,16 @@ class _TabBarItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              tab.label,
-              style: context.textTheme.titleSmall,
-            ),
+            Text(tab.label, style: context.textTheme.titleSmall),
             const SizedBox(height: 8),
             if (isActive)
               Container(
                 height: 5,
                 width: 60,
                 decoration: BoxDecoration(
-                    color: context.theme.colorScheme.primary,
-                    borderRadius: const BorderRadius.all(Radius.circular(100))),
+                  color: context.theme.colorScheme.primary,
+                  borderRadius: const BorderRadius.all(Radius.circular(100)),
+                ),
               ),
           ],
         ),

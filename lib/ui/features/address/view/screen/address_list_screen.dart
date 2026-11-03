@@ -15,9 +15,7 @@ class AddressListScreen extends ConsumerWidget {
     final selectedAddress = ref.watch(currentSelectAddressProvider);
 
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Address'),
-      ),
+      appBar: AppBar(title: const Text('Address')),
       floatingActionButton: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
@@ -44,9 +42,8 @@ class AddressListScreen extends ConsumerWidget {
       hasBottomGap: true,
       child: ListView(
         shrinkWrap: false,
-        children: [
-          const _AddressItemList(),
-        ].separatorListWidget(const SizedBox(height: 16)),
+        children: [const _AddressItemList()]
+            .separatorListWidget(const SizedBox(height: 16)),
       ),
     );
   }

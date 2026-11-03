@@ -21,8 +21,11 @@ class $AssetsLottieGen {
       'assets/lottie/animation_online_transaction.json';
 
   /// List of all assets
-  List<String> get values =>
-      [animationCod, animationManLaptop, animationOnlineTransaction];
+  List<String> get values => [
+    animationCod,
+    animationManLaptop,
+    animationOnlineTransaction,
+  ];
 }
 
 class Assets {

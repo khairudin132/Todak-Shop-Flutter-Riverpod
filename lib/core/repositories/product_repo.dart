@@ -17,10 +17,10 @@ class ProductRepo implements ProductInterface {
     return result.when(
       data: (data) {
         return data?.categories
-                ?.mapIndexed((index, element) => CategoryItem(
-                      index: index + 1,
-                      rawString: element,
-                    ))
+                ?.mapIndexed(
+                  (index, element) =>
+                      CategoryItem(index: index + 1, rawString: element),
+                )
                 .toList() ??
             [];
       },
@@ -30,8 +30,9 @@ class ProductRepo implements ProductInterface {
 
   @override
   Future<List<Product>> getListOfProducts({String? category}) async {
-    final result =
-        await _ref.read(apiGetProductsProvider(category: category).future);
+    final result = await _ref.read(
+      apiGetProductsProvider(category: category).future,
+    );
 
     return result.when(
       data: (data) {
