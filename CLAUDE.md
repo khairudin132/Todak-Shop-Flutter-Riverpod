@@ -33,6 +33,13 @@ Run `build_runner` after changing any `@riverpod` / `@Riverpod(...)` declaration
 anything under `assets/`. Generated files **are committed** — commit them together with
 their source change.
 
+## Claude Code cloud sessions
+
+`.claude/hooks/session-start.sh` (registered in `.claude/settings.json`) runs at session
+start when `CLAUDE_CODE_REMOTE=true`: it installs Flutter `3.47.9` into `/opt/flutter`
+if missing, adds it to `PATH`, and runs `flutter pub get` only when `pubspec.yaml`,
+`pubspec.lock` or the hook changed. Bump `FLUTTER_VERSION` there when upgrading Flutter.
+
 ## Architecture
 
 ```
