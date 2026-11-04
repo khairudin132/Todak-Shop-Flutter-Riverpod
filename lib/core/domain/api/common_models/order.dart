@@ -3,29 +3,17 @@ import 'dart:convert';
 import 'order_item.dart';
 
 class Order {
-  Order({
-    this.id,
-    this.item,
-  });
+  Order({this.id, this.item});
 
   int? id;
   OrderItem? item;
 
-  Order copyWith({
-    int? id,
-    OrderItem? item,
-  }) {
-    return Order(
-      id: id ?? this.id,
-      item: item ?? this.item,
-    );
+  Order copyWith({int? id, OrderItem? item}) {
+    return Order(id: id ?? this.id, item: item ?? this.item);
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'item': item?.toMap(),
-    };
+    return <String, dynamic>{'id': id, 'item': item?.toMap()};
   }
 
   factory Order.fromMap(Map<String, dynamic> map) {

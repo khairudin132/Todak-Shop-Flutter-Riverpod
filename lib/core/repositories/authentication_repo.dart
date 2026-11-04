@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todak_shop/core/core.dart';
 
 final authenticationRepoProvider = Provider((ref) => AuthenticationRepo(ref));
@@ -8,7 +7,7 @@ final authenticationRepoProvider = Provider((ref) => AuthenticationRepo(ref));
 class AuthenticationRepo implements AuthenticationInterface {
   AuthenticationRepo(this._ref);
 
-  final ProviderRef _ref;
+  final Ref _ref;
 
   User? _user;
 

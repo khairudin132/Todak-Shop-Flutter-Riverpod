@@ -8,12 +8,13 @@ final cartRepoProvider = Provider((ref) => CartRepo(ref));
 class CartRepo implements CartInterface {
   CartRepo(this._ref);
 
-  final ProviderRef _ref;
+  final Ref _ref;
 
   var _listOfCarts = <Cart>[];
 
   @override
-  List<Cart> get getListOfCarts => _listOfCarts = _ref
+  List<Cart> get getListOfCarts => _listOfCarts =
+      _ref
           .read(cartLocalStorageProvider)
           .getListOfCarts
           ?.map((e) => Cart.fromJson(e))

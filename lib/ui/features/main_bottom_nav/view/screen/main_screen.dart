@@ -19,18 +19,20 @@ class MainBottomNavScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(bottomTabIndexProvider);
 
-    ref.listen<AsyncValue<bool>>(
-      tokenExpirationStreamProvider,
-      (previous, next) {
-        next.when(
-          data: (value) {
-            // Debugging print statement
-            log('Expiration listener triggered with value: $value');
-            if (value) {
-              showAppAlertDialog(context,
-                  title: 'Session Expired',
-                  message: 'Your session has expired. Please log in again.',
-                  onPressed: () async {
+    ref.listen<AsyncValue<bool>>(tokenExpirationStreamProvider, (
+      previous,
+      next,
+    ) {
+      next.when(
+        data: (value) {
+          // Debugging print statement
+          log('Expiration listener triggered with value: $value');
+          if (value) {
+            showAppAlertDialog(
+              context,
+              title: 'Session Expired',
+              message: 'Your session has expired. Please log in again.',
+              onPressed: () async {
                 await ref
                     .read(currentAuthUserProvider.notifier)
                     .resetAuthUser();
@@ -40,19 +42,19 @@ class MainBottomNavScreen extends ConsumerWidget {
                     (_) => false,
                   );
                 }
-              });
-            }
-          },
-          error: (error, stack) {
-            // Debugging print statement
-            log('Error in expiration stream: $error');
-          },
-          loading: () {
-            // Handle the loading state if needed
-          },
-        );
-      },
-    );
+              },
+            );
+          }
+        },
+        error: (error, stack) {
+          // Debugging print statement
+          log('Error in expiration stream: $error');
+        },
+        loading: () {
+          // Handle the loading state if needed
+        },
+      );
+    });
 
     return PageBase(
       hasBodyPadding: false,
@@ -73,9 +75,7 @@ class MainBottomNavScreen extends ConsumerWidget {
           ),
           const BottomNavigationBarItem(
             label: 'Profile',
-            icon: UserAvatar(
-              radius: 15,
-            ),
+            icon: UserAvatar(radius: 15),
           ),
         ],
       ),

@@ -6,15 +6,14 @@ part 'sign_in.g.dart';
 
 @riverpod
 Future<ApiResult<User>> apiSignIn(
-  ApiSignInRef ref, {
+  Ref ref, {
   required SignInRequest request,
 }) async {
   try {
-    final result =
-        await ref.read(networkStorageServiceProvider).networkStorage.post(
-              'auth/login',
-              data: request.toJson(),
-            );
+    final result = await ref
+        .read(networkStorageServiceProvider)
+        .networkStorage
+        .post('auth/login', data: request.toJson());
 
     final data = result.data == null ? null : User.fromJson(result.data);
 
@@ -27,9 +26,6 @@ Future<ApiResult<User>> apiSignIn(
       stackTrace: s,
     );
   } catch (e, s) {
-    return ApiError(
-      message: e.toString(),
-      stackTrace: s,
-    );
+    return ApiError(message: e.toString(), stackTrace: s);
   }
 }

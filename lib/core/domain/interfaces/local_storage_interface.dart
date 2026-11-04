@@ -37,17 +37,11 @@
 abstract class LocalStorageInterface {
   String? getString({required String key});
 
-  Future<void> setString({
-    required String key,
-    required String value,
-  });
+  Future<void> setString({required String key, required String value});
 
   bool? getBool({required String key});
 
-  Future<void> setBool({
-    required String key,
-    required bool value,
-  });
+  Future<void> setBool({required String key, required bool value});
 
   List<String>? getStringList({required String key});
 

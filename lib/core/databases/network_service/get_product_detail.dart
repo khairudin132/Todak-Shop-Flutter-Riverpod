@@ -6,7 +6,7 @@ part 'get_product_detail.g.dart';
 
 @riverpod
 Future<ApiResult<Product>> apiGetProductDetail(
-  ApiGetProductDetailRef ref, {
+  Ref ref, {
   required int id,
 }) async {
   try {
@@ -26,9 +26,6 @@ Future<ApiResult<Product>> apiGetProductDetail(
       stackTrace: s,
     );
   } catch (e, s) {
-    return ApiError(
-      message: e.toString(),
-      stackTrace: s,
-    );
+    return ApiError(message: e.toString(), stackTrace: s);
   }
 }

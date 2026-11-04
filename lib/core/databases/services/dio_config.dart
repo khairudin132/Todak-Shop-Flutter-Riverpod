@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// Used by the commented-out TalkerDioLogger interceptor below.
+// ignore: unused_import
 import 'package:talker_dio_logger/talker_dio_logger.dart';
 
 import 'package:todak_shop/core/core.dart';
 
-final dioServiceProvider =
-    Provider((ref) => DioService(ref.read(authenticationRepoProvider)));
+final dioServiceProvider = Provider(
+  (ref) => DioService(ref.read(authenticationRepoProvider)),
+);
 
 class DioService implements NetworkStorageInterface<Response> {
   DioService(this._authentication) {
@@ -21,11 +24,11 @@ class DioService implements NetworkStorageInterface<Response> {
   bool? get isTokenExpired => _authentication.isTokenExpired;
 
   Options get requestOptions => Options(
-        validateStatus: (_) => true,
-        contentType: Headers.jsonContentType,
-        responseType: ResponseType.json,
-        headers: getAuthorizationHeader,
-      );
+    validateStatus: (_) => true,
+    contentType: Headers.jsonContentType,
+    responseType: ResponseType.json,
+    headers: getAuthorizationHeader,
+  );
 
   @override
   Map<String, dynamic>? get getAuthorizationHeader {
@@ -149,7 +152,7 @@ class DioService implements NetworkStorageInterface<Response> {
           },
           onError: (DioException e, handler) {
             // Handle token expiration errors specifically
-            if (isTokenExpired==true) {
+            if (isTokenExpired == true) {
               return handler.reject(
                 DioException.requestCancelled(
                   requestOptions: e.requestOptions,

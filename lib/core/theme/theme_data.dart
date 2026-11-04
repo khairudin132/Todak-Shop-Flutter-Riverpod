@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
 
-final _fixedSize = MaterialStateProperty.all(const Size.fromHeight(50));
+final _fixedSize = WidgetStateProperty.all(const Size.fromHeight(50));
 
 final _borderRadius = BorderRadius.circular(Constant.radius);
 
 final _outlinedInputBorder = OutlineInputBorder(borderRadius: _borderRadius);
 
-final _buttonShape = MaterialStateProperty.all(
+final _buttonShape = WidgetStateProperty.all(
   RoundedRectangleBorder(borderRadius: _borderRadius),
 );
 
 final themeData = ThemeData(
-  cardTheme: CardTheme(
-    shape: RoundedRectangleBorder(
-      borderRadius: _borderRadius,
-    ),
+  cardTheme: CardThemeData(
+    shape: RoundedRectangleBorder(borderRadius: _borderRadius),
   ),
   inputDecorationTheme: InputDecorationTheme(
     isDense: true,
@@ -37,12 +35,8 @@ final themeData = ThemeData(
       alignment: Alignment.center,
       fixedSize: _fixedSize,
       shape: _buttonShape,
-      textStyle: MaterialStateProperty.all(
-        const TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          letterSpacing: 0.5,
-        ),
+      textStyle: WidgetStateProperty.all(
+        const TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 0.5),
       ),
     ),
   ),

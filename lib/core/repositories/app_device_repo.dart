@@ -8,7 +8,7 @@ final appDeviceRepoProvider = Provider((ref) => AppDeviceRepo(ref));
 class AppDeviceRepo implements AppDeviceInterface {
   AppDeviceRepo(this._ref);
 
-  final ProviderRef _ref;
+  final Ref _ref;
 
   @override
   bool get getIsFirstTimeInstallApp =>
@@ -21,9 +21,11 @@ class AppDeviceRepo implements AppDeviceInterface {
 
   @override
   ThemeMode get getThemeMode =>
-      ThemeMode.values.firstWhereOrNull((element) =>
-          element.name ==
-          _ref.read(appDeviceLocalStorageProvider).getThemeMode) ??
+      ThemeMode.values.firstWhereOrNull(
+        (element) =>
+            element.name ==
+            _ref.read(appDeviceLocalStorageProvider).getThemeMode,
+      ) ??
       ThemeMode.system;
 
   @override

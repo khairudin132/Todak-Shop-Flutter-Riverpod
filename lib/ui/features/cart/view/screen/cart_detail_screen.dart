@@ -12,12 +12,7 @@ class CartDetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Cart'),
-        actions: const [
-          CartBadge(),
-        ],
-      ),
+      appBar: AppBar(title: const Text('Cart'), actions: const [CartBadge()]),
       isFloatingActionButtonExpanded: false,
       floatingActionButton: Container(
         width: double.infinity,
@@ -27,13 +22,10 @@ class CartDetailScreen extends ConsumerWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
               spreadRadius: 0,
               blurRadius: 5,
-              offset: const Offset(
-                0,
-                -3,
-              ),
+              offset: const Offset(0, -3),
             ),
           ],
         ),
@@ -45,17 +37,17 @@ class CartDetailScreen extends ConsumerWidget {
             const SizedBox(height: 20),
             ConfirmButton(
               label: 'Checkout',
-              onPressed: ref
-                      .watch(collectCartItemForCheckoutProvider)
-                      .isNullOrEmpty
+              onPressed:
+                  ref.watch(collectCartItemForCheckoutProvider).isNullOrEmpty
                   ? null
                   : () async {
                       if (context.mounted) {
                         context.navigator.pushNamed(
                           CheckoutScreen.path,
                           arguments: {
-                            'carts':
-                                ref.read(collectCartItemForCheckoutProvider),
+                            'carts': ref.read(
+                              collectCartItemForCheckoutProvider,
+                            ),
                           },
                         );
                       }
@@ -124,10 +116,7 @@ class _TotalPrice extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Text('Total'),
-        Text(
-          'RM $totalPrice',
-          style: context.textTheme.titleMedium,
-        ),
+        Text('RM $totalPrice', style: context.textTheme.titleMedium),
       ],
     );
   }

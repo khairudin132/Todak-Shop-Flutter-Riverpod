@@ -36,8 +36,9 @@ class PageBase extends StatelessWidget {
           appBar: appBar,
           endDrawer: endDrawer,
           body: Padding(
-            padding:
-                hasBodyPadding ? const EdgeInsets.all(16.0) : EdgeInsets.zero,
+            padding: hasBodyPadding
+                ? const EdgeInsets.all(16.0)
+                : EdgeInsets.zero,
             child: Column(
               children: [
                 Expanded(child: child),
@@ -77,9 +78,7 @@ class FormPageBase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageBase(
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      appBar: AppBar(title: Text(title)),
       hasBottomGap: true,
       floatingActionButton: button,
       child: Form(

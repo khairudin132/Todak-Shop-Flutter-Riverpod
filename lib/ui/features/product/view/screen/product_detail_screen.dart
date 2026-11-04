@@ -30,9 +30,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
     return PageBase(
       appBar: AppBar(
         title: const Text('Product Detail'),
-        actions: const [
-          CartBadge(),
-        ],
+        actions: const [CartBadge()],
       ),
       floatingActionButton: ConfirmButton(
         label: 'Buy',
@@ -120,10 +118,7 @@ class _Rating extends StatelessWidget {
       allowHalfRating: true,
       itemCount: 5,
       itemPadding: const EdgeInsets.symmetric(horizontal: 1.5),
-      itemBuilder: (context, _) => const Icon(
-        Icons.star,
-        color: Colors.amber,
-      ),
+      itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
       itemSize: 20,
       onRatingUpdate: (rating) {
         debugPrint(rating.toString());
@@ -143,13 +138,8 @@ class _Description extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Description',
-          style: context.textTheme.titleMedium,
-        ),
-        ExpandableText(
-          text: product.description ?? '',
-        ),
+        Text('Description', style: context.textTheme.titleMedium),
+        ExpandableText(text: product.description ?? ''),
       ],
     );
   }
@@ -182,8 +172,6 @@ class _Description extends StatelessWidget {
 //     );
 //   }
 // }
-
-
 
 // class _Tabs extends StatelessWidget {
 //   const _Tabs({required this.course});

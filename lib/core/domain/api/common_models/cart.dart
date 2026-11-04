@@ -3,29 +3,17 @@ import 'dart:convert';
 import 'package:todak_shop/core/core.dart';
 
 class Cart {
-  Cart({
-    this.id,
-    this.item,
-  });
+  Cart({this.id, this.item});
 
   int? id;
   CartItem? item;
 
-  Cart copyWith({
-    int? id,
-    CartItem? item,
-  }) {
-    return Cart(
-      id: id ?? this.id,
-      item: item ?? this.item,
-    );
+  Cart copyWith({int? id, CartItem? item}) {
+    return Cart(id: id ?? this.id, item: item ?? this.item);
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'item': item?.toMap(),
-    };
+    return <String, dynamic>{'id': id, 'item': item?.toMap()};
   }
 
   factory Cart.fromMap(Map<String, dynamic> map) {

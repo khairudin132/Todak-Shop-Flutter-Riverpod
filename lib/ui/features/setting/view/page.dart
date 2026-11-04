@@ -11,25 +11,19 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Setting'),
-      ),
+      appBar: AppBar(title: const Text('Setting')),
       child: const Column(
         children: [
           ExpansionTile(
             title: Text('Theme Mode'),
-            children: [
-              _ThemeModeSetting(),
-            ],
+            children: [_ThemeModeSetting()],
           ),
           // const SizedBox(
           //   height: 10,
           // ),
           ExpansionTile(
             title: Text('Language'),
-            children: [
-              Text('Coming soon'),
-            ],
+            children: [Text('Coming soon')],
           ),
         ],
       ),

@@ -33,8 +33,9 @@ class LearningTextFormField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,
-      style:
-          context.textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
+      style: context.textTheme.labelLarge?.copyWith(
+        fontWeight: FontWeight.w600,
+      ),
       decoration: InputDecoration(
         labelText: label,
         hintText: hintText,

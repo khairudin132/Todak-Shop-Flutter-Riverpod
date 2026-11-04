@@ -13,12 +13,7 @@ class OrderListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageBase(
-      appBar: AppBar(
-        title: const Text('Orders'),
-        actions: const [
-          CartBadge(),
-        ],
-      ),
+      appBar: AppBar(title: const Text('Orders'), actions: const [CartBadge()]),
       hasBottomGap: true,
       child: const _OrderItemList(),
     );

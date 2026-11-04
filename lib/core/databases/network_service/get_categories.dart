@@ -5,8 +5,7 @@ import 'package:todak_shop/core/core.dart';
 part 'get_categories.g.dart';
 
 @riverpod
-Future<ApiResult<GetCategoriesResponse>> apiGetCategories(
-    ApiGetCategoriesRef ref) async {
+Future<ApiResult<GetCategoriesResponse>> apiGetCategories(Ref ref) async {
   try {
     final result = await ref
         .read(networkStorageServiceProvider)
@@ -26,9 +25,6 @@ Future<ApiResult<GetCategoriesResponse>> apiGetCategories(
       stackTrace: s,
     );
   } catch (e, s) {
-    return ApiError(
-      message: e.toString(),
-      stackTrace: s,
-    );
+    return ApiError(message: e.toString(), stackTrace: s);
   }
 }

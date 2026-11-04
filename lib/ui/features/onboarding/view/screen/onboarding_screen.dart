@@ -53,14 +53,12 @@ class OnBoardingScreen extends ConsumerWidget {
               OnBoardingBase(
                 imagePath: Assets.lottie.animationOnlineTransaction,
                 title: 'Pay Online',
-                subtitle:
-                    'With any of our online payment methods, you can pay online.',
+                subtitle: 'With any of our online payment methods, you can pay online.',
               ),
               OnBoardingBase(
                 imagePath: Assets.lottie.animationCod,
                 title: 'Cash On Delivery',
-                subtitle:
-                    'We will deliver your product at your doorsteps with cash on delivery.',
+                subtitle: 'We will deliver your product at your doorsteps with cash on delivery.',
               ),
             ],
           ),
@@ -72,7 +70,7 @@ class OnBoardingScreen extends ConsumerWidget {
               child: Center(
                 child: DotsIndicator(
                   dotsCount: 3,
-                  position: ref.watch(onBoardingIndexProvider),
+                  position: index.toDouble(),
                   decorator: DotsDecorator(
                     size: const Size.square(9.0),
                     activeSize: const Size(24.0, 8.0),
@@ -82,7 +80,7 @@ class OnBoardingScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-            )
+            ),
         ],
       ),
     );

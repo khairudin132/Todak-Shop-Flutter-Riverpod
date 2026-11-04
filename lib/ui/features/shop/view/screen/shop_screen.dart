@@ -16,11 +16,7 @@ class _ShopScreenState extends ConsumerState<ShopScreen> {
   @override
   Widget build(BuildContext context) {
     return PageBase(
-      appBar: AppBar(
-        actions: const [
-          CartBadge(),
-        ],
-      ),
+      appBar: AppBar(actions: const [CartBadge()]),
       hasBodyPadding: false,
       child: RefreshIndicator.adaptive(
         onRefresh: () => Future.wait([
@@ -47,10 +43,7 @@ class _ProductCarouselCategory extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      children: [
-        _CategoryList(),
-        _ProductList(),
-      ],
+      children: [_CategoryList(), _ProductList()],
     );
   }
 }
@@ -137,9 +130,7 @@ class _ProductList extends ConsumerWidget {
                 product: listOfProducts[index],
                 onTap: () => context.navigator.pushNamed(
                   ProductDetailScreen.path,
-                  arguments: {
-                    'id': listOfProducts[index].id,
-                  },
+                  arguments: {'id': listOfProducts[index].id},
                 ),
               );
             },
@@ -159,10 +150,7 @@ class _ProductList extends ConsumerWidget {
 }
 
 class _ProductCard extends StatelessWidget {
-  const _ProductCard({
-    required this.product,
-    required this.onTap,
-  });
+  const _ProductCard({required this.product, required this.onTap});
 
   final Product product;
   final VoidCallback onTap;
@@ -203,9 +191,7 @@ class _ProductCard extends StatelessWidget {
                   ),
                   Text(
                     'RM ${product.price.toString()}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   RatingBar.builder(
                     initialRating: product.rating ?? 0,
@@ -214,10 +200,8 @@ class _ProductCard extends StatelessWidget {
                     allowHalfRating: true,
                     itemCount: 5,
                     itemPadding: const EdgeInsets.symmetric(horizontal: 1.5),
-                    itemBuilder: (context, _) => const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
+                    itemBuilder: (context, _) =>
+                        const Icon(Icons.star, color: Colors.amber),
                     itemSize: 20,
                     onRatingUpdate: (rating) {
                       debugPrint(rating.toString());

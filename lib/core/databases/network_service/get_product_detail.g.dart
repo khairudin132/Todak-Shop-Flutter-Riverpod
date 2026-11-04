@@ -6,158 +6,83 @@ part of 'get_product_detail.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$apiGetProductDetailHash() =>
-    r'ae42cab912cc030a6a3cf58280f435b4c07f845d';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [apiGetProductDetail].
 @ProviderFor(apiGetProductDetail)
-const apiGetProductDetailProvider = ApiGetProductDetailFamily();
+final apiGetProductDetailProvider = ApiGetProductDetailFamily._();
 
-/// See also [apiGetProductDetail].
-class ApiGetProductDetailFamily extends Family<AsyncValue<ApiResult<Product>>> {
-  /// See also [apiGetProductDetail].
-  const ApiGetProductDetailFamily();
+final class ApiGetProductDetailProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<ApiResult<Product>>,
+          ApiResult<Product>,
+          FutureOr<ApiResult<Product>>
+        >
+    with
+        $FutureModifier<ApiResult<Product>>,
+        $FutureProvider<ApiResult<Product>> {
+  ApiGetProductDetailProvider._({
+    required ApiGetProductDetailFamily super.from,
+    required int super.argument,
+  }) : super(
+         retry: null,
+         name: r'apiGetProductDetailProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [apiGetProductDetail].
-  ApiGetProductDetailProvider call({
-    required int id,
-  }) {
-    return ApiGetProductDetailProvider(
-      id: id,
-    );
+  @override
+  String debugGetCreateSourceHash() => _$apiGetProductDetailHash();
+
+  @override
+  String toString() {
+    return r'apiGetProductDetailProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  ApiGetProductDetailProvider getProviderOverride(
-    covariant ApiGetProductDetailProvider provider,
-  ) {
-    return call(
-      id: provider.id,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
+  $FutureProviderElement<ApiResult<Product>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'apiGetProductDetailProvider';
-}
-
-/// See also [apiGetProductDetail].
-class ApiGetProductDetailProvider
-    extends AutoDisposeFutureProvider<ApiResult<Product>> {
-  /// See also [apiGetProductDetail].
-  ApiGetProductDetailProvider({
-    required int id,
-  }) : this._internal(
-          (ref) => apiGetProductDetail(
-            ref as ApiGetProductDetailRef,
-            id: id,
-          ),
-          from: apiGetProductDetailProvider,
-          name: r'apiGetProductDetailProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$apiGetProductDetailHash,
-          dependencies: ApiGetProductDetailFamily._dependencies,
-          allTransitiveDependencies:
-              ApiGetProductDetailFamily._allTransitiveDependencies,
-          id: id,
-        );
-
-  ApiGetProductDetailProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final int id;
-
-  @override
-  Override overrideWith(
-    FutureOr<ApiResult<Product>> Function(ApiGetProductDetailRef provider)
-        create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: ApiGetProductDetailProvider._internal(
-        (ref) => create(ref as ApiGetProductDetailRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<ApiResult<Product>> createElement() {
-    return _ApiGetProductDetailProviderElement(this);
+  FutureOr<ApiResult<Product>> create(Ref ref) {
+    final argument = this.argument as int;
+    return apiGetProductDetail(ref, id: argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ApiGetProductDetailProvider && other.id == id;
+    return other is ApiGetProductDetailProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-mixin ApiGetProductDetailRef
-    on AutoDisposeFutureProviderRef<ApiResult<Product>> {
-  /// The parameter `id` of this provider.
-  int get id;
-}
+String _$apiGetProductDetailHash() =>
+    r'5e31158ff93eb0f934988082dae7662ba365252b';
 
-class _ApiGetProductDetailProviderElement
-    extends AutoDisposeFutureProviderElement<ApiResult<Product>>
-    with ApiGetProductDetailRef {
-  _ApiGetProductDetailProviderElement(super.provider);
+final class ApiGetProductDetailFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<ApiResult<Product>>, int> {
+  ApiGetProductDetailFamily._()
+    : super(
+        retry: null,
+        name: r'apiGetProductDetailProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  ApiGetProductDetailProvider call({required int id}) =>
+      ApiGetProductDetailProvider._(argument: id, from: this);
 
   @override
-  int get id => (origin as ApiGetProductDetailProvider).id;
+  String toString() => r'apiGetProductDetailProvider';
 }
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

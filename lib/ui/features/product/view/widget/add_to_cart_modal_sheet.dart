@@ -67,12 +67,7 @@ Future showAddCartModalBottomSheet(
                 ConfirmButton(
                   label: 'Add to Cart',
                   onPressed: () {
-                    onPressed(
-                      CartItem(
-                        quantity: quantity,
-                        product: product,
-                      ),
-                    );
+                    onPressed(CartItem(quantity: quantity, product: product));
                     context.navigator.pop();
                   },
                 ),

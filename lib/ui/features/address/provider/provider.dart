@@ -49,13 +49,17 @@ class AddressList extends _$AddressList {
       final postcode = ref.read(postcodeTextFieldProvider).value;
       final stateText = ref.read(stateTextFieldProvider).value;
 
-      await ref.read(addressRepoProvider).addAddress(Address(
-            address1: address1,
-            address2: address2,
-            city: city,
-            postcode: postcode.isNullOrEmpty ? null : int.tryParse(postcode!),
-            state: stateText,
-          ));
+      await ref
+          .read(addressRepoProvider)
+          .addAddress(
+            Address(
+              address1: address1,
+              address2: address2,
+              city: city,
+              postcode: postcode.isNullOrEmpty ? null : int.tryParse(postcode!),
+              state: stateText,
+            ),
+          );
 
       state = ref.read(addressRepoProvider).getListOfAddresses;
 

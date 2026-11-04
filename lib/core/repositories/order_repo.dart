@@ -8,12 +8,13 @@ final orderRepoProvider = Provider((ref) => OrderRepo(ref));
 class OrderRepo implements OrderInterface {
   OrderRepo(this._ref);
 
-  final ProviderRef _ref;
+  final Ref _ref;
 
   var _listOfOrders = <Order>[];
 
   @override
-  List<Order> get getListOfOrders => _listOfOrders = _ref
+  List<Order> get getListOfOrders => _listOfOrders =
+      _ref
           .read(orderLocalStorageProvider)
           .getListOfOrders
           ?.map((e) => Order.fromJson(e))

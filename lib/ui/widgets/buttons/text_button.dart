@@ -17,9 +17,6 @@ class AppTextButton extends StatelessWidget {
   // ------------------------------- METHODS -----------------------------------
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Text(label),
-    );
+    return TextButton(onPressed: onPressed, child: Text(label));
   }
 }

@@ -11,9 +11,7 @@ Future<void> main() async {
 
   runApp(
     ProviderScope(
-      overrides: [
-        sharedPreferencesProvider.overrideWithValue(sharedPrefs),
-      ],
+      overrides: [sharedPreferencesProvider.overrideWithValue(sharedPrefs)],
       child: const MyApp(),
     ),
   );
@@ -35,9 +33,7 @@ class MyApp extends ConsumerWidget {
         themeMode: ref.watch(themeModeSettingProvider),
         // onGenerateRoute: AppRouter.generateRoute,
         home: const GlobalLoadingIndicator(
-          child: Navigator(
-            onGenerateRoute: AppRouter.generateRoute,
-          ),
+          child: Navigator(onGenerateRoute: AppRouter.generateRoute),
         ),
       ),
     );

@@ -5,8 +5,7 @@ import 'package:todak_shop/core/core.dart';
 part 'get_current_auth_user.g.dart';
 
 @riverpod
-Future<ApiResult<User>> apiGetCurrentAuthUser(
-    ApiGetCurrentAuthUserRef ref) async {
+Future<ApiResult<User>> apiGetCurrentAuthUser(Ref ref) async {
   try {
     final result = await ref
         .read(networkStorageServiceProvider)
@@ -24,9 +23,6 @@ Future<ApiResult<User>> apiGetCurrentAuthUser(
       stackTrace: s,
     );
   } catch (e, s) {
-    return ApiError(
-      message: e.toString(),
-      stackTrace: s,
-    );
+    return ApiError(message: e.toString(), stackTrace: s);
   }
 }
