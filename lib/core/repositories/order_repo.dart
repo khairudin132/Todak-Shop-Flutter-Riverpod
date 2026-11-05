@@ -23,10 +23,14 @@ class OrderRepo implements OrderInterface {
 
   @override
   Future<void> addOrder(Order order) async {
+    // Reload from storage: the in-memory list is empty until something has
+    // read getListOfOrders, and saving it as-is would wipe stored orders.
+    final listOfOrders = getListOfOrders;
+
     // Find the highest current ID in the list of orders, or use -1 if the list is empty
-    final int currentMaxId = _listOfOrders.isNullOrEmpty
+    final int currentMaxId = listOfOrders.isNullOrEmpty
         ? -1
-        : _listOfOrders.map((e) => e.id ?? 0).reduce(max);
+        : listOfOrders.map((e) => e.id ?? 0).reduce(max);
 
     // Assign the next ID as one more than the highest ID
     final int nextId = currentMaxId + 1;
@@ -34,17 +38,15 @@ class OrderRepo implements OrderInterface {
     // Create a new Order object with the new ID.
     final Order newOrder = order.copyWith(id: nextId);
 
-    // Add the new Order object to the list.
-    _listOfOrders.add(newOrder);
-
-    // Update the order in local storage or database.
+    // Store a new list instance so providers holding the old one see a change.
+    _listOfOrders = [...listOfOrders, newOrder];
 
     await _updateOrderLocal(_listOfOrders);
   }
 
   @override
   Future<void> clearOrder() async {
-    _listOfOrders.clear();
+    _listOfOrders = [];
     await _ref.read(orderLocalStorageProvider).clearOrder();
   }
 

@@ -46,14 +46,16 @@ class AuthenticationRepo implements AuthenticationInterface {
   Future<void> signIn(SignInRequest request) async {
     final result = await _ref.read(apiSignInProvider(request: request).future);
 
-    result.when(
-      data: (data) async {
-        _user = data!;
+    // `switch` (not `when`) so the storage writes are awaited before
+    // signIn() completes; an async `when` callback's Future was dropped.
+    switch (result) {
+      case ApiSuccess(:final value):
+        _user = value!;
         await setAccountToken(_user!.token!);
         await setIsLoggedIn(true);
-      },
-      error: (error) => throw error,
-    );
+      case ApiError():
+        throw result;
+    }
   }
 
   @override
@@ -69,10 +71,7 @@ class AuthenticationRepo implements AuthenticationInterface {
   }
 
   @override
-  Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
-  }
+  Future<void> signOut() => reset();
 
   @override
   Future<void> reset() async {
